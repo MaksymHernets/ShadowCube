@@ -4,31 +4,82 @@ using UnityEngine;
 
 public class DoorLogic : MonoBehaviour
 {
+    public GameObject wall; 
+
     public GameObject door;
-    public bool doot_stage = true;
+    public GameObject doorhandle;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public DoorStage dootstage = DoorStage.closed;
+    public float speedToOpen = 0.01f;
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.transform.tag == "Player")
+    public AudioSource audio_door;
+    public AudioSource audio_doorhandle;
+
+    private void Open()
+	{
+        if (dootstage == DoorStage.closed)
         {
-            if (doot_stage)
-            {
-                doot_stage = false;
-                StartCoroutine("Fade");
-            }
+            dootstage = DoorStage.opening;
+            audio_doorhandle.Play();
+            StartCoroutine("Animation_Doorhandle");
+            dootstage = DoorStage.open;
         }
     }
 
-    IEnumerator Fade()
+    public void UserToOpen()
     {
-        door.transform.position = door.transform.position + new Vector3(0, 0 , 0.1f);
-        yield return new WaitForSeconds(1);
+        Open();
+        //Debug.Log("UserToOpen");
+        wall.SendMessage("OpenedDoor");
+    }
+
+    public void MegaCubeToOpen()
+	{
+        //Debug.Log("MegaCubeToOpen");
+        Open();
+    }
+
+    public void Close()
+	{
+		if (dootstage == DoorStage.open || dootstage == DoorStage.opening)
+		{
+			dootstage = DoorStage.closing;
+			audio_doorhandle.Play();
+			StartCoroutine("Animation_Doorhandle");
+			dootstage = DoorStage.closed;
+		}
+	}
+
+    IEnumerator Animation_Doorhandle()
+    {
+        audio_door.Play();
+        for (int i = 0; i < 90; i++)
+        {
+            doorhandle.transform.localEulerAngles = new Vector3(doorhandle.transform.localEulerAngles.x, doorhandle.transform.localEulerAngles.y + 2f, doorhandle.transform.localEulerAngles.z);
+            yield return null;
+        }
+        StartCoroutine("Animation_DoorOne");
+    }
+
+    // Ввыезд двери вперед
+    IEnumerator Animation_DoorOne()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            door.transform.localPosition = door.transform.localPosition - new Vector3(0, -0.005f, 0);
+            yield return null;
+        }
+        StartCoroutine("Animation_DoorTwo");
+    }
+
+    // Ввыезд двери вбок
+    IEnumerator Animation_DoorTwo()
+    {
+        for (int i = 0; i < 47; i++)
+        {
+            door.transform.localPosition = door.transform.localPosition + new Vector3(0, 0, speedToOpen);
+            yield return null;
+        }
     }
 
     // Update is called once per frame
@@ -36,4 +87,20 @@ public class DoorLogic : MonoBehaviour
     {
         
     }
+}
+
+
+
+public interface IDoor
+{
+    void Open();
+    void Close();
+}
+
+public enum DoorStage
+{
+    closed = 0,
+    opening = 1,
+    open = 2,
+    closing = 3,
 }

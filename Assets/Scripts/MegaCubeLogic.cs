@@ -6,28 +6,148 @@ using Random = UnityEngine.Random;
 
 public class MegaCubeLogic : MonoBehaviour
 {
-    public GameObject cube;
+    public List<GameObject> frames;
+    public GameObject player;
 
-    public int Size;
-    public float k = 1.6f;
+    public int _Size = 10;
+    public float _WidhtCube = 2.4f;
 
-    // Start is called before the first frame update
+    private GameObject prefabcube;
+    private GameObject[,,] gamecubes;
+    private Cube[,,] cubes;
+
     void Start()
     {
-        Random random = new Random();
-		for (int i = 0; i < Size; i++)
-		{
-            for (int j = 0; j < Size; j++)
+        //SetFrames();
+        LoadingPrefabCube();
+        SetCubes();
+        SetPlayers();
+    }
+
+    private void SetFrames()
+	{
+        var value = ((_Size / 2)+1) * _WidhtCube*5;
+        frames[0].transform.position = new Vector3(0, value, 0);
+        frames[1].transform.position = new Vector3(0, 0, value);
+        frames[2].transform.position = new Vector3(0, 0, -value);
+        frames[3].transform.position = new Vector3(value, 0, 0);
+        frames[4].transform.position = new Vector3(-value, 0, 0);
+        frames[5].transform.position = new Vector3(0, -value, 0);
+    }
+
+    private void LoadingPrefabCube()
+	{
+        if (Cookie.room.IndexCube == 0) { prefabcube = Resources.Load<GameObject>("Prefabs/CubeOne"); }
+        else if (Cookie.room.IndexCube == 1) { prefabcube = Resources.Load<GameObject>("Prefabs/HyperCube"); }
+        else if (Cookie.room.IndexCube == 2) { prefabcube = Resources.Load<GameObject>("Prefabs/CubeZero"); }
+        else if (Cookie.room.IndexCube == 3) { prefabcube = Resources.Load<GameObject>("Prefabs/CubeNew"); }
+        else { prefabcube = Resources.Load<GameObject>("Prefabs/CubeOne"); }
+    }
+
+    private void SetCubes()
+	{
+        _Size = Cookie.room.Size;
+        gamecubes = new GameObject[_Size, _Size, _Size];
+        cubes = new Cube[_Size, _Size, _Size];
+        for (int i = 0; i < _Size; ++i)
+        {
+            for (int j = 0; j < _Size; ++j)
             {
-                for (int l = 0; l < Size; l++)
+                for (int l = 0; l < _Size; ++l)
                 {
-                    var transform = cube.transform;
-                    var newcube = Instantiate(cube, new Vector3(i * k, j * k, l * k), transform.rotation);
-                    var cubee = new Cube() { id = Guid.NewGuid(), Color = Random.ColorHSV() };
-                    newcube.SendMessage("IntCube", (object)cubee);
+                    SetCube(i, j, l);
                 }
             }
         }
+
+        // Set Cube of Bridght
+        //SetCube(_Size+1, 5, 5);
+
+        void SetCube(int i, int j, int l)
+		{
+            var newcube = Instantiate(prefabcube, transform);
+            newcube.transform.position = new Vector3(i * _WidhtCube, j * _WidhtCube, l * _WidhtCube);
+            var cubee = new Cube();
+            cubee.Color = GetColor(Random.Range(0, 6));
+            cubee.id = new Vector3Int();
+            cubee.id.x = (int)Random.Range(300, 700);
+            cubee.id.y = (int)Random.Range(300, 700);
+            cubee.id.z = (int)Random.Range(300, 700);
+            if (IsSimpleNumber(cubee.id.x) || IsSimpleNumber(cubee.id.y) || IsSimpleNumber(cubee.id.z))
+            {
+                cubee.trap = new Trap() { id = 0, name = "Trap1needles" };
+            }
+            cubee.position = new Vector3Int(i, j, l);
+            gamecubes[i, j, l] = newcube;
+            cubes[i, j, l] = cubee;
+            newcube.SendMessage("IntCube", (object)cubee);
+            newcube.SendMessage("IntCube2", (object)gameObject);
+            newcube.SetActive(false);
+        }
+    }
+
+    private void SetPlayers()
+	{
+        foreach (var item in Cookie.players)
+        {
+            int x = 0, y = 0, z = 0;
+            do
+            {
+                x = Random.Range(0, _Size);
+                y = Random.Range(0, _Size);
+                z = Random.Range(0, _Size);
+            }
+            while (cubes[x, y, z].trap != null);
+            player.transform.position = gamecubes[x, y, z].transform.position;
+            gamecubes[x, y, z].SetActive(true);
+        }
+    }
+
+    bool IsSimpleNumber(int n)
+    {
+        if (n > 1)
+        {
+            for (int i = 2; i < n; ++i)
+                if (n % i == 0) 
+                    return false;
+            return true;
+        }
+        else
+            return false;
+    }
+
+    public bool ActivateCube(Vector3Int oldposition, int oldwall, Vector3Int position, int wallnumber)
+	{
+		try
+		{
+            var actCube = gamecubes[position.x, position.y, position.z];
+            actCube.SetActive(true);
+            actCube.SendMessage("OpenDoor", wallnumber);
+        }
+        catch
+		{
+            return false;
+		}
+        return true;
+    }
+
+    public void EventOpenedDoor(object vector4) // vector4 = position + indexwall
+	{
+        Debug.Log("MegaCUve");
+        var result = (Vector4)vector4;
+        var position = new Vector3Int((int)result.x, (int)result.y, (int)result.z);
+        int indexwall = (int)result.w;
+        var newposition = new Vector3Int(position.x , position.y , position.z);
+        int newdoor = 0;
+
+        Debug.Log(indexwall);
+        if ( indexwall == 0) { newposition += new Vector3Int(0, -1, 0); newdoor = 5; }
+        else if (indexwall == 1) { newposition += new Vector3Int(0, 0, 1); newdoor = 3; }
+        else if (indexwall == 2) { newposition += new Vector3Int(1, 0, 0); newdoor = 4; }
+        else if (indexwall == 3) { newposition += new Vector3Int(0, 0, -1); newdoor = 1; }
+        else if (indexwall == 4) { newposition += new Vector3Int(-1, 0, 0); newdoor = 2; }
+        else if (indexwall == 5) { newposition += new Vector3Int(0, 1, 0); newdoor = 0; }
+        ActivateCube(position, indexwall, newposition, newdoor);
     }
 
     private Color GetColor(int index)
@@ -41,10 +161,25 @@ public class MegaCubeLogic : MonoBehaviour
         else if (index == 6) { return Color.magenta; }
         return Color.white;
     }
+}
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+public class Player
+{
+    public int id { set; get; }
+    public bool IsBot { set; get; }
+    public string name { set; get; }
+    public bool sex { set; get; }
+}
+
+public class Control
+{
+    public int id { set; get; }
+    public KeyCode jump { set; get; }
+    public KeyCode forward { set; get; }
+    public KeyCode back { set; get; }
+    public KeyCode left { set; get; }
+    public KeyCode right { set; get; }
+    public KeyCode use { set; get; }
+    public KeyCode openitem { set; get; }
+    public KeyCode sitdown { set; get; }
 }

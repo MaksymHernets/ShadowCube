@@ -64,29 +64,37 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\3rdPerson+Fly\Scripts\LevelScripts\ControlsTutorial.cs" />
-    <Compile Include="Assets\3rdPerson+Fly\Scripts\LevelScripts\HintManagement.cs" />
-    <Compile Include="Assets\3rdPerson+Fly\Scripts\LevelScripts\ThirdPersonOrbitCamBasic.cs" />
-    <Compile Include="Assets\3rdPerson+Fly\Scripts\PlayerScripts\AimBehaviourBasic.cs" />
-    <Compile Include="Assets\3rdPerson+Fly\Scripts\PlayerScripts\BasicBehaviour.cs" />
-    <Compile Include="Assets\3rdPerson+Fly\Scripts\PlayerScripts\FlyBehaviour.cs" />
-    <Compile Include="Assets\3rdPerson+Fly\Scripts\PlayerScripts\MoveBehaviour.cs" />
-    <Compile Include="Assets\Invector-3rdPersonController_LITE\3D Models\Others\HealthItem\vAnimateUV.cs" />
-    <Compile Include="Assets\Invector-3rdPersonController_LITE\Scripts\Camera\vThirdPersonCamera.cs" />
-    <Compile Include="Assets\Invector-3rdPersonController_LITE\Scripts\CharacterController\vThirdPersonAnimator.cs" />
-    <Compile Include="Assets\Invector-3rdPersonController_LITE\Scripts\CharacterController\vThirdPersonController.cs" />
-    <Compile Include="Assets\Invector-3rdPersonController_LITE\Scripts\CharacterController\vThirdPersonInput.cs" />
-    <Compile Include="Assets\Invector-3rdPersonController_LITE\Scripts\CharacterController\vThirdPersonMotor.cs" />
-    <Compile Include="Assets\Invector-3rdPersonController_LITE\Scripts\Generic\Utils\vComment.cs" />
-    <Compile Include="Assets\Invector-3rdPersonController_LITE\Scripts\Generic\Utils\vExtensions.cs" />
-    <Compile Include="Assets\Invector-3rdPersonController_LITE\Scripts\Generic\Utils\vPickupItem.cs" />
+    <Compile Include="Assets\OthersAsset\3rdPerson+Fly\Scripts\LevelScripts\ControlsTutorial.cs" />
+    <Compile Include="Assets\OthersAsset\3rdPerson+Fly\Scripts\LevelScripts\HintManagement.cs" />
+    <Compile Include="Assets\OthersAsset\3rdPerson+Fly\Scripts\LevelScripts\ThirdPersonOrbitCamBasic.cs" />
+    <Compile Include="Assets\OthersAsset\3rdPerson+Fly\Scripts\PlayerScripts\AimBehaviourBasic.cs" />
+    <Compile Include="Assets\OthersAsset\3rdPerson+Fly\Scripts\PlayerScripts\BasicBehaviour.cs" />
+    <Compile Include="Assets\OthersAsset\3rdPerson+Fly\Scripts\PlayerScripts\FlyBehaviour.cs" />
+    <Compile Include="Assets\OthersAsset\3rdPerson+Fly\Scripts\PlayerScripts\MoveBehaviour.cs" />
+    <Compile Include="Assets\OthersAsset\Invector-3rdPersonController_LITE\3D Models\Others\HealthItem\vAnimateUV.cs" />
+    <Compile Include="Assets\OthersAsset\Invector-3rdPersonController_LITE\Scripts\Camera\vThirdPersonCamera.cs" />
+    <Compile Include="Assets\OthersAsset\Invector-3rdPersonController_LITE\Scripts\CharacterController\vThirdPersonAnimator.cs" />
+    <Compile Include="Assets\OthersAsset\Invector-3rdPersonController_LITE\Scripts\CharacterController\vThirdPersonController.cs" />
+    <Compile Include="Assets\OthersAsset\Invector-3rdPersonController_LITE\Scripts\CharacterController\vThirdPersonInput.cs" />
+    <Compile Include="Assets\OthersAsset\Invector-3rdPersonController_LITE\Scripts\CharacterController\vThirdPersonMotor.cs" />
+    <Compile Include="Assets\OthersAsset\Invector-3rdPersonController_LITE\Scripts\Generic\Utils\vComment.cs" />
+    <Compile Include="Assets\OthersAsset\Invector-3rdPersonController_LITE\Scripts\Generic\Utils\vExtensions.cs" />
+    <Compile Include="Assets\OthersAsset\Invector-3rdPersonController_LITE\Scripts\Generic\Utils\vPickupItem.cs" />
     <Compile Include="Assets\Scenes\MainMenuLogic.cs" />
     <Compile Include="Assets\Scripts\CameraMoveOne.cs" />
+    <Compile Include="Assets\Scripts\Cookie.cs" />
     <Compile Include="Assets\Scripts\CubeLogic.cs" />
     <Compile Include="Assets\Scripts\DoorLogic.cs" />
     <Compile Include="Assets\Scripts\MegaCubeLogic.cs" />
+    <Compile Include="Assets\Scripts\Menu.cs" />
+    <Compile Include="Assets\Scripts\PlayerLogic.cs" />
+    <Compile Include="Assets\Scripts\TrapLogic.cs" />
+    <Compile Include="Assets\Scripts\TrapWallLogic.cs" />
     <Compile Include="Assets\Scripts\WallLogic.cs" />
-    <None Include="Assets\Invector-3rdPersonController_LITE\README_Basic.txt" />
+    <None Include="Assets\Shaders\TextPlus1.shader" />
+    <None Include="Assets\OthersAsset\Invector-3rdPersonController_LITE\README_Basic.txt" />
+    <None Include="Assets\Shaders\1.shader" />
+    <None Include="Assets\Shaders\TextPlus2.shader" />
     <Reference Include="UnityEngine">
       <HintPath>D:/Program Files/2019.4.16f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>

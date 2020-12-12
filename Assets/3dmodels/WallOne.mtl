@@ -1,0 +1,24 @@
+# Blender MTL File: 'OneWall.blend'
+# Material Count: 2
+
+newmtl Material.002
+Ns 225.000000
+Ka 0.541818 0.541818 0.541818
+Kd 1.000000 0.982882 0.995704
+Ks 0.438182 0.438182 0.438182
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 3
+map_Kd D:\\My_Project\\Cube\\ShadowCube\\Assets\\Sprites\\123.jpg
+
+newmtl Material.004
+Ns 225.000000
+Ka 0.541818 0.541818 0.541818
+Kd 1.000000 0.982882 0.995704
+Ks 0.438182 0.438182 0.438182
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 3
+map_Kd D:\\My_Project\\Cube\\ShadowCube\\Assets\\Sprites\\123.jpg
