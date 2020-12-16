@@ -8,21 +8,29 @@ The repository contains a comm branch where you can send your fixes or new funct
 # Development plan
 When an item is checkmarked, it means the basic foundation is in place but not necessarily complete. For example, Inventory is checkmarked but it currently only supports weapons. You can help fix that.
 * Main Menu
-  - Menu Play
+  1. Menu Play
    - [ ] Multiplayers 
-  - [ ] Player Personalization
-  - [ ] Options
-  - [x] About
+  2. [ ] Player Personalization
+  3. [ ] Options
+  4. [x] About
 * Cubes
-  1) CubeOne
+  1. CubeOne
+    - [ ] Cube logic
     - [x] Trap thorns
     - [ ] Trap mesh
-  2) HyberCube
-  3) CubeZero
-  4) NewCube
+  2. HyberCube
+    - [ ] Cube logic
+  3. CubeZero
+    - [ ] Cube logic
+  4. NewCube
+    - [ ] Cube logic
 * Other
+  - [ ] Multilingualism
+  - [ ] AI for bots
   - [ ] Port to Android
 
 # Screenshot from the game
+Main Menu
 ![GitHub Logo](/ScreenShots/screenshot2.png)
+Cube One
 ![GitHub Logo](/ScreenShots/screenshot1.png)
