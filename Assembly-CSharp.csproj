@@ -624,25 +624,25 @@
       <HintPath>D:/Program Files/2019.4.16f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>D:/My_Project/Cube/ShadowCube/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>D:/MyProjects/Unity3d/ShadowCube/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>D:/My_Project/Cube/ShadowCube/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>D:/MyProjects/Unity3d/ShadowCube/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>D:/My_Project/Cube/ShadowCube/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>D:/MyProjects/Unity3d/ShadowCube/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>D:/My_Project/Cube/ShadowCube/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>D:/MyProjects/Unity3d/ShadowCube/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>D:/My_Project/Cube/ShadowCube/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>D:/MyProjects/Unity3d/ShadowCube/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualStudio.Editor">
-      <HintPath>D:/My_Project/Cube/ShadowCube/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
+      <HintPath>D:/MyProjects/Unity3d/ShadowCube/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>D:/My_Project/Cube/ShadowCube/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>D:/MyProjects/Unity3d/ShadowCube/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup></ItemGroup>
