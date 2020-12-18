@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DTO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -22,13 +23,9 @@ public class PlayerLogic : MonoBehaviour
     private int _WC = Screen.width / 2;
     private int _HC = Screen.height / 2;
 
-
-    // Start is called before the first frame update
     void Start()
     {
         Cursor.visible = false;
-
-        
 
         player = new Player();
         player.name = "player";
