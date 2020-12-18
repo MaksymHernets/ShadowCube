@@ -20,7 +20,7 @@ When an item is checkmarked, it means the basic foundation is in place but not n
   - [ ] Cube logic
   - [x] Trap thorns
   - [ ] Trap mesh
-* HyberCube
+* HyperCube
   - [ ] Cube logic
 * CubeZero
   - [ ] Cube logic
@@ -35,6 +35,12 @@ When an item is checkmarked, it means the basic foundation is in place but not n
 
 # Screenshot from the game
 Main Menu
-![GitHub Logo](/ScreenShots/screenshot2.png)
+![GitHub Logo](/ScreenShots/screenshot0.png)
 Cube One
 ![GitHub Logo](/ScreenShots/screenshot1.png)
+Hyper Cube
+![GitHub Logo](/ScreenShots/screenshot2.png)
+Cube Zero
+![GitHub Logo](/ScreenShots/screenshot3.png)
+New Cube
+![GitHub Logo](/ScreenShots/screenshot4.png)
