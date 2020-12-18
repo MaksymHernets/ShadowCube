@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DTO;
 using UnityEngine;
 
 public static class Cookie 
@@ -9,4 +10,9 @@ public static class Cookie
     public static List<Player> players = new List<Player>();
 
     public static Room room = new Room();
+}
+
+class Settings
+{
+
 }
