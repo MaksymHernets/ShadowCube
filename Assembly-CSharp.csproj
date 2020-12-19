@@ -84,7 +84,7 @@
     <Compile Include="Assets\Scenes\PlaceLogic.cs" />
     <Compile Include="Assets\Scripts\CameraMoveOne.cs" />
     <Compile Include="Assets\Scripts\Cookie.cs" />
-    <Compile Include="Assets\Scripts\Cube\Cube.cs" />
+    <Compile Include="Assets\Scripts\Cube\CubeDTO.cs" />
     <Compile Include="Assets\Scripts\Cube\Door.cs" />
     <Compile Include="Assets\Scripts\Cube\MegaCube.cs" />
     <Compile Include="Assets\Scripts\Cube\Trap.cs" />

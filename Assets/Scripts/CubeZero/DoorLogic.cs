@@ -27,6 +27,14 @@ namespace Cubes.CubeZero
             }
         }
 
+        public void Using()
+        {
+            if (dootstage == DoorStage.closed)
+            {
+                UserToOpen();
+            }
+        }
+
         public void UserToOpen()
         {
             Open();

@@ -22,6 +22,9 @@ public class PlayerLogic : MonoBehaviour
 
     private int _WC = Screen.width / 2;
     private int _HC = Screen.height / 2;
+    private RaycastHit hit;
+    private Ray ray;
+    private GameObject TakeObject;
 
     void Start()
     {
@@ -40,23 +43,27 @@ public class PlayerLogic : MonoBehaviour
     {
         if ( Input.GetKeyDown(control.use) )
 		{
-            RaycastHit hit;
-            //Ray ray = cameraa.ScreenPointToRay(Vector3.zero);
-            Ray ray = cameraa.ScreenPointToRay(new Vector3(_WC, _HC, 0f));
+            ray = cameraa.ScreenPointToRay(new Vector3(_WC, _HC, 0f));
             if (Physics.Raycast(ray, out hit))
             {
                 if (hit.distance <= distanceUse)
 				{
                     if ( hit.transform.tag == "door" )
 					{
-                        hit.transform.SendMessage("UserToOpen");
+                        hit.transform.SendMessage("Using");
                     }
                     else if( hit.transform.tag == "object" )
 					{
-
-					}
+                        //hit.
+                        //TakeObject = hit;
+                        //hit.transform.localPosition = transform.localPosition + Vector3.one
+                    }
                 }
             }
+        }
+        else if(Input.GetKeyDown(control.openitem) )
+        {
+
         }
     }
 
@@ -74,8 +81,10 @@ public class PlayerLogic : MonoBehaviour
             textxp.text = xp.ToString();
             if (xp <= 0)
             {
-                textxp.text = "GAME OVER";
+                textxp.text = "";
+                Cursor.visible = true;
                 menu.SetActive(true);
+                gameObject.SetActive(false);
             }
         }
     }

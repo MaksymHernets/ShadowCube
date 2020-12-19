@@ -8,18 +8,37 @@ public class Menu : MonoBehaviour
     private bool key = false;
 
     public GameObject menu;
+    public GameObject table;
+    public GameObject player;
 
     void Update()
     {
         if ( Input.GetKeyDown(KeyCode.Escape) )
         {
-            key = !key;
-            menu.SetActive(key);
+            Activ();
         }
+    }
+
+    private void Activ()
+    {
+        key = !key;
+        Cursor.visible = key;
+        menu.SetActive(key);
+        player.SetActive(!key);
     }
 
     public void ButtonLeave_Click()
 	{
         SceneManager.LoadScene(0);
+    }
+
+    public void ButtonOptions_Click()
+    {
+        //SceneManager.LoadScene(0);
+    }
+
+    public void ButtonReturn_Click()
+    {
+        Activ();
     }
 }

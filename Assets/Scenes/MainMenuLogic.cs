@@ -22,6 +22,10 @@ public class MainMenuLogic : MonoBehaviour
 	public GameObject panelGeneric;
     public GameObject panelControl;
 
+    public GameObject textloading;
+
+    public List<GameObject> Cubes;
+
     private Room room = new Room();
     private List<Player> players = new List<Player>();
 
@@ -71,6 +75,8 @@ public class MainMenuLogic : MonoBehaviour
     #region Play
     public void ButtonStart_Click()
     {
+        menuPlay.SetActive(false);
+        textloading.SetActive(true);
         if ( toggleAddBots.isOn )
 		{
             for (int i = 0; i < room.Size - players.Count; i++)
@@ -86,31 +92,39 @@ public class MainMenuLogic : MonoBehaviour
     #region Maps
     public void ButtonCubeOne_Click()
     {
+        Cubes[room.IndexCube].SetActive(false);
         ChangedButton(room.IndexCube, 0);
         room.IndexCube = 0;
+        Cubes[room.IndexCube].SetActive(true);
     }
 
     public void ButtonHyberCube_Click()
     {
+        Cubes[room.IndexCube].SetActive(false);
         ChangedButton(room.IndexCube, 1);
         room.IndexCube = 1;
+        Cubes[room.IndexCube].SetActive(true);
     }
 
     public void ButtonCubeZero_Click()
     {
+        Cubes[room.IndexCube].SetActive(false);
         ChangedButton(room.IndexCube, 2);
         room.IndexCube = 2;
+        Cubes[room.IndexCube].SetActive(true);
     }
 
     public void ButtonNewCube_Click()
     {
+        Cubes[room.IndexCube].SetActive(false);
         ChangedButton(room.IndexCube, 3);
         room.IndexCube = 3;
+        Cubes[room.IndexCube].SetActive(true);
     }
 
     private void ChangedButton(int oldindex, int newindex)
 	{
-        maps[oldindex].image.color = new Color(255f, 255f, 255f, 120f);
+        maps[oldindex].image.color = new Color(1f, 1f, 1f, 0.47f);
         maps[newindex].image.color = Color.gray;
     }
     #endregion

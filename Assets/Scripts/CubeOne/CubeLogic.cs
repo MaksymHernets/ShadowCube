@@ -7,7 +7,11 @@ namespace Cubes.CubeOne
 {
     public class CubeLogic : MonoBehaviour
     {
-        public Cube cube;
+        private int CountPlayers = 0;
+        private float TimeWait = 10;
+        private float TimeLost = 0;
+
+        public CubeDTO cube;
 
         public List<Light> lights;
         public List<GameObject> walls;
@@ -15,7 +19,7 @@ namespace Cubes.CubeOne
 
         public void IntCube(object cubee) // Cube
         {
-            cube = (Cube)cubee;
+            cube = (CubeDTO)cubee;
             int index = 0;
             if (cube.trap != null)
             {
@@ -42,8 +46,20 @@ namespace Cubes.CubeOne
 
         public void OpenDoor(object indexDoor) // int
         {
-            Debug.Log("OpenDoor");
             walls[(int)indexDoor].SendMessage("ToOpenDoor");
+        }
+
+        public void CloseDoor(object indexDoor) // int
+        {
+            walls[(int)indexDoor].SendMessage("ToCloseDoor");
+        }
+
+        private void CloseAllDoor()
+        {
+            foreach (var item in walls)
+            {
+                item.SendMessage("ToCloseDoor");
+            }
         }
 
         public void EventOpenedDoor(object indexwall) // int
@@ -53,9 +69,39 @@ namespace Cubes.CubeOne
             argument.y = cube.position.y;
             argument.z = cube.position.z;
             argument.w = (int)indexwall;
-            //var megacube = GameObject.FindGameObjectWithTag("MegaCube");
-            Debug.Log("EventOpenedDoor");
             megaCube.SendMessage("EventOpenedDoor", (object)argument);
         }
+
+        private void OnTriggerEnter(Collider collision)
+        {
+            ++CountPlayers;
+        }
+
+        private void OnTriggerExit(Collider collision)
+        {
+            --CountPlayers;
+            //Debug.Log(CountPlayers.ToString());
+            if (CountPlayers == 0) // Закрываем куб
+            {
+                TimeLost = 0;
+            }
+        }
+
+        public void Update()
+        {
+            TimeLost += Time.deltaTime;
+            if (CountPlayers == 0 && TimeWait <= TimeLost)
+            {
+                TimeLost = 0;
+                var argument = new Vector3Int();
+                argument.x = cube.position.x;
+                argument.y = cube.position.y;
+                argument.z = cube.position.z;
+                megaCube.SendMessage("DeactivateCube", (object)argument);
+                CloseAllDoor();
+                gameObject.SetActive(false);
+            }
+        }
+
     }
 }

@@ -7,7 +7,7 @@ namespace Cubes.CubeHyber
 {
     public class CubeLogic : MonoBehaviour
     {
-        public Cube cube;
+        public CubeDTO cube;
 
         public List<Light> lights;
         public List<GameObject> walls;
@@ -15,7 +15,7 @@ namespace Cubes.CubeHyber
 
         public void IntCube(object cubee) // Cube
         {
-            cube = (Cube)cubee;
+            cube = (CubeDTO)cubee;
             int index = 0;
             if (cube.trap != null)
             {

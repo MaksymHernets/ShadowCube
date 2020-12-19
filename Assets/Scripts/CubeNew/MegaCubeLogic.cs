@@ -16,7 +16,7 @@ namespace Cubes.CubeNew
         public float _WidhtCube = 2.4f;
 
         private GameObject[,,] gamecubes;
-        private Cube[,,] cubes;
+        private CubeDTO[,,] cubes;
 
         void Start()
         {
@@ -45,7 +45,7 @@ namespace Cubes.CubeNew
         {
             _Size = Cookie.room.Size;
             gamecubes = new GameObject[_Size, _Size, _Size];
-            cubes = new Cube[_Size, _Size, _Size];
+            cubes = new CubeDTO[_Size, _Size, _Size];
             for (int i = 0; i < _Size; ++i)
             {
                 for (int j = 0; j < _Size; ++j)
@@ -64,7 +64,7 @@ namespace Cubes.CubeNew
             {
                 var newcube = Instantiate(prefabcube, transform);
                 newcube.transform.position = new Vector3(i * _WidhtCube, j * _WidhtCube, l * _WidhtCube);
-                var cubee = new Cube();
+                var cubee = new CubeDTO();
                 cubee.Color = GetColor(Random.Range(0, 6));
                 cubee.id = new Vector3Int();
                 cubee.id.x = (int)Random.Range(300, 700);

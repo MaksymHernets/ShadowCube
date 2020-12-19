@@ -27,6 +27,14 @@ namespace Cubes.CubeHyber
             }
         }
 
+        public void Using()
+        {
+            if (dootstage == DoorStage.closed)
+            {
+                UserToOpen();
+            }
+        }
+
         public void UserToOpen()
         {
             Open();

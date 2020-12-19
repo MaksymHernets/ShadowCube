@@ -34,9 +34,15 @@ namespace Cubes.CubeOne
             number2.text = result;
         }
 
+
         public void ToOpenDoor()
         {
             door.SendMessage("MegaCubeToOpen");
+        }
+
+        public void ToCloseDoor()
+        {
+            door.SendMessage("MegaCubeToClose");
         }
 
         public void OpenedDoor()
