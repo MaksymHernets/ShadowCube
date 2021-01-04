@@ -36,11 +36,12 @@ When an item is checkmarked, it means the basic foundation is in place but not n
 # Screenshot from the game
 Main Menu
 ![GitHub Logo](/ScreenShots/screenshot0.png)
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](https://youtu.be/oDQNE9S34kU)
 Cube One
-![GitHub Logo](/ScreenShots/screenshot1.png)
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](https://youtu.be/Fc8Znb87NcI)
 Hyper Cube
-![GitHub Logo](/ScreenShots/screenshot2.png)
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](https://youtu.be/oDQNE9S34kU)
 Cube Zero
-![GitHub Logo](/ScreenShots/screenshot3.png)
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](https://youtu.be/DU0zESzeeRE)
 New Cube
-![GitHub Logo](/ScreenShots/screenshot4.png)
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](https://youtu.be/dzeC4nVSi-o)
