@@ -43,4 +43,4 @@ Hyper Cube
 Cube Zero
 (https://youtu.be/DU0zESzeeRE)
 New Cube
-(https://youtu.be/dzeC4nVSi-o)
+[![Тут текст](https://img.youtube.com/vi/RHPYGwVQB2o/0.jpg)](https://www.youtube.com/watch?v=DU0zESzeeRE&t=9s&ab_channel=MaksymHernets)
