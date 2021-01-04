@@ -34,13 +34,13 @@ When an item is checkmarked, it means the basic foundation is in place but not n
   - [ ] Port to Android
 
 # Screenshot from the game
-Main Menu
-(https://youtu.be/oDQNE9S34kU)
-Cube One
-(https://youtu.be/Fc8Znb87NcI)
-Hyper Cube
-(https://youtu.be/oDQNE9S34kU)
-Cube Zero
-(https://youtu.be/DU0zESzeeRE)
-New Cube
-[![Тут текст](https://img.youtube.com/vi/RHPYGwVQB2o/0.jpg)](https://www.youtube.com/watch?v=DU0zESzeeRE&t=9s&ab_channel=MaksymHernets)
+
+[![Main Menu](https://img.youtube.com/vi/oDQNE9S34kU/0.jpg)](https://www.youtube.com/watch?v=oDQNE9S34kU&ab_channel=MaksymHernets)
+
+[![Cube One](https://img.youtube.com/vi/Fc8Znb87NcI/0.jpg)](https://www.youtube.com/watch?v=Fc8Znb87NcI&ab_channel=MaksymHernets)
+
+[![Hyper Cube](https://img.youtube.com/vi/DU0zESzeeRE&t/0.jpg)](https://www.youtube.com/watch?v=DU0zESzeeRE&ab_channel=MaksymHernets)
+
+[![Cube Zero](https://img.youtube.com/vi/pQ1JfO9FcvQ/0.jpg)](https://www.youtube.com/watch?v=pQ1JfO9FcvQ&t&ab_channel=MaksymHernets)
+
+[![New Cube](https://img.youtube.com/vi/v=dzeC4nVSi/0.jpg)](https://www.youtube.com/watch?v=dzeC4nVSi&ab_channel=MaksymHernets)
