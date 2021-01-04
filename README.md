@@ -39,8 +39,8 @@ When an item is checkmarked, it means the basic foundation is in place but not n
 
 [![Cube One](https://img.youtube.com/vi/Fc8Znb87NcI/0.jpg)](https://www.youtube.com/watch?v=Fc8Znb87NcI&ab_channel=MaksymHernets)
 
-[![Hyper Cube](https://img.youtube.com/vi/DU0zESzeeRE&t/0.jpg)](https://www.youtube.com/watch?v=DU0zESzeeRE&ab_channel=MaksymHernets)
+[![Hyper Cube](https://img.youtube.com/vi/DU0zESzeeRE/0.jpg)](https://www.youtube.com/watch?v=DU0zESzeeRE&ab_channel=MaksymHernets)
 
 [![Cube Zero](https://img.youtube.com/vi/pQ1JfO9FcvQ/0.jpg)](https://www.youtube.com/watch?v=pQ1JfO9FcvQ&t&ab_channel=MaksymHernets)
 
-[![New Cube](https://img.youtube.com/vi/v=dzeC4nVSi/0.jpg)](https://www.youtube.com/watch?v=dzeC4nVSi&ab_channel=MaksymHernets)
+[![New Cube](https://img.youtube.com/vi/v=dzeC4nVSi-o/0.jpg)](https://www.youtube.com/watch?v=dzeC4nVSi-o&ab_channel=MaksymHernets)
