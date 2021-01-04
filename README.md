@@ -35,6 +35,8 @@ When an item is checkmarked, it means the basic foundation is in place but not n
 
 # Screenshot from the game
 
+https://www.youtube.com/watch?v=w0R7qCH8rcQ&list=PLuik0FLKlFuLZmaHdymtWV7jbLqMduf0Z&ab_channel=MaksymHernets
+
 [![Main Menu](https://img.youtube.com/vi/oDQNE9S34kU/0.jpg)](https://www.youtube.com/watch?v=oDQNE9S34kU&ab_channel=MaksymHernets)
 
 [![Cube One](https://img.youtube.com/vi/Fc8Znb87NcI/0.jpg)](https://www.youtube.com/watch?v=Fc8Znb87NcI&ab_channel=MaksymHernets)
