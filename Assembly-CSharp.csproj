@@ -64,6 +64,32 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Cubes\CubeOne\Scripts\CubeLogic1.cs" />
+    <Compile Include="Assets\Cubes\CubeOne\Scripts\DoorLogic1.cs" />
+    <Compile Include="Assets\Cubes\CubeOne\Scripts\MegaCubeLogic1.cs" />
+    <Compile Include="Assets\Cubes\CubeOne\Scripts\WallLogic1.cs" />
+    <Compile Include="Assets\Cubes\CubeZero\Scripts\CubeLogic3.cs" />
+    <Compile Include="Assets\Cubes\CubeZero\Scripts\DoorLogic3.cs" />
+    <Compile Include="Assets\Cubes\CubeZero\Scripts\MegaCubeLogic3.cs" />
+    <Compile Include="Assets\Cubes\CubeZero\Scripts\WallLogic3.cs" />
+    <Compile Include="Assets\Cubes\HyperCube\Scripts\CubeLogic2.cs" />
+    <Compile Include="Assets\Cubes\HyperCube\Scripts\DoorLogic2.cs" />
+    <Compile Include="Assets\Cubes\HyperCube\Scripts\MegaCubeLogic2.cs" />
+    <Compile Include="Assets\Cubes\HyperCube\Scripts\WallLogic2.cs" />
+    <Compile Include="Assets\Cubes\NewCube\Scripts\CubeLogic4.cs" />
+    <Compile Include="Assets\Cubes\NewCube\Scripts\DoorLogic4.cs" />
+    <Compile Include="Assets\Cubes\NewCube\Scripts\MegaCubeLogic4.cs" />
+    <Compile Include="Assets\Cubes\NewCube\Scripts\WallLogic4.cs" />
+    <Compile Include="Assets\Cubes\Scripts\CubeLogic.cs" />
+    <Compile Include="Assets\Cubes\Scripts\DoorLogic.cs" />
+    <Compile Include="Assets\Cubes\Scripts\MathCube.cs" />
+    <Compile Include="Assets\Cubes\Scripts\MegaCubeLogic.cs" />
+    <Compile Include="Assets\Cubes\Scripts\Trap.cs" />
+    <Compile Include="Assets\Cubes\Scripts\WallLogic.cs" />
+    <Compile Include="Assets\Cubes\Traps\Trap1needles\Trap1needles.cs" />
+    <Compile Include="Assets\Cubes\Traps\Trap2fire\Trap2fire.cs" />
+    <Compile Include="Assets\Cubes\Traps\Trap3gas\Trap3gas.cs" />
+    <Compile Include="Assets\Cubes\Traps\Trap5WalkWall\Trap5WalkWall.cs" />
     <Compile Include="Assets\OthersAsset\3rdPerson+Fly\Scripts\LevelScripts\ControlsTutorial.cs" />
     <Compile Include="Assets\OthersAsset\3rdPerson+Fly\Scripts\LevelScripts\HintManagement.cs" />
     <Compile Include="Assets\OthersAsset\3rdPerson+Fly\Scripts\LevelScripts\ThirdPersonOrbitCamBasic.cs" />
@@ -71,6 +97,16 @@
     <Compile Include="Assets\OthersAsset\3rdPerson+Fly\Scripts\PlayerScripts\BasicBehaviour.cs" />
     <Compile Include="Assets\OthersAsset\3rdPerson+Fly\Scripts\PlayerScripts\FlyBehaviour.cs" />
     <Compile Include="Assets\OthersAsset\3rdPerson+Fly\Scripts\PlayerScripts\MoveBehaviour.cs" />
+    <Compile Include="Assets\OthersAsset\Addons\CameraPathCreator\DEMO\CPC_DEMO_UpDown.cs" />
+    <Compile Include="Assets\OthersAsset\Addons\CameraPathCreator\Scripts\CPC_CameraPath.cs" />
+    <Compile Include="Assets\OthersAsset\EffectExamples\Shared\Scripts\DecalDestroyer.cs" />
+    <Compile Include="Assets\OthersAsset\EffectExamples\Shared\Scripts\ExtinguishableFire.cs" />
+    <Compile Include="Assets\OthersAsset\EffectExamples\Shared\Scripts\GunAim.cs" />
+    <Compile Include="Assets\OthersAsset\EffectExamples\Shared\Scripts\GunShoot.cs" />
+    <Compile Include="Assets\OthersAsset\EffectExamples\Shared\Scripts\ParticleCollision.cs" />
+    <Compile Include="Assets\OthersAsset\EffectExamples\Shared\Scripts\ParticleExamples.cs" />
+    <Compile Include="Assets\OthersAsset\EffectExamples\Shared\Scripts\ParticleMenu.cs" />
+    <Compile Include="Assets\OthersAsset\EffectExamples\TutorialInfo\Scripts\Readme.cs" />
     <Compile Include="Assets\OthersAsset\Invector-3rdPersonController_LITE\3D Models\Others\HealthItem\vAnimateUV.cs" />
     <Compile Include="Assets\OthersAsset\Invector-3rdPersonController_LITE\Scripts\Camera\vThirdPersonCamera.cs" />
     <Compile Include="Assets\OthersAsset\Invector-3rdPersonController_LITE\Scripts\CharacterController\vThirdPersonAnimator.cs" />
@@ -80,41 +116,179 @@
     <Compile Include="Assets\OthersAsset\Invector-3rdPersonController_LITE\Scripts\Generic\Utils\vComment.cs" />
     <Compile Include="Assets\OthersAsset\Invector-3rdPersonController_LITE\Scripts\Generic\Utils\vExtensions.cs" />
     <Compile Include="Assets\OthersAsset\Invector-3rdPersonController_LITE\Scripts\Generic\Utils\vPickupItem.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\Demo2DJumpAndRunWithPhysics\Scripts\Demo2DJumpAndRun.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\Demo2DJumpAndRunWithPhysics\Scripts\JumpAndRunMovement.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoBoxes\ColorPerPlayer.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoBoxes\ColorPerPlayerApply.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoBoxes\DemoBoxesGui.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoBoxes\OnAwakePhysicsSettings.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoBoxes\OnClickFlashRpc.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoBoxes\OnDoubleclickDestroy.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoChangeOwner\ClickAndDrag.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoChangeOwner\DemoOwnershipGui.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoChangeOwner\HighlightOwnedGameObj.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoChangeOwner\InstantiateCube.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoChangeOwner\MaterialPerOwner.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoChangeOwner\OnClickDisableObj.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoChangeOwner\OnClickRequestOwnership.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoChangeOwner\OnClickRightDestroy.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoChangeOwner\ShowInfoOfPlayer.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoChat\ChannelSelector.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoChat\ChatAppIdCheckerUI.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoChat\ChatGui.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoChat\FriendItem.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoChat\IgnoreUiRaycastWhenInactive.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoChat\NamePickGui.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoFriendsAndCustomAuth\GUICustomAuth.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoFriendsAndCustomAuth\GUIFriendFinding.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoFriendsAndCustomAuth\GUIFriendsInRoom.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoFriendsAndCustomAuth\OnClickCallMethod.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoHub\HubGui.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoHub\MoveCam.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoHub\Scripts\DemoHubManager.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoHub\Scripts\ToDemoHubButton.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoHub\ToHubButton.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoMecanim\Scripts\DemoMecanimGUI.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoPickup\Scripts\MessageOverlay.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoPickup\Scripts\OnCollideSwitchTeam.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoPickup\Scripts\OnPickedUpScript.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoPickup\Scripts\PickupCamera.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoPickup\Scripts\PickupController.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoPickup\Scripts\PickupDemoGui.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoPickup\Scripts\PickupTriggerForward.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoRPGMovement\Scripts\DemoRPGMovement.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoRPGMovement\Scripts\RPGCamera.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoRPGMovement\Scripts\RPGMovement.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoRockPaperScissors\Scripts\RpsCore.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoRockPaperScissors\Scripts\RpsDebug.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoRockPaperScissors\Scripts\RpsDemoConnect.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoSynchronization\CubeExtra.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoSynchronization\CubeInter.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoSynchronization\CubeLerp.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoSynchronization\DragToMove.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoSynchronization\IELdemo.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoWorker\Scripts\Game\Player\ThirdPersonCamera.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoWorker\Scripts\Game\Player\ThirdPersonController.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoWorker\Scripts\Game\Player\ThirdPersonNetwork.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoWorker\Scripts\WorkerInGame.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoWorker\Scripts\WorkerMenu.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\MarcoPolo-Tutorial\AudioRpc.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\MarcoPolo-Tutorial\ClickDetector.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\MarcoPolo-Tutorial\GameLogic.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\MarcoPolo-Tutorial\Monstergame\Resources\Scripts\myThirdPersonController.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\MarcoPolo-Tutorial\NetworkCharacter.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\MarcoPolo-Tutorial\OnClickLoadSomething.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\MarcoPolo-Tutorial\RandomMatchmaker.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\PunBasics-Tutorial\Scripts\CameraWork.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\PunBasics-Tutorial\Scripts\GameManager.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\PunBasics-Tutorial\Scripts\Launcher.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\PunBasics-Tutorial\Scripts\LoaderAnime.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\PunBasics-Tutorial\Scripts\PlayerAnimatorManager.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\PunBasics-Tutorial\Scripts\PlayerManager.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\PunBasics-Tutorial\Scripts\PlayerNameInputField.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\PunBasics-Tutorial\Scripts\PlayerUI.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\Shared Assets\Scripts\IdleRunJump.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\Shared Assets\Scripts\PlayerDiamond.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Demos\Shared Assets\Scripts\PlayerVariables.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Plugins\PhotonNetwork\CustomTypes.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Plugins\PhotonNetwork\Enums.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Plugins\PhotonNetwork\Extensions.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Plugins\PhotonNetwork\FriendInfo.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Plugins\PhotonNetwork\GizmoType.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Plugins\PhotonNetwork\LoadbalancingPeer.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Plugins\PhotonNetwork\PhotonClasses.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Plugins\PhotonNetwork\PhotonLagSimulationGui.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Plugins\PhotonNetwork\PhotonNetwork.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Plugins\PhotonNetwork\PhotonPing.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Plugins\PhotonNetwork\PhotonPlayer.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Plugins\PhotonNetwork\PhotonStatsGui.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Plugins\PhotonNetwork\PhotonStreamQueue.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Plugins\PhotonNetwork\PhotonView.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Plugins\PhotonNetwork\PingCloudRegions.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Plugins\PhotonNetwork\RPC.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Plugins\PhotonNetwork\Room.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Plugins\PhotonNetwork\RoomInfo.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Plugins\PhotonNetwork\ServerSettings.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Plugins\PhotonNetwork\SocketUdp.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Plugins\PhotonNetwork\Views\PhotonAnimatorView.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Plugins\PhotonNetwork\Views\PhotonRigidbody2DView.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Plugins\PhotonNetwork\Views\PhotonRigidbodyView.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Plugins\PhotonNetwork\Views\PhotonTransformView.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Plugins\PhotonNetwork\Views\PhotonTransformViewPositionControl.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Plugins\PhotonNetwork\Views\PhotonTransformViewPositionModel.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Plugins\PhotonNetwork\Views\PhotonTransformViewRotationControl.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Plugins\PhotonNetwork\Views\PhotonTransformViewRotationModel.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Plugins\PhotonNetwork\Views\PhotonTransformViewScaleControl.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\Plugins\PhotonNetwork\Views\PhotonTransformViewScaleModel.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\UtilityScripts\ConnectAndJoinRandom.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\UtilityScripts\CullArea.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\UtilityScripts\InRoomChat.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\UtilityScripts\InputToEvent.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\UtilityScripts\ManualPhotonViewAllocator.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\UtilityScripts\MoveByKeys.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\UtilityScripts\NetworkCullingHandler.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\UtilityScripts\OnClickDestroy.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\UtilityScripts\OnClickInstantiate.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\UtilityScripts\OnJoinedInstantiate.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\UtilityScripts\OnStartDelete.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\UtilityScripts\PhotonPlayer\PlayerRoomIndexing.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\UtilityScripts\PickupItem.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\UtilityScripts\PickupItemSimple.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\UtilityScripts\PickupItemSyncer.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\UtilityScripts\PointedAtGameObjectInfo.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\UtilityScripts\PunPlayerScores.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\UtilityScripts\PunTeams.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\UtilityScripts\PunTurnManager.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\UtilityScripts\QuitOnEscapeOrBack.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\UtilityScripts\ShowStatusWhenConnecting.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\UtilityScripts\SmoothSyncMovement.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\UtilityScripts\SupportLogger.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\UtilityScripts\TimeKeeper.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\UtilityScripts\UI\ButtonInsideScrollList.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\UtilityScripts\UI\TextButtonTransition.cs" />
+    <Compile Include="Assets\OthersAsset\Photon Unity Networking\UtilityScripts\UI\TextToggleIsOnTransition.cs" />
+    <Compile Include="Assets\OthersAsset\PhotonChatApi\ChannelCreationOptions.cs" />
+    <Compile Include="Assets\OthersAsset\PhotonChatApi\ChannelWellKnownProperties.cs" />
+    <Compile Include="Assets\OthersAsset\PhotonChatApi\ChatChannel.cs" />
+    <Compile Include="Assets\OthersAsset\PhotonChatApi\ChatClient.cs" />
+    <Compile Include="Assets\OthersAsset\PhotonChatApi\ChatDisconnectCause.cs" />
+    <Compile Include="Assets\OthersAsset\PhotonChatApi\ChatEventCode.cs" />
+    <Compile Include="Assets\OthersAsset\PhotonChatApi\ChatOperationCode.cs" />
+    <Compile Include="Assets\OthersAsset\PhotonChatApi\ChatParameterCode.cs" />
+    <Compile Include="Assets\OthersAsset\PhotonChatApi\ChatPeer.cs" />
+    <Compile Include="Assets\OthersAsset\PhotonChatApi\ChatState.cs" />
+    <Compile Include="Assets\OthersAsset\PhotonChatApi\ChatUserStatus.cs" />
+    <Compile Include="Assets\OthersAsset\PhotonChatApi\IChatClientListener.cs" />
+    <Compile Include="Assets\OthersAsset\Plugins\WebSocket\SocketWebTcp.cs" />
+    <Compile Include="Assets\OthersAsset\Plugins\WebSocket\WebSocket.cs" />
     <Compile Include="Assets\Scenes\MainMenuLogic.cs" />
     <Compile Include="Assets\Scenes\PlaceLogic.cs" />
     <Compile Include="Assets\Scripts\CameraMoveOne.cs" />
     <Compile Include="Assets\Scripts\Cookie.cs" />
-    <Compile Include="Assets\Scripts\Cube\CubeDTO.cs" />
-    <Compile Include="Assets\Scripts\Cube\Door.cs" />
-    <Compile Include="Assets\Scripts\Cube\MegaCube.cs" />
-    <Compile Include="Assets\Scripts\Cube\Trap.cs" />
-    <Compile Include="Assets\Scripts\Cube\Wall.cs" />
-    <Compile Include="Assets\Scripts\CubeHyber\CubeLogic.cs" />
-    <Compile Include="Assets\Scripts\CubeHyber\DoorLogic.cs" />
-    <Compile Include="Assets\Scripts\CubeHyber\MegaCubeLogic.cs" />
-    <Compile Include="Assets\Scripts\CubeHyber\WallLogic.cs" />
-    <Compile Include="Assets\Scripts\CubeNew\CubeLogic.cs" />
-    <Compile Include="Assets\Scripts\CubeNew\DoorLogic.cs" />
-    <Compile Include="Assets\Scripts\CubeNew\MegaCubeLogic.cs" />
-    <Compile Include="Assets\Scripts\CubeNew\WallLogic.cs" />
-    <Compile Include="Assets\Scripts\CubeOne\CubeLogic.cs" />
-    <Compile Include="Assets\Scripts\CubeOne\DoorLogic.cs" />
-    <Compile Include="Assets\Scripts\CubeOne\MegaCubeLogic.cs" />
-    <Compile Include="Assets\Scripts\CubeOne\WallLogic.cs" />
-    <Compile Include="Assets\Scripts\CubeZero\CubeLogic.cs" />
-    <Compile Include="Assets\Scripts\CubeZero\DoorLogic.cs" />
-    <Compile Include="Assets\Scripts\CubeZero\MegaCubeLogic.cs" />
-    <Compile Include="Assets\Scripts\CubeZero\WallLogic.cs" />
     <Compile Include="Assets\Scripts\DTO\Control.cs" />
     <Compile Include="Assets\Scripts\DTO\Player.cs" />
+    <Compile Include="Assets\Scripts\FileJsonExtension.cs" />
+    <Compile Include="Assets\Scripts\Items.cs" />
     <Compile Include="Assets\Scripts\Menu.cs" />
     <Compile Include="Assets\Scripts\PlayerLogic.cs" />
-    <Compile Include="Assets\Scripts\Traps\TrapLogic.cs" />
-    <Compile Include="Assets\Scripts\Traps\TrapWallLogic.cs" />
+    <Compile Include="Assets\Scripts\RoomLobyHost.cs" />
+    <Compile Include="Assets\Scripts\Translate.cs" />
+    <None Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoRockPaperScissors\Assets\OpenSans\Apache License.txt" />
+    <None Include="Assets\OthersAsset\Photon Unity Networking\changelog.txt" />
+    <None Include="Assets\OthersAsset\Photon Unity Networking\Demos\DemoBoxes\Resources\eurof_tt.txt" />
     <None Include="Assets\Shaders\TextPlus1.shader" />
     <None Include="Assets\OthersAsset\Invector-3rdPersonController_LITE\README_Basic.txt" />
+    <None Include="Assets\OthersAsset\Photon Unity Networking\Demos\Shared Assets\Skin\3dText.shader" />
     <None Include="Assets\Shaders\1.shader" />
+    <None Include="Assets\OthersAsset\Plugins\changes-library.txt" />
+    <None Include="Assets\OthersAsset\Photon Unity Networking\readme.txt" />
+    <None Include="Assets\OthersAsset\Plugins\Photon3Unity3D.xml" />
+    <None Include="Assets\OthersAsset\EffectExamples\Shared\Shaders\SurfaceShader_VC.shader" />
+    <None Include="Assets\OthersAsset\Photon Unity Networking\link.xml" />
     <None Include="Assets\Shaders\TextPlus2.shader" />
+    <None Include="Assets\OthersAsset\Photon Unity Networking\Demos\MarcoPolo-Tutorial\marcopolo-readme.txt" />
     <Reference Include="UnityEngine">
       <HintPath>D:/Program Files/2019.4.16f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
     </Reference>
@@ -297,6 +471,12 @@
     </Reference>
     <Reference Include="UnityEditor">
       <HintPath>D:/Program Files/2019.4.16f1/Editor/Data/Managed/UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="Photon3Unity3D">
+      <HintPath>C:/My_Projects/ShadowCube/Assets/OthersAsset/Plugins/Photon3Unity3D.dll</HintPath>
+    </Reference>
+    <Reference Include="websocket-sharp">
+      <HintPath>C:/My_Projects/ShadowCube/Assets/OthersAsset/Plugins/WebSocket/websocket-sharp.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>D:/Program Files/2019.4.16f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
@@ -644,25 +824,25 @@
       <HintPath>D:/Program Files/2019.4.16f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>D:/MyProjects/Unity3d/ShadowCube/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>C:/My_Projects/ShadowCube/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>D:/MyProjects/Unity3d/ShadowCube/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>C:/My_Projects/ShadowCube/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>D:/MyProjects/Unity3d/ShadowCube/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/My_Projects/ShadowCube/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>D:/MyProjects/Unity3d/ShadowCube/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>C:/My_Projects/ShadowCube/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>D:/MyProjects/Unity3d/ShadowCube/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>C:/My_Projects/ShadowCube/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualStudio.Editor">
-      <HintPath>D:/MyProjects/Unity3d/ShadowCube/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
+      <HintPath>C:/My_Projects/ShadowCube/Library/ScriptAssemblies/Unity.VisualStudio.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>D:/MyProjects/Unity3d/ShadowCube/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/My_Projects/ShadowCube/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup></ItemGroup>

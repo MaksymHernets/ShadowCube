@@ -9,7 +9,7 @@ public static class Cookie
 
     public static List<Player> players = new List<Player>();
 
-    public static Room room = new Room();
+    public static RoomLoby room = new RoomLoby();
 }
 
 class Settings

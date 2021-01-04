@@ -7,19 +7,26 @@ public class Menu : MonoBehaviour
 {
     private bool key = false;
 
+    public Canvas maincanvas;
     public GameObject menu;
     public GameObject table;
     public GameObject player;
 
-    void Update()
+	public void Start()
+	{
+        float x = Screen.width / 1920;
+        float y = Screen.height / 1080;
+        maincanvas.scaleFactor = x;
+    }
+	void Update()
     {
         if ( Input.GetKeyDown(KeyCode.Escape) )
         {
-            Activ();
+            Active();
         }
     }
 
-    private void Activ()
+    private void Active()
     {
         key = !key;
         Cursor.visible = key;
@@ -31,14 +38,12 @@ public class Menu : MonoBehaviour
 	{
         SceneManager.LoadScene(0);
     }
-
     public void ButtonOptions_Click()
     {
-        //SceneManager.LoadScene(0);
+        
     }
-
     public void ButtonReturn_Click()
     {
-        Activ();
+        Active();
     }
 }
