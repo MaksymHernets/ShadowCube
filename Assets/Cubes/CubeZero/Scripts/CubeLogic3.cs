@@ -18,7 +18,7 @@ namespace Cubes.CubeZero
             int index = 0;
             foreach (var item in walls)
             {
-                item.SendMessage("IntWall", new Wall() { id = index, number = cube .id});
+                item.SendMessage("IntWall", new Wall() { id = index, number = cube .id , color = cube.Color});
                 index++;
             }
             lightt.color = cube.Color;

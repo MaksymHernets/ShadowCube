@@ -9,6 +9,7 @@ public class Trap3gas : MonoBehaviour
     private bool key = true;
 
     public GameObject prewall;
+    public GameObject colliderDamage;
 
     private List<GameObject> walls;
 
@@ -52,11 +53,12 @@ public class Trap3gas : MonoBehaviour
 
     IEnumerator Waiting()
     {
-        yield return new WaitForSecondsRealtime(10);
+        colliderDamage.SetActive(true);
+        yield return new WaitForSecondsRealtime(7);
         foreach (var item in walls)
-            {
-                item.SetActive(false);
-            }
+        {
+            item.SetActive(false);
+        }
         key = true;
     }
 

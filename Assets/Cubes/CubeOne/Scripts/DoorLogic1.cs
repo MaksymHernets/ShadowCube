@@ -113,7 +113,7 @@ namespace Cubes.CubeOne
             for (int i = 0; i < 90; i++)
             {
                 doorhandle.transform.localEulerAngles = new Vector3(doorhandle.transform.localEulerAngles.x, doorhandle.transform.localEulerAngles.y + speedToOpen0, doorhandle.transform.localEulerAngles.z);
-                yield return new WaitForSecondsRealtime(0.009f);
+                yield return new WaitForSeconds(0.009f);
             }
             StartCoroutine("Animation_DoorOne");
         }
@@ -124,7 +124,7 @@ namespace Cubes.CubeOne
             for (int i = 0; i < 12; ++i)
             {
                 transform.localPosition = transform.localPosition + new Vector3(0, speedToOpen1, 0);
-                yield return new WaitForSecondsRealtime(0.01f);
+                yield return new WaitForSeconds(0.01f);
             }
             StartCoroutine("Animation_DoorTwo");
         }
@@ -135,7 +135,7 @@ namespace Cubes.CubeOne
             for (int i = 0; i < 85; ++i)
             {
                 transform.localPosition = transform.localPosition + new Vector3(0, 0, speedToOpen2);
-                yield return new WaitForSecondsRealtime(0.024f);
+                yield return new WaitForSeconds(0.024f);
             }
         }
         #endregion
@@ -147,7 +147,7 @@ namespace Cubes.CubeOne
             for (int i = 0; i < 90; i++)
             {
                 doorhandle.transform.localEulerAngles = new Vector3(doorhandle.transform.localEulerAngles.x, doorhandle.transform.localEulerAngles.y - speedToOpen0, doorhandle.transform.localEulerAngles.z);
-                yield return null;
+                yield return new WaitForSecondsRealtime(0.009f);
             }
         }
 

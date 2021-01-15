@@ -43,6 +43,7 @@ namespace Cubes
                 Wall wall = new Wall();
                 wall.id = index;
                 wall.number = cube.id;
+                wall.color = cube.Color;
                 item.SendMessage("IntWall", (object)wall);
                 index++;
             }
@@ -90,7 +91,7 @@ namespace Cubes
             {
                 transform.parent.gameObject.SendMessage("DeactivateCube", (object)argument);
                 CloseAllDoor();
-                gameObject.SetActive(false);
+                
                 TimeLost = 0;
             }
             else
@@ -98,6 +99,17 @@ namespace Cubes
                 transform.parent.gameObject.SendMessage("EventClosedDoor", (object)argument);
             }
         }
+
+        IEnumerator Wait()
+        {
+            yield return new WaitForSecondsRealtime(4f);
+            gameObject.SetActive(false);
+        }
+
+        public void Deactivate()
+		{
+
+		}            
 
         private void OnTriggerEnter(Collider other)
         {
@@ -128,7 +140,8 @@ namespace Cubes
                     argument.z = cube.position.z;
                     transform.parent.gameObject.SendMessage("DeactivateCube", (object)argument);
                     CloseAllDoor();
-                    gameObject.SetActive(false);
+                    //gameObject.SetActive(false);
+                    StartCoroutine("Wait");
                     TimeLost = 0;
                 }
             }

@@ -137,7 +137,7 @@ namespace Cubes.CubeOne
             else if (index == 2) { return Color.yellow; }
             else if (index == 3) { return Color.blue; }
             else if (index == 4) { return Color.green; }
-            else if (index == 5) { return Color.gray; }
+            else if (index == 5) { return Color.cyan; }
             else if (index == 6) { return Color.magenta; }
             return Color.white;
         }

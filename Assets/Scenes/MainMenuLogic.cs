@@ -9,6 +9,10 @@ using UnityEngine.UI;
 public class MainMenuLogic : MonoBehaviour
 {
     public Canvas maincanvas;
+    public GameObject cameraa;
+    public GameObject cameramoveone;
+
+    public Text textversion;
 
     [Header("Main Menu")]
     public GameObject menuMain;
@@ -28,39 +32,23 @@ public class MainMenuLogic : MonoBehaviour
     private RoomLoby room = new RoomLoby();
     private List<Player> players = new List<Player>();
 
-    [Header("Person")]
-
-    [Header("Options")]
-    public GameObject panelGeneric;
-    public GameObject panelControl;
-    public GameObject panelGraphic;
-    public Dropdown DropDownScale;
-
     private void Start()
     {
+        textversion.text = "ALPHA " + Application.version;
 
-
-        //IntScreen();
         IntPlay();
         IntPerson();
-        IntOptions();
+        //IntOptions();
     }
 
     #region Int
-    private void IntScreen()
-	{
-        float x = Screen.width / 1920;
-        float y = Screen.height/ 1080;
-        maincanvas.scaleFactor = x;
-        //maincanvas.
-
-    }
 
     private void IntPlay()
     {
         room = Cookie.room;
-        Cubes[0].SetActive(false);
-        Cubes[Cookie.room.IndexCube].SetActive(true);
+        //Cubes[0].SetActive(false);
+        //Cubes[Cookie.room.IndexCube].SetActive(true);
+        ChangedButton(0, Cookie.room.IndexCube);
     }
 
     private void IntPerson()
@@ -72,10 +60,6 @@ public class MainMenuLogic : MonoBehaviour
         players.Add(Cookie.mainPlayer);
     }
 
-    private void IntOptions()
-    {
-        InsertDropdownScale();
-    }
     #endregion
 
     private void Update()
@@ -114,23 +98,40 @@ public class MainMenuLogic : MonoBehaviour
 
     #region Play
     public void ButtonStart_Click()
+    {
+        
+        menuPlay.SetActive(false);
+        textloading.SetActive(true);
+        if (toggleAddBots.isOn)
         {
-            menuPlay.SetActive(false);
-            textloading.SetActive(true);
-            if (toggleAddBots.isOn)
+            for (int i = 0; i < room.Size - players.Count; i++)
             {
-                for (int i = 0; i < room.Size - players.Count; i++)
-                {
-                    players.Add(new Player());
-                }
+                players.Add(new Player());
             }
-            Cookie.room = room;
-            Cookie.players = players;
-
-            SceneManager.LoadScene(1);
         }
-        #region Maps
-        public void ButtonCubeOne_Click()
+        Cookie.room = room;
+        Cookie.players = players;
+
+
+        Cubes[Cookie.room.IndexCube].SendMessage("OpenDoor", 2);
+        cameramoveone.SetActive(false);
+        cameraa.transform.localEulerAngles = new Vector3(0, 90, 0);
+        StartCoroutine("Animation_Camera");
+    }
+
+    IEnumerator Animation_Camera()
+    {
+        yield return new WaitForSecondsRealtime(1.4f);
+        for (int i = 0; i < 120; i++)
+        {
+            cameraa.transform.position += new Vector3(0.02f, 0f , 0f);
+            yield return new WaitForSecondsRealtime(0.021f);
+        }
+        SceneManager.LoadScene(1);
+    }
+
+    #region Maps
+    public void ButtonCubeOne_Click()
         {
             ChangedButton(room.IndexCube, 0);
         }
@@ -156,8 +157,8 @@ public class MainMenuLogic : MonoBehaviour
             {
                 room.IndexCube = newindex;
                 Cubes[oldindex].SetActive(false);
-                maps[oldindex].image.color = new Color(0f, 0.9f, 0f, 0.6f);
-                maps[newindex].image.color = Color.green;
+                maps[oldindex].image.color = new Color(0.3f , 0.3f, 0.3f, 0.8f );
+                maps[newindex].image.color = Color.black;
                 Cubes[newindex].SetActive(true);
             }
         }
@@ -198,47 +199,6 @@ public class MainMenuLogic : MonoBehaviour
     public void ButtonExit_Click()
     {
         Application.Quit();
-    }
-    #endregion
-
-    #region Options
-    public void ButtonGeneric_Click()
-    {
-        panelGeneric.SetActive(true);
-        panelControl.SetActive(false);
-        panelGraphic.SetActive(false);
-    }
-
-    public void ButtonControl_Click()
-    {
-        panelControl.SetActive(true);
-        panelGeneric.SetActive(false);
-        panelGraphic.SetActive(false);
-    }
-
-    public void ButtonGraphic_Click()
-    {
-        panelControl.SetActive(false);
-        panelGeneric.SetActive(false);
-        panelGraphic.SetActive(true);
-    }
-
-    private void InsertDropdownScale()
-    {
-        List<string> lists = new List<string>();
-        foreach (var item in Screen.resolutions)
-        {
-            if (Screen.currentResolution.refreshRate == item.refreshRate)
-                lists.Add(item.width.ToString() + " X " + item.height.ToString());
-        }
-        DropDownScale.AddOptions(lists);
-    }
-
-    public void DropdownScale_Changed(int index)
-    {
-        var result = Screen.resolutions.Where(w => w.refreshRate == Screen.currentResolution.refreshRate).ToList();
-
-        Screen.SetResolution(result[index].width, result[index].height, Screen.fullScreenMode);
     }
     #endregion
 }

@@ -21,6 +21,7 @@ namespace Cubes.CubeZero
                 GetSymbol(MathCube.SumNumber(wall.number.x)), 
                 GetSymbol(MathCube.SumNumber(wall.number.y)), 
                 GetSymbol(MathCube.SumNumber(wall.number.z)));
+            gameObject.GetComponent<MeshRenderer>().materials[1].SetColor("_EmissionColor", wall.color);
         }
 
         private string GetSymbol(int index)

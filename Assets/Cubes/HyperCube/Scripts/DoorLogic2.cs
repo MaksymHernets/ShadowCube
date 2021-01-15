@@ -14,7 +14,7 @@ namespace Cubes.CubeHyber
 
         public DoorStage dootstage = DoorStage.closed;
 
-        private float speedToOpen = 0.01f;
+        private float speedToOpen = 0.0015f;
 
         private void Open()
         {
@@ -59,13 +59,13 @@ namespace Cubes.CubeHyber
         IEnumerator Animation_Door()
         {
             yield return new WaitForSecondsRealtime(0.9f);
-            for (int i = 0; i < 50; ++i)
+            for (int i = 0; i < 115; ++i)
             {
-                door.transform.localPosition = door.transform.localPosition + new Vector3(speedToOpen, 0 ,-speedToOpen);
-                door1.transform.localPosition = door1.transform.localPosition + new Vector3(speedToOpen, 0, speedToOpen);
-                door2.transform.localPosition = door2.transform.localPosition + new Vector3(-speedToOpen, 0, speedToOpen);
-                door3.transform.localPosition = door3.transform.localPosition + new Vector3(-speedToOpen, 0, -speedToOpen);
-                yield return new WaitForSecondsRealtime(0.02f);
+                door.transform.localPosition = door.transform.localPosition + new Vector3(0, 0 , -speedToOpen);
+                door1.transform.localPosition = door1.transform.localPosition + new Vector3(0, 0, speedToOpen);
+                door2.transform.localPosition = door2.transform.localPosition + new Vector3(0, 0, speedToOpen);
+                door3.transform.localPosition = door3.transform.localPosition + new Vector3(0, 0, -speedToOpen);
+                yield return new WaitForSecondsRealtime(0.003f);
             }
         }
     }

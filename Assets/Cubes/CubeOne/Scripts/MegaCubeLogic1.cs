@@ -392,7 +392,7 @@ namespace Cubes.CubeOne
             gamecubes = new GameObject[_Size, _Size, _Size];
             cubes = new Cube[_Size, _Size, _Size];
 
-            //SetFrames();
+            SetFrames();
             SetCubes();
             IntCubes();
             SetPlayers();
@@ -407,15 +407,20 @@ namespace Cubes.CubeOne
             player = (GameObject)player2;
         }
 
-        private void SetFrames()
+        private void SetFrames() 
         {
-            var value = _Size * _WidhtCube;
-            Frames[0].transform.localPosition = new Vector3(0, -value, 0); // top
-            Frames[1].transform.localPosition = new Vector3(0, 0, value); // left
-            Frames[2].transform.localPosition = new Vector3(value, 0, 0);
-            Frames[3].transform.localPosition = new Vector3(0, 0, -value); // right
-            Frames[4].transform.localPosition = new Vector3(-value, 0, 0);
-            Frames[5].transform.localPosition = new Vector3(0, value, 0); // down 
+            var pol = _WidhtCube + _WidhtCube / 2;
+            var longmed = ((_Size/2)+ pol) * _WidhtCube;
+            var longtotal = ((_Size + 2) * _WidhtCube) + _WidhtCube / 2;
+            Frames[0].transform.localPosition = new Vector3(0, -pol, 0); // top
+
+            Frames[1].transform.localPosition = new Vector3(longtotal, 0, longmed); // left
+            Frames[3].transform.localPosition = new Vector3(longmed, 0, -pol); // right
+
+            Frames[2].transform.localPosition = new Vector3(longtotal, 0, longmed);
+            Frames[4].transform.localPosition = new Vector3(-pol, 0, longmed);
+
+            Frames[5].transform.localPosition = new Vector3(0, longtotal, 0); // down 
         }
 
         private void SetCubes()
@@ -503,8 +508,8 @@ namespace Cubes.CubeOne
             else if (index == 2) { return Color.yellow; }
             else if (index == 3) { return Color.blue; }
             else if (index == 4) { return Color.green; }
-            else if (index == 5) { return Color.gray; }
-            else if (index == 6) { return Color.magenta; }
+            else if (index == 5) { return Color.cyan; }
+            else if (index == 6) { return new Color(1f, 0.1f, 0f); }
             return Color.white;
         }
         #endregion
@@ -573,6 +578,8 @@ namespace Cubes.CubeOne
                 newposition = GetCube(i, position, out newdoor);
                 CloseDoor(newposition, newdoor);
             }
+            gamecubes[position.x, position.y, position.z].SendMessage("Deactivate");
+            //StartCoroutine("Wait", position);
         }
 
         private bool CloseDoor(Vector3Int position, int wallnumber)

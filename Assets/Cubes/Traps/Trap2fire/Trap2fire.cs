@@ -9,8 +9,7 @@ public class Trap2fire : MonoBehaviour
     private bool key = true;
 
     public GameObject prewall;
-    public GameObject fire1;
-    public GameObject fire2;
+    public GameObject damagecollider;
 
     private List<GameObject> walls;
 
@@ -56,6 +55,7 @@ public class Trap2fire : MonoBehaviour
 
     IEnumerator StagePrepering()
     {
+        damagecollider.SetActive(true);
         for (int i = 10; i >= 0; --i)
         {
             float speed = 1+ (i * Speed);
@@ -72,23 +72,12 @@ public class Trap2fire : MonoBehaviour
 
     IEnumerator Waiting()
     {
-        //foreach (var item in walls)
-        //{
-        //    fire1.SendMessage("Play");
-        //    fire2.SendMessage("Play");
-        //}
-        yield return new WaitForSecondsRealtime(5);
+        yield return new WaitForSecondsRealtime(18);
         StartCoroutine("StageEnd");
     }
 
     IEnumerator StageEnd()
     {
-        //foreach (var item in walls)
-        //{
-        //    fire1.SendMessage("Stop");
-        //    fire2.SendMessage("Stop");
-        //}
-        
         for (int i = 0; i < 10; ++i)
         {
             float speed = 1 + (i * Speed);
