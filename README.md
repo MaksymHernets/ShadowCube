@@ -2,8 +2,12 @@
 ![GitHub Logo](/ScreenShots/logo.png)
 Game based on the movie "Cube". The protagonist wakes up inside a giant cubic room, entirely consisting of cubic modules that are constantly in motion. Overcoming obstacles and traps, apparently, he will not only have to get out to freedom, but also remember his life before being placed in the Cube.
 
+# Developer diary
+You can follow the progress of the game development on my YouTube channel.
+https://www.youtube.com/watch?v=w0R7qCH8rcQ&list=PLuik0FLKlFuLZmaHdymtWV7jbLqMduf0Z&ab_channel=MaksymHernets
+
 # You can take part in the development of the game
-The repository contains a comm branch where you can send your fixes or new functionality for the game
+The repository contains a comm branch where you can send your fixes or new functionality for the game.
 
 # Development plan
 When an item is checkmarked, it means the basic foundation is in place but not necessarily complete. For example, Inventory is checkmarked but it currently only supports weapons. You can help fix that.
@@ -35,14 +39,9 @@ When an item is checkmarked, it means the basic foundation is in place but not n
 
 # Screenshot from the game
 
-https://www.youtube.com/watch?v=w0R7qCH8rcQ&list=PLuik0FLKlFuLZmaHdymtWV7jbLqMduf0Z&ab_channel=MaksymHernets
+![Main Menu](/ScreenShots/ShadowCube333.png)
 
-[![Main Menu](https://img.youtube.com/vi/oDQNE9S34kU/0.jpg)](https://www.youtube.com/watch?v=oDQNE9S34kU&ab_channel=MaksymHernets)
+![Cube One](/ScreenShots/ShadowCube32.png)
 
-[![Cube One](https://img.youtube.com/vi/Fc8Znb87NcI/0.jpg)](https://www.youtube.com/watch?v=Fc8Znb87NcI&ab_channel=MaksymHernets)
+![Cube zero](/ScreenShots/ShadowCube3332.png)
 
-[![Hyper Cube](https://img.youtube.com/vi/DU0zESzeeRE/0.jpg)](https://www.youtube.com/watch?v=DU0zESzeeRE&ab_channel=MaksymHernets)
-
-[![Cube Zero](https://img.youtube.com/vi/pQ1JfO9FcvQ/0.jpg)](https://www.youtube.com/watch?v=pQ1JfO9FcvQ&t&ab_channel=MaksymHernets)
-
-[![New Cube](https://img.youtube.com/vi/v=dzeC4nVSi-o/0.jpg)](https://www.youtube.com/watch?v=dzeC4nVSi-o&ab_channel=MaksymHernets)
