@@ -1,35 +1,38 @@
-﻿using System.Collections;
+﻿using Mirror;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoomLobyHost : MonoBehaviour
+public class RoomLobyHost : NetworkManager
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        PhotonNetwork.playerName = Cookie.mainPlayer.name;
-        PhotonNetwork.automaticallySyncScene = true;
-        PhotonNetwork.gameVersion = "0.1.0";
-        PhotonNetwork.ConnectUsingSettings("0.1.0");
+    //public Transform leftRacketSpawn;
+    //public Transform rightRacketSpawn;
+    //GameObject ball;
 
-        PhotonNetwork.CreateRoom(GenerateCode());
+    public override void OnServerAddPlayer(NetworkConnection conn)
+    {
+        // add player at correct spawn position
+        //Transform start = numPlayers == 0 ? leftRacketSpawn : rightRacketSpawn;
+        GameObject player = Instantiate(playerPrefab);
+        player.SetActive(true);
+        NetworkServer.AddPlayerForConnection(conn, player);
+
+        // spawn ball if two players
+        //if (numPlayers == 2)
+        //{
+        //    ball = Instantiate(spawnPrefabs.Find(prefab => prefab.name == "Ball"));
+        //    NetworkServer.Spawn(ball);
+        //}
     }
 
-
-    private string GenerateCode()
+    public override void OnServerDisconnect(NetworkConnection conn)
     {
-        return Random.Range(100000, 999999).ToString();
-    }
+        // destroy ball
+        //if (ball != null)
+        //    NetworkServer.Destroy(ball);
 
-    public void InputField_EditEnd(string code)
-    {
-        PhotonNetwork.JoinRandomRoom();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // call base functionality (actually destroys the player)
+        base.OnServerDisconnect(conn);
     }
 
 

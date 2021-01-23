@@ -25,14 +25,14 @@ public class CameraMoveTwo : MonoBehaviour
         if ( time > 1 && key )
 		{
             key = false;
-            StartCoroutine("Animation_Door");
+            StartCoroutine(Animation_Door());
         }
     }
 
 	IEnumerator Animation_Door()
 	{
         cubes[Cookie.room.IndexCube].SendMessage("OpenDoor", 4 , SendMessageOptions.DontRequireReceiver);
-        yield return new WaitForSeconds(3.8f);
+        yield return new WaitForSeconds(5f);
         for (int i = 0; i < 40; ++i)
 		{
 			cameraa.transform.localPosition += new Vector3(speed, 0f, 0f);

@@ -64,16 +64,22 @@ namespace Cubes.CubeZero
                 doorhandle.transform.localEulerAngles = new Vector3(doorhandle.transform.localEulerAngles.x, doorhandle.transform.localEulerAngles.y + speedToOpen2, doorhandle.transform.localEulerAngles.z);
                 yield return new WaitForSeconds(0.01f);
             }
-            StartCoroutine("Animation_Door");
+
+            StartCoroutine(Animation_Door(1f,
+                new Vector3(door1.transform.localPosition.x - 0.45f, door1.transform.localPosition.y, door1.transform.localPosition.z ),
+                new Vector3(door2.transform.localPosition.x + 0.45f, door2.transform.localPosition.y, door2.transform.localPosition.z )
+                ));
         }
 
-        IEnumerator Animation_Door()
+        IEnumerator Animation_Door(float time, Vector3 endP, Vector3 endP2)
         {
-            for (int i = 0; i < 90; i++)
+            float sumtime = 0;
+            while (time >= sumtime)
             {
-                door1.transform.localPosition = door1.transform.localPosition + new Vector3(-speedToOpen, 0, 0);
-                door2.transform.localPosition = door2.transform.localPosition + new Vector3(speedToOpen, 0, 0);
-                yield return new WaitForSeconds(0.01f);
+                sumtime += Time.deltaTime;
+                door1.transform.localPosition = Vector3.Lerp(door1.transform.localPosition, endP, Time.deltaTime);
+                door2.transform.localPosition = Vector3.Lerp(door2.transform.localPosition, endP2, Time.deltaTime);
+                yield return new WaitForFixedUpdate();
             }
         }
     }

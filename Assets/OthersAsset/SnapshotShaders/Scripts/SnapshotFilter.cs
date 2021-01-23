@@ -51,29 +51,21 @@ public class BaseFilter : SnapshotFilter
  */
 public class BlurFilter : SnapshotFilter
 {
-    public Material shaderMaterial;
-    public RenderTexture intermediateRT;
-
     public BlurFilter(string name, Color color, Shader shader) 
         : base(name, color, shader)
     {
-        mainMaterial.SetInt("_KernelSize", 100);
+        mainMaterial.SetInt("_KernelSize", 21);
     }
 
     public override void OnRenderImage(RenderTexture src, RenderTexture dst)
     {
-        
         // Create a temporary RenderTexture to hold the first pass.
-        RenderTexture tmp = RenderTexture.GetTemporary(src.width, src.height, 0, src.format);
+        RenderTexture tmp =
+            RenderTexture.GetTemporary(src.width, src.height, 0, src.format);
 
         // Perform both passes in order.
         Graphics.Blit(src, tmp, mainMaterial, 0);   // First pass.
         Graphics.Blit(tmp, dst, mainMaterial, 1);   // Second pass.
-
-        //shaderMaterial = new RenderTexture();
-
-        //Graphics.Blit(src, intermediateRT, shaderMaterial);
-        //Graphics.Blit(intermediateRT, dst);
 
         RenderTexture.ReleaseTemporary(tmp);
     }

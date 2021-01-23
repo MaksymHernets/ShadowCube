@@ -28,7 +28,10 @@ namespace Cubes.CubeOne
             {
                 dootstage = DoorStage.opening;
                 audio_doorhandle.Play();
-                StartCoroutine("Animation_Doorhandle");
+                StartCoroutine(
+                    Animation_Doorhandle(1f, 
+                    new Quaternion(doorhandle.transform.localRotation.x, doorhandle.transform.localRotation.y + 0.5f, 
+                    doorhandle.transform.localRotation.z, doorhandle.transform.localRotation.w)));
                 dootstage = DoorStage.open;
             }
         }
@@ -72,7 +75,8 @@ namespace Cubes.CubeOne
             if (dootstage == DoorStage.open)
             {
                 dootstage = DoorStage.closing;
-                StartCoroutine("Animation_DoorTwoClose");
+                audio_door.Play();
+                StartCoroutine(Animation_DoorTwoClose(3f, new Vector3(door.transform.localPosition.x, door.transform.localPosition.y, door.transform.localPosition.z - 0.45f)));
                 dootstage = DoorStage.closed;
             }
         }
@@ -107,38 +111,47 @@ namespace Cubes.CubeOne
         }
 
         #region Animation Open
-        IEnumerator Animation_Doorhandle()
+        IEnumerator Animation_Doorhandle(float time, Quaternion endP)
         {
-            audio_door.Play();
-            for (int i = 0; i < 90; i++)
+            float sumtime = 0;
+            while (time >= sumtime)
             {
-                doorhandle.transform.localEulerAngles = new Vector3(doorhandle.transform.localEulerAngles.x, doorhandle.transform.localEulerAngles.y + speedToOpen0, doorhandle.transform.localEulerAngles.z);
-                yield return new WaitForSeconds(0.009f);
+                sumtime += Time.deltaTime;
+                doorhandle.transform.localRotation = Quaternion.Lerp(doorhandle.transform.localRotation, endP, Time.deltaTime);
+                yield return new WaitForFixedUpdate();
             }
-            StartCoroutine("Animation_DoorOne");
+            yield return new WaitForSecondsRealtime(1f);
+            StartCoroutine(Animation_DoorOne(0.5f, new Vector3(door.transform.localPosition.x , door.transform.localPosition.y+0.06f , door.transform.localPosition.z)));
         }
 
         // Ввыезд двери вперед
-        IEnumerator Animation_DoorOne()
+        IEnumerator Animation_DoorOne(float time, Vector3 endP)
         {
-            for (int i = 0; i < 12; ++i)
-            {
-                transform.localPosition = transform.localPosition + new Vector3(0, speedToOpen1, 0);
-                yield return new WaitForSeconds(0.01f);
+            audio_door.Play();
+            float sumtime = 0;
+            while ( time >= sumtime)
+			{
+                sumtime += Time.deltaTime;
+                door.transform.localPosition = Vector3.Lerp(door.transform.localPosition, endP, Time.deltaTime);
+                yield return new WaitForFixedUpdate();
             }
-            StartCoroutine("Animation_DoorTwo");
+            yield return new WaitForSecondsRealtime(1f);
+            StartCoroutine(Animation_DoorTwo(3f, new Vector3(door.transform.localPosition.x, door.transform.localPosition.y, door.transform.localPosition.z+0.45f)));
         }
 
         // Ввыезд двери вбок
-        IEnumerator Animation_DoorTwo()
+        IEnumerator Animation_DoorTwo(float time, Vector3 endP)
         {
-            for (int i = 0; i < 85; ++i)
+            float sumtime = 0;
+            while (time >= sumtime)
             {
-                transform.localPosition = transform.localPosition + new Vector3(0, 0, speedToOpen2);
-                yield return new WaitForSeconds(0.024f);
+                sumtime += Time.deltaTime;
+                door.transform.localPosition = Vector3.Lerp(door.transform.localPosition, endP, Time.deltaTime);
+                yield return new WaitForFixedUpdate();
             }
         }
         #endregion
+
 
         #region Animation Close
         IEnumerator Animation_DoorhandleClose()
@@ -152,25 +165,30 @@ namespace Cubes.CubeOne
         }
 
         // Ввыезд двери вперед
-        IEnumerator Animation_DoorOneClose()
+        IEnumerator Animation_DoorOneClose(float time, Vector3 endP)
         {
-            for (int i = 0; i < 12; i++)
+            audio_door.Play();
+            float sumtime = 0;
+            while (time >= sumtime)
             {
-                transform.localPosition = transform.localPosition - new Vector3(0, speedToOpen1, 0);
-                yield return new WaitForSecondsRealtime(0.009f);
+                sumtime += Time.deltaTime;
+                door.transform.localPosition = Vector3.Lerp(door.transform.localPosition, endP, Time.deltaTime);
+                yield return new WaitForFixedUpdate();
             }
-            StartCoroutine("Animation_DoorhandleClose");
+            StartCoroutine(Animation_DoorhandleClose());
         }
 
         // Ввыезд двери вбок
-        IEnumerator Animation_DoorTwoClose()
+        IEnumerator Animation_DoorTwoClose(float time, Vector3 endP)
         {
-            for (int i = 0; i < 85; i++)
+            float sumtime = 0;
+            while (time >= sumtime)
             {
-                transform.localPosition = transform.localPosition - new Vector3(0, 0, speedToOpen2);
-                yield return new WaitForSecondsRealtime(0.024f);
+                sumtime += Time.deltaTime;
+                door.transform.localPosition = Vector3.Lerp(door.transform.localPosition, endP, Time.deltaTime);
+                yield return new WaitForFixedUpdate();
             }
-            StartCoroutine("Animation_DoorOneClose");
+            StartCoroutine(Animation_DoorOneClose(0.5f, new Vector3(door.transform.localPosition.x, door.transform.localPosition.y - 0.06f, door.transform.localPosition.z)));
         }
         #endregion
     }

@@ -1,14 +1,23 @@
-﻿using System.Collections;
+﻿using Playerr;
+using ShadowCube.DTO;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace DTO
+namespace ShadowCube.DTO
 {
-    public class Player
+    public class Player : PlayerBase
     {
-        public int id { set; get; }
-        public bool IsBot { set; get; }
-        public string name { set; get; }
-        public bool sex { set; get; }
+        public float xp;
+
+        public Inventory inventory;
+        public ScoreCube score;
+
+        public Player()
+		{
+            xp = 100;
+            inventory = new Inventory(10);
+            score = new ScoreCube();
+        }
     }
 }

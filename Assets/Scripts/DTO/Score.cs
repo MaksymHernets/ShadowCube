@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DTO
+namespace ShadowCube.DTO
 {
 	public class ScoreCube
 	{

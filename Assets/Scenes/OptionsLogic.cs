@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class OptionsLogic : MonoBehaviour
 {
+    public GameObject MainMenu;
+
     [Header("Panels")]
     public GameObject panelGeneric;
     public GameObject panelControl;
@@ -145,5 +147,11 @@ public class OptionsLogic : MonoBehaviour
     {
         //snapshotModeSelect.filterIndex = index;
     }
-	#endregion
+    #endregion
+
+    public void ButtonBack_Click()
+    {
+        MainMenu.SetActive(true);
+        gameObject.SetActive(false);
+    }
 }

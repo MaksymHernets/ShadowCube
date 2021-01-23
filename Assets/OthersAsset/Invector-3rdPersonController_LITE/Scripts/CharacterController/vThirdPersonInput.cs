@@ -4,6 +4,8 @@ namespace Invector.vCharacterController
 {
     public class vThirdPersonInput : MonoBehaviour
     {
+        public PlayerLogic playerLogic;
+
         #region Variables       
 
         [Header("Controller Input")]
@@ -17,14 +19,19 @@ namespace Invector.vCharacterController
         public string rotateCameraXInput = "Mouse X";
         public string rotateCameraYInput = "Mouse Y";
 
-        [HideInInspector] public vThirdPersonController cc;
-        [HideInInspector] public vThirdPersonCamera tpCamera;
-        [HideInInspector] public Camera cameraMain;
+        public vThirdPersonController cc;
+        public vThirdPersonCamera tpCamera;
+        public Camera cameraMain;
 
         #endregion
 
         protected virtual void Start()
         {
+            if ( Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer)
+			{
+                this.gameObject.SetActive(false);
+			}
+
             InitilizeController();
             InitializeTpCamera();
         }
@@ -51,9 +58,9 @@ namespace Invector.vCharacterController
 
         protected virtual void InitilizeController()
         {
-            cc = GetComponent<vThirdPersonController>();
+            //cc = GetComponent<vThirdPersonController>();
 
-            if (cc != null)
+            if (cc == null)
                 cc.Init();
         }
 
@@ -145,6 +152,6 @@ namespace Invector.vCharacterController
                 cc.Jump();
         }
 
-        #endregion       
+        #endregion
     }
 }

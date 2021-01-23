@@ -2,13 +2,13 @@
 	box blur. An extra _Spread property is added to control the strength of the
 	Gaussian blur.
 */
-Shader "GaussianBlur"
+Shader "Snapshot/GaussianBlur"
 {
     Properties
     {
         _MainTex ("Texture", 2D) = "white" {}
-		_KernelSize("Kernel Size (N)", Int) = 10
-		_Spread("St. dev. (sigma)", Float) = 0.05
+		_KernelSize("Kernel Size (N)", Int) = 21
+		_Spread("St. dev. (sigma)", Float) = 5.0
 	}
 
 	CGINCLUDE
