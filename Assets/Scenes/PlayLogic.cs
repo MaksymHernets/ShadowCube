@@ -9,6 +9,7 @@ public class PlayLogic : MonoBehaviour
     public GameObject MainMenu;
     public MainMenuManager mainMenuManager;
 
+    public Dropdown dropdownMap;
     public Button[] maps;
     public Text buttonPrivatePublic;
     public Text textCountPlayers;
@@ -21,8 +22,15 @@ public class PlayLogic : MonoBehaviour
     private void Awake()
     {
         room = Cookie.room;
+        dropdownMap.value = Cookie.room.IndexCube;
         ChangedButton(0, Cookie.room.IndexCube);
         players.Add(Cookie.mainPlayer);
+    }
+
+    public void DropdownMap_Click(int newindex)
+    {
+	    mainMenuManager.ShowCube(room.IndexCube, newindex);
+	    room.IndexCube = newindex;
     }
 
     public void ButtonStart_Click()
@@ -63,9 +71,14 @@ public class PlayLogic : MonoBehaviour
     {
         ChangedButton(room.IndexCube, 3);
     }
-	#endregion
 
-	private void ChangedButton(int oldindex, int newindex)
+    public void ButtonCubeFour_Click()
+    {
+	    ChangedButton(room.IndexCube, 4);
+    }
+    #endregion
+
+    private void ChangedButton(int oldindex, int newindex)
     {
         if (oldindex != newindex)
         {

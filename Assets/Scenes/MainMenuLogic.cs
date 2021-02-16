@@ -17,39 +17,47 @@ public class MainMenuLogic : MonoBehaviour
     public GameObject menuOptions;
     public GameObject menuAbout;
 
+    public GameObject buttonBack;
+
     private void Start()
     {
         textversion.text = "ALPHA " + Application.version;
     }
 
     #region MainMenu
+    private void CommonAction()
+	{
+        menuMain.SetActive(false);
+        buttonBack.SetActive(true);
+    }
+
     public void ButtonPlay_Click()
     {
-        menuMain.SetActive(false);
+        CommonAction();
         menuPlay.SetActive(true);
     }
 
     public void ButtonOnline_Click()
     {
-        menuMain.SetActive(false);
+        CommonAction();
         menuOnline.SetActive(true);
     }
 
     public void ButtonPerson_Click()
     {
-        menuMain.SetActive(false);
+        CommonAction();
         menuPerson.SetActive(true);
     }
 
     public void ButtonOptions_Click()
     {
-        menuMain.SetActive(false);
+        CommonAction();
         menuOptions.SetActive(true);
     }
 
     public void ButtonManual_Click()
     {
-        menuMain.SetActive(false);
+        CommonAction();
         menuAbout.SetActive(true);
     }
     #endregion

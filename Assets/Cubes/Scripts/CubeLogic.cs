@@ -4,18 +4,7 @@ using UnityEngine;
 
 namespace Cubes
 {
-    public class Cube
-    {
-        public Vector3Int id;
-
-        public Vector3Int position;
-
-        public Vector3Int shifr;
-
-        public Color Color;
-
-        public Trap trap;
-    }
+    
 
     public class ICubeLogic
     {
@@ -25,7 +14,7 @@ namespace Cubes
 
     public class CubeLogic : MonoBehaviour
     {
-        protected Cube cube;
+        protected CubeDTO cube;
 
         public Light lightt;
         public List<GameObject> walls;
@@ -34,9 +23,9 @@ namespace Cubes
         private float TimeWait = 10;
         private float TimeLost = 0;
 
-        public void IntCube(object cubee) // Cube
+        public void IntCube(object cubee) // CubeDTO
         {
-            cube = (Cube)cubee;
+            cube = (CubeDTO)cubee;
             int index = 0;
             foreach (var item in walls)
             {

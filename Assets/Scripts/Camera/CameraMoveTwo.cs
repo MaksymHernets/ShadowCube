@@ -32,7 +32,7 @@ public class CameraMoveTwo : MonoBehaviour
 	IEnumerator Animation_Door()
 	{
         cubes[Cookie.room.IndexCube].SendMessage("OpenDoor", 4 , SendMessageOptions.DontRequireReceiver);
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(6f);
         for (int i = 0; i < 40; ++i)
 		{
 			cameraa.transform.localPosition += new Vector3(speed, 0f, 0f);

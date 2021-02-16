@@ -24,21 +24,24 @@ public class Trap4mesh : MonoBehaviour
 			}
 			//audioSource.Play();
 			damage.SetActive(true);
-            StartCoroutine("Animation_Show");
+            StartCoroutine(Animation_Show(1f, Quaternion.Euler(-180f , 0f , 0f) ));
         }
     }
 
-    IEnumerator Animation_Show()
+    IEnumerator Animation_Show(float time, Quaternion endP)
     {
-        yield return new WaitForSecondsRealtime(4f);
+        yield return new WaitForSecondsRealtime(2f);
 		foreach (var mesh in meshs.Reverse() )
 		{
-            for (int i = 0; i <= 180; ++i)
+            float sumtime = 0;
+            while (time > sumtime)
             {
-                mesh.transform.localEulerAngles = new Vector3(i, 0f, 0f);
-                yield return new WaitForSecondsRealtime(0.005f);
+                sumtime += Time.deltaTime;
+                mesh.transform.localRotation = Quaternion.Lerp(mesh.transform.localRotation, endP, Time.deltaTime);
+                yield return new WaitForFixedUpdate();
             }
         }
+        //Vector3.Lerp
         
         //StartCoroutine("Waiting");
     }

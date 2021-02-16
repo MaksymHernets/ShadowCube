@@ -17,7 +17,7 @@ namespace ShadowCube.UI
         {
             gameObject.SetActive(true);
             textRoom.text = "Rooms: " + scoreCube.Rooms;
-            textTime.text = "Time: " + scoreCube.Time;
+            textTime.text = "Time: " + scoreCube.Time + " sec";
             textTrap.text = "Traps: " + scoreCube.Traps;
         }
     }

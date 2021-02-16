@@ -16,7 +16,7 @@ namespace Cubes.CubeOne
         public List<GameObject> Frames;
 
         private GameObject[,,] gamecubes;
-        private Cube[,,] cubes;
+        private CubeDTO[,,] cubes;
         private GameObject CubeBridge;
         private GameObject player;
 
@@ -24,14 +24,14 @@ namespace Cubes.CubeOne
         {
             _Size = Cookie.room.Size;
             gamecubes = new GameObject[_Size, _Size, _Size];
-            cubes = new Cube[_Size, _Size, _Size];
+            cubes = new CubeDTO[_Size, _Size, _Size];
 
             //SetFrames();
             SetCubes();
             IntCubes();
             SetPlayers();
 
-            //Set Cube of Bridght
+            //Set CubeDTO of Bridght
             //SetCube(_Size+1, 5, 5);
         }
 
@@ -60,7 +60,7 @@ namespace Cubes.CubeOne
                 {
                     for (int l = 0; l < _Size; ++l)
                     {
-                        var cubee = new Cube();
+                        var cubee = new CubeDTO();
                         cubee.Color = GetColor(Random.Range(0, 6));
                         cubee.id = new Vector3Int();
                         cubee.id.x = (int)Random.Range(300, 700);
@@ -93,7 +93,7 @@ namespace Cubes.CubeOne
             }
         }
 
-        private GameObject IntCube(Cube cubedto)
+        private GameObject IntCube(CubeDTO cubedto)
         {
             var newcube = Instantiate(prefabcube, transform);
             newcube.transform.position = new Vector3(cubedto.position.x * _WidhtCube, cubedto.position.y * _WidhtCube, cubedto.position.z * _WidhtCube);
@@ -103,7 +103,7 @@ namespace Cubes.CubeOne
             return newcube;
         }
 
-        private Trap SetTrap(Cube cubedto)
+        private Trap SetTrap(CubeDTO cubedto)
         {
             if (IsSimpleNumber(cubedto.id.x) || IsSimpleNumber(cubedto.id.y) || IsSimpleNumber(cubedto.id.z))
             {

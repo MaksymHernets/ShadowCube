@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Invector.vCharacterController;
 using ShadowCube.DTO;
 using Playerr;
 using UnityEngine;
@@ -14,10 +15,13 @@ public class PlayerLogic : MonoBehaviour
 
     private float distanceUse = 1;
 
+    public vThirdPersonController vthirdPersonController;
+    public vThirdPersonCamera vthirdPersonCamera;
     public AudioSource foolman;
 
     public GameObject Menu;
     public ScoreUI scoreui;
+    public FrameDamageUI frameDamageUI;
     public Items itemsui;
 
     private GameObject TakeObject;
@@ -97,13 +101,13 @@ public class PlayerLogic : MonoBehaviour
         }
 	}
 
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.transform.tag == "Damage")
-        {
-            //Damage();
-        }
-    }
+	//private void OnTriggerStay(Collider other)
+	//{
+	//    if (other.transform.tag == "Damage")
+	//    {
+	//        //Damage();
+	//    }
+	//}
 
 	private void OnTriggerEnter(Collider other)
 	{
@@ -117,20 +121,24 @@ public class PlayerLogic : MonoBehaviour
 	{
         if (collision.transform.tag == "Damage")
         {
-            //ToDamage();
+            ToDamage(new Damage() { value = 5 });
         }
     }
 
     void ToDamage(Damage damage)
 	{
         player.xp -= damage.value;
-        
+        frameDamageUI.Show(player.xp);
         if (player.xp <= 0) { ToDie(); }
     }
 
     public void ToDie()
-	{
+    {
+	    vthirdPersonController.enabled = false;
+	    vthirdPersonCamera.enabled = false;
         Cursor.visible = true;
+        player.score.Time = Time.realtimeSinceStartup - starttime;
+        scoreui.Show(player.score);
         gameObject.SetActive(false);
         statusPlayer = StatusPlayer.die;
 	}
@@ -138,7 +146,7 @@ public class PlayerLogic : MonoBehaviour
 }
 
 
-
+ 
 public enum StatusPlayer
 {
     sleep,

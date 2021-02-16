@@ -29,9 +29,9 @@ namespace Cubes.CubeOne
                 dootstage = DoorStage.opening;
                 audio_doorhandle.Play();
                 StartCoroutine(
-                    Animation_Doorhandle(1f, 
-                    new Quaternion(doorhandle.transform.localRotation.x, doorhandle.transform.localRotation.y + 0.5f, 
-                    doorhandle.transform.localRotation.z, doorhandle.transform.localRotation.w)));
+	                Animation_Doorhandle(2f, doorhandle.transform.localRotation,
+		                Quaternion.Euler(doorhandle.transform.localEulerAngles.x, doorhandle.transform.localEulerAngles.y + 180f,
+			                doorhandle.transform.localEulerAngles.z)));
                 dootstage = DoorStage.open;
             }
         }
@@ -111,17 +111,19 @@ namespace Cubes.CubeOne
         }
 
         #region Animation Open
-        IEnumerator Animation_Doorhandle(float time, Quaternion endP)
+        IEnumerator Animation_Doorhandle(float time, Quaternion start , Quaternion endP)
         {
-            float sumtime = 0;
-            while (time >= sumtime)
-            {
-                sumtime += Time.deltaTime;
-                doorhandle.transform.localRotation = Quaternion.Lerp(doorhandle.transform.localRotation, endP, Time.deltaTime);
-                yield return new WaitForFixedUpdate();
-            }
-            yield return new WaitForSecondsRealtime(1f);
-            StartCoroutine(Animation_DoorOne(0.5f, new Vector3(door.transform.localPosition.x , door.transform.localPosition.y+0.06f , door.transform.localPosition.z)));
+	        float sumtime = 0;
+	        while (sumtime < time)
+	        {
+		        doorhandle.transform.localRotation = Quaternion.Slerp(start, endP, sumtime / time);
+		        yield return new WaitForFixedUpdate();
+		        sumtime += Time.deltaTime;
+	        }
+
+	        doorhandle.transform.localRotation = endP;
+	        yield return new WaitForSecondsRealtime(1f);
+	        StartCoroutine(Animation_DoorOne(0.5f, new Vector3(door.transform.localPosition.x, door.transform.localPosition.y + 0.06f, door.transform.localPosition.z)));
         }
 
         // Ввыезд двери вперед

@@ -7,16 +7,16 @@ namespace Cubes.CubeHyber
 {
     public class CubeLogic2 : MonoBehaviour
     {
-        public Cube cube;
+        public CubeDTO cube;
 
         public Light lightt;
         public List<GameObject> walls;
 
         public AudioSource audioSource;
 
-        public void IntCube(object cubee) // Cube
+        public void IntCube(object cubee) // CubeDTO
         {
-            cube = (Cube)cubee;
+            cube = (CubeDTO)cubee;
             int index = 0;
             foreach (var item in walls)
             {

@@ -5,14 +5,17 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
-    private bool key = false;
-
-    public Canvas maincanvas;
-    public GameObject menu;
-    public GameObject table;
     public GameObject player;
 
-	public void Start()
+    public GameObject buttonStatus;
+    public GameObject buttonOptions;
+    public GameObject buttonClose;
+    public GameObject buttonLeave;
+    public GameObject table;
+    
+    private bool key = false;
+
+    public void Start()
 	{
         
     }
@@ -29,7 +32,11 @@ public class Menu : MonoBehaviour
     {
         key = !key;
         Cursor.visible = key;
-        menu.SetActive(key);
+        buttonStatus.SetActive(key);
+        buttonOptions.SetActive(key);
+        buttonClose.SetActive(key);
+        buttonLeave.SetActive(key);
+        table.SetActive(key);
         player.SetActive(!key);
     }
 
