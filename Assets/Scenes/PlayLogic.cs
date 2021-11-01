@@ -17,14 +17,14 @@ public class PlayLogic : MonoBehaviour
     public Input inputCode;
 
     private RoomLoby room = new RoomLoby();
-    private List<PlayerBase> players = new List<PlayerBase>();
+    private List<Entity> players = new List<Entity>();
 
     private void Awake()
     {
         room = Cookie.room;
         dropdownMap.value = Cookie.room.IndexCube;
         ChangedButton(0, Cookie.room.IndexCube);
-        players.Add(Cookie.mainPlayer);
+        //players.Add(Cookie.mainPlayer);
     }
 
     public void DropdownMap_Click(int newindex)
@@ -39,8 +39,7 @@ public class PlayLogic : MonoBehaviour
         {
             for (int i = 0; i < room.Size - players.Count; i++)
             {
-                players.Add(new PlayerBase());
-                players[i].IsBot = true;
+                players.Add(new Entity());
             }
         }
         Cookie.room = room;

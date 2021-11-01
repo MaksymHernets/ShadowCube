@@ -1,69 +1,49 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using Invector.vCharacterController;
+﻿using Invector.vCharacterController;
 using ShadowCube.DTO;
-using Playerr;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using ShadowCube.UI;
 
-public class PlayerLogic : MonoBehaviour
+public class PlayerLogic : Entity
 {
-    private Player player;
-    public StatusPlayer statusPlayer = StatusPlayer.alive;
+    [SerializeField] private float distanceUse = 1;
+    [SerializeField] private StatusPlayer statusPlayer = StatusPlayer.alive;
+    [SerializeField] private vThirdPersonController vthirdPersonController;
+    [SerializeField] private vThirdPersonCamera vthirdPersonCamera;
+    [SerializeField] private AudioSource foolman;
 
-    private float distanceUse = 1;
-
-    public vThirdPersonController vthirdPersonController;
-    public vThirdPersonCamera vthirdPersonCamera;
-    public AudioSource foolman;
-
-    public GameObject Menu;
-    public ScoreUI scoreui;
-    public FrameDamageUI frameDamageUI;
-    public Items itemsui;
-
-    private GameObject TakeObject;
+    private PlayerDTO _player;
+    private InteractiveObject TakeObject;
 
 	#region temp
 	private int _WC = Screen.width / 2;
     private int _HC = Screen.height / 2;
     private RaycastHit hit;
     private Ray ray;
-    private float starttime;
-	#endregion
+    private float forcee = 4f;
+    #endregion
 
-	void Start()
+    void Start()
     {
-        starttime = Time.realtimeSinceStartup;
-        Cursor.visible = false;
-
-        player = new Player();
-        player.name = "player";
-        player.id = 1;
+        eventDie.AddListener(EventDie_Handler);
     }
 
-    public void IntPlayer(object objectPlayer)
+	public void Init(PlayerDTO player)
 	{
-        player = (Player)objectPlayer;
+        _player = player;
     }
 
     public void Jump()
     {
 
     }
+
     public void ToUse()
 	{
         ray = Camera.main.ScreenPointToRay(new Vector3(_WC, _HC, 0f));
+
         if (TakeObject != null)
         {
             TakeObject.GetComponent<Rigidbody>().useGravity = true;
-            float forcee = 4f;
-            //TakeObject.GetComponent<Rigidbody>().isKinematic = true;
-            GetComponent<Rigidbody2D>().AddTorque(360, ForceMode2D.Impulse);
-            TakeObject.GetComponent<Rigidbody>()
-                .AddForce(new Vector3(transform.localRotation.x * forcee, transform.localRotation.y * forcee, transform.localRotation.z * forcee)
+            TakeObject.Rigidbody.AddForce(new Vector3(transform.localRotation.x * forcee, transform.localRotation.y * forcee, transform.localRotation.z * forcee)
                 , ForceMode.Impulse);
             TakeObject.transform.parent = null;
             TakeObject = null;
@@ -74,15 +54,11 @@ public class PlayerLogic : MonoBehaviour
             {
                 if (hit.transform.tag == "door")
                 {
-                    hit.transform.SendMessage("Using");
+                    hit.transform.SendMessage("Using", SendMessageOptions.DontRequireReceiver);
                 }
-                else if (hit.transform.tag == "object")
+                else if ( hit.transform.gameObject.GetComponent<InteractiveObject>() )
                 {
-                    //listItems
-                    //TakeObject = hit.transform.gameObject;
-                    //TakeObject.GetComponent<Rigidbody>().useGravity = false;
-                    ////TakeObject.GetComponent<Rigidbody>().isKinematic = false;
-                    //hit.transform.parent = target.transform;
+                    hit.transform.gameObject.GetComponent<InteractiveObject>().Taken(this.transform);
                 }
             }
         }
@@ -90,7 +66,7 @@ public class PlayerLogic : MonoBehaviour
 
     public void OpenItem()
 	{
-        itemsui.Show();
+        //itemsui.Show();
     }
 
 	private void OnCollisionEnter(Collision collision)
@@ -101,19 +77,11 @@ public class PlayerLogic : MonoBehaviour
         }
 	}
 
-	//private void OnTriggerStay(Collider other)
-	//{
-	//    if (other.transform.tag == "Damage")
-	//    {
-	//        //Damage();
-	//    }
-	//}
-
 	private void OnTriggerEnter(Collider other)
 	{
 		if ( other.transform.tag == "Cube")
 		{
-            player.score.Rooms++;
+            _player.score.Rooms++;
 		}
 	}
 
@@ -125,28 +93,16 @@ public class PlayerLogic : MonoBehaviour
         }
     }
 
-    void ToDamage(Damage damage)
-	{
-        player.xp -= damage.value;
-        frameDamageUI.Show(player.xp);
-        if (player.xp <= 0) { ToDie(); }
-    }
-
-    public void ToDie()
+    public void EventDie_Handler()
     {
 	    vthirdPersonController.enabled = false;
 	    vthirdPersonCamera.enabled = false;
-        Cursor.visible = true;
-        player.score.Time = Time.realtimeSinceStartup - starttime;
-        scoreui.Show(player.score);
         gameObject.SetActive(false);
         statusPlayer = StatusPlayer.die;
 	}
 
 }
 
-
- 
 public enum StatusPlayer
 {
     sleep,

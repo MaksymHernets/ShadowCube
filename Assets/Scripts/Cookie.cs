@@ -5,9 +5,9 @@ using UnityEngine;
 
 public static class Cookie 
 {
-    public static Player mainPlayer;
+    public static PlayerDTO mainPlayer;
 
-    public static List<PlayerBase> players = new List<PlayerBase>();
+    public static List<Entity> players = new List<Entity>();
 
     public static RoomLoby room = new RoomLoby();
 }

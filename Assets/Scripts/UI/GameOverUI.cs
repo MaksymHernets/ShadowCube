@@ -12,7 +12,7 @@ public class GameOverUI : MonoBehaviour
 
     public void ButtonLeave_Click()
     {
-	    SceneManager.LoadScene(0);
+	    
     }
 
     public void ButtonOverwatch_Click()

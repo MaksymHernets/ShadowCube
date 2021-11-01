@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -28,11 +29,22 @@ namespace Cubes.CubeOne
             {
                 dootstage = DoorStage.opening;
                 audio_doorhandle.Play();
-                StartCoroutine(
-	                Animation_Doorhandle(2f, doorhandle.transform.localRotation,
-		                Quaternion.Euler(doorhandle.transform.localEulerAngles.x, doorhandle.transform.localEulerAngles.y + 180f,
-			                doorhandle.transform.localEulerAngles.z)));
-                dootstage = DoorStage.open;
+				var tt = Quaternion.Euler(doorhandle.transform.localEulerAngles.x, doorhandle.transform.localEulerAngles.y + 180f,
+							doorhandle.transform.localEulerAngles.z);
+
+				doorhandle.transform.DOLocalRotateQuaternion(tt, 2f).OnComplete(() =>
+				{
+					door.transform.DOLocalMoveY(door.transform.localPosition.y + 0.06f, 0.5f).OnComplete(() =>
+					{
+						door.transform.DOLocalMoveZ(door.transform.localPosition.z + 0.45f, 3f);
+					});
+				});
+
+				//StartCoroutine(
+				// Animation_Doorhandle(2f, doorhandle.transform.localRotation,
+				//  Quaternion.Euler(doorhandle.transform.localEulerAngles.x, doorhandle.transform.localEulerAngles.y + 180f,
+				//   doorhandle.transform.localEulerAngles.z)));
+				dootstage = DoorStage.open;
             }
         }
 

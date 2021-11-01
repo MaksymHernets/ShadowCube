@@ -1,22 +1,9 @@
 ﻿using DTO;
 using Invector.vCharacterController;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ControlPlayerAndroid : MonoBehaviour
 {
-    //[Header("Controller Input")]
-    //public string horizontalInput = "Horizontal";
-    //public string verticallInput = "Vertical";
-    //public KeyCode jumpInput = KeyCode.Space;
-    //public KeyCode strafeInput = KeyCode.Tab;
-    //public KeyCode sprintInput = KeyCode.LeftShift;
-
-    //[Header("Camera Input")]
-    //public string rotateCameraXInput = "Mouse X";
-    //public string rotateCameraYInput = "Mouse Y";
-
     public PlayerLogic playerLogic;
     public Control control;
     public Menu menu;

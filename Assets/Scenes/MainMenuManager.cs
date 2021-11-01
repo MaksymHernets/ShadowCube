@@ -21,10 +21,9 @@ public class MainMenuManager : MonoBehaviour
 
     private void Start()
 	{
-        Cookie.mainPlayer = new Player();
-        Cookie.mainPlayer.name = "ShadowMan";
-        Cookie.mainPlayer.IsBot = false;
-        Cookie.mainPlayer.sex = true;
+        Cookie.mainPlayer = new PlayerDTO();
+        Cookie.mainPlayer.Name = "ShadowMan";
+        Cookie.mainPlayer.Sex = true;
 
 
         ShowCube(0, Cookie.room.IndexCube);
