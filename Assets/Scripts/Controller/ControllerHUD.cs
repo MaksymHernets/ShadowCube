@@ -12,7 +12,7 @@ public class ControllerHUD : IController
 	{
         _model = model as ModelHUD;
 
-        _model.playerLogic.eventDamage.AddListener( eventDamage_Handler );
+        _model.playerLogic.EventDamage.AddListener( eventDamage_Handler );
 
         Cursor.visible = false;
     }

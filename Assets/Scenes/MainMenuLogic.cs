@@ -1,14 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using ShadowCube.DTO;
-using UnityEngine;
-using UnityEngine.SceneManagement;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class MainMenuLogic : MonoBehaviour
 {
-    public Text textversion;
+    [SerializeField] private Text textVersion;
 
     public GameObject menuMain;
     public GameObject menuPlay;
@@ -21,7 +16,7 @@ public class MainMenuLogic : MonoBehaviour
 
     private void Start()
     {
-        textversion.text = "ALPHA " + Application.version;
+        textVersion.text = "ALPHA " + Application.version;
     }
 
     #region MainMenu

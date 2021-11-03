@@ -10,13 +10,13 @@ public class PlayerPrefsInit : MonoBehaviour
 		{
             //PlayerPrefs.SetString("Player")
         }
-        if (!PlayerPrefs.HasKey("Player"))
-        {
-            //PlayerPrefs.SetString("Player")
-        }
-        if (!PlayerPrefs.HasKey("Player"))
-        {
-            //PlayerPrefs.SetString("Player")
-        }
-    }
+		if (!PlayerPrefs.HasKey("GlobalMusic"))
+		{
+			PlayerPrefs.SetFloat("GlobalMusic", 0f);
+		}
+		if (!PlayerPrefs.HasKey("Launcher"))
+		{
+			PlayerPrefs.SetInt("Launcher", 0);
+		}
+	}
 }

@@ -20,8 +20,6 @@ public class ControllerEndGame : IController
 		buttonOverwatch.onClick.AddListener(ButtonOverwatch_clicked);
 
 		UnityEngine.Cursor.visible = true;
-
-		base.Init(model);
 	}
 
 	private void ButtonOverwatch_clicked()

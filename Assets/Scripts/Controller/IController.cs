@@ -1,11 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Events;
 
-public class IController : MonoBehaviour
+public abstract class IController : MonoBehaviour
 {
-	public virtual void Init(IModel model)
+	[HideInInspector] public UnityEvent EventClose;
+	public abstract void Init(IModel model);
+	
+	public virtual void Deactive()
 	{
-
+		EventClose.Invoke();
+		gameObject.SetActive(false);
 	}
 }

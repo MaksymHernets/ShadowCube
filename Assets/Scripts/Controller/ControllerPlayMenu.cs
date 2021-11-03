@@ -1,79 +1,92 @@
 ﻿using ShadowCube.DTO;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class PlayLogic : MonoBehaviour
+public class ControllerPlayMenu : IController
 {
-    [SerializeField] private GameObject MainMenu;
-    [SerializeField] private MainMenuManager mainMenuManager;
+    [HideInInspector] public UnityEvent EventButtonPlayClick;
 
+    [SerializeField] private Button buttonBack;
+    [Header("BarUP")]
     [SerializeField] private Dropdown dropdownMap;
-    [SerializeField] private Button[] maps;
     [SerializeField] private Text buttonPrivatePublic;
     [SerializeField] private Text textCountPlayers;
     [SerializeField] private Toggle toggleAddBots;
+    [SerializeField] private Button[] maps;
+    [Header("Table")]
+
+    [Header("BarDOWN")]
     [SerializeField] private Input inputCode;
+    [SerializeField] private Button buttonStart;
 
-    private RoomLoby roomLoby = new RoomLoby();
+    private RoomLoby room = new RoomLoby();
     private List<Entity> players = new List<Entity>();
+    private ModelPlayMenu _model;
 
-    private void Awake()
+    public override void Init(IModel model)
+	{
+        _model = model as ModelPlayMenu;
+
+        gameObject.SetActive(true);
+
+        //room = Cookie.room;
+        //dropdownMap.value = Cookie.room.IndexCube;
+        //ChangedButton(0, Cookie.room.IndexCube);
+    }
+
+    private void Start()
     {
-        roomLoby = Cookie.room;
-        dropdownMap.value = Cookie.room.IndexCube;
-        ChangedButton(0, Cookie.room.IndexCube);
-        //players.Add(Cookie.mainPlayer);
+        buttonBack.onClick.AddListener(ButtonBack_Click);
+        buttonStart.onClick.AddListener(ButtonStart_Click);
     }
 
     public void DropdownMap_Click(int newindex)
     {
-	    mainMenuManager.ShowCube(roomLoby.IndexCube, newindex);
-	    roomLoby.IndexCube = newindex;
+        _model.mainMenuManager.ShowCube(room.IndexCube, newindex);
+        room.IndexCube = newindex;
     }
 
     public void ButtonStart_Click()
     {
         if (toggleAddBots.isOn)
         {
-            for (int i = 0; i < roomLoby.Size - players.Count; i++)
+            for (int i = 0; i < room.Size - players.Count; i++)
             {
                 players.Add(new Entity());
             }
         }
-        Cookie.room = roomLoby;
+        Cookie.room = room;
         Cookie.players = players;
 
-        gameObject.SetActive(false);
-
-        //mainMenuManager.Play();
+        EventButtonPlayClick.Invoke();
     }
 
     #region Maps
     public void ButtonCubeOne_Click()
     {
-        ChangedButton(roomLoby.IndexCube, 0);
+        ChangedButton(room.IndexCube, 0);
     }
 
     public void ButtonHyberCube_Click()
     {
-        ChangedButton(roomLoby.IndexCube, 1);
+        ChangedButton(room.IndexCube, 1);
     }
 
     public void ButtonCubeZero_Click()
     {
-        ChangedButton(roomLoby.IndexCube, 2);
+        ChangedButton(room.IndexCube, 2);
     }
 
     public void ButtonNewCube_Click()
     {
-        ChangedButton(roomLoby.IndexCube, 3);
+        ChangedButton(room.IndexCube, 3);
     }
 
     public void ButtonCubeFour_Click()
     {
-	    ChangedButton(roomLoby.IndexCube, 4);
+        ChangedButton(room.IndexCube, 4);
     }
     #endregion
 
@@ -81,24 +94,24 @@ public class PlayLogic : MonoBehaviour
     {
         if (oldindex != newindex)
         {
-            roomLoby.IndexCube = newindex;
+            room.IndexCube = newindex;
             maps[oldindex].image.color = new Color(0.3f, 0.3f, 0.3f, 0.8f);
             maps[newindex].image.color = Color.black;
-            mainMenuManager.ShowCube(oldindex, newindex);
+            _model.mainMenuManager.ShowCube(oldindex, newindex);
         }
     }
 
     #region Property
     public void SliderPlayerCount_Click(float value)
     {
-        roomLoby.Size = (int)value;
+        room.Size = (int)value;
         textCountPlayers.text = value.ToString();
     }
 
     public void ButtonPrivatPublic_Click()
     {
-        roomLoby.IsPrivate = !roomLoby.IsPrivate;
-        if (roomLoby.IsPrivate)
+        room.IsPrivate = !room.IsPrivate;
+        if (room.IsPrivate)
         {
             buttonPrivatePublic.text = "Private";
         }
@@ -111,7 +124,7 @@ public class PlayLogic : MonoBehaviour
 
     public void ButtonBack_Click()
     {
-        MainMenu.SetActive(true);
+        Deactive();
         gameObject.SetActive(false);
     }
 }

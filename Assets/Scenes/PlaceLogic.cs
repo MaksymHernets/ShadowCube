@@ -9,7 +9,7 @@ public class PlaceLogic : MonoBehaviour
     void Start()
     {
         var megacube = Instantiate(MegaCubes[Cookie.room.IndexCube], transform);
-        megacube.SendMessage("IntPlayer", player);
+        //megacube.SendMessage("IntPlayer", player);
     }
 
     //public override void OnServerAddPlayer(NetworkConnection conn)

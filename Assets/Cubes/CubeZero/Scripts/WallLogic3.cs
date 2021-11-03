@@ -11,9 +11,9 @@ namespace Cubes.CubeZero
             base.IntWall(cubeLogic, wall);
 
             number.text = string.Join(".", 
-                GetSymbol(MathCube.SumNumber(wall.number.x)), 
-                GetSymbol(MathCube.SumNumber(wall.number.y)), 
-                GetSymbol(MathCube.SumNumber(wall.number.z)));
+                GetSymbol(MathFunction.SumNumber(wall.number.x)), 
+                GetSymbol(MathFunction.SumNumber(wall.number.y)), 
+                GetSymbol(MathFunction.SumNumber(wall.number.z)));
         }
 
         private string GetSymbol(int index)

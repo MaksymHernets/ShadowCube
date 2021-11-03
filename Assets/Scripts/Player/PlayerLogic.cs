@@ -24,7 +24,7 @@ public class PlayerLogic : PlayerMoveControl , IPlayerLogic
 
     void Start()
     {
-        eventDie.AddListener(EventDie_Handler);
+        EventDie.AddListener(EventDie_Handler);
     }
 
 	public void Init(PlayerDTO player)

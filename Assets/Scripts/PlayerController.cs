@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        playerLogic.eventDie.AddListener(EventDie_Handler);
+        playerLogic.EventDie.AddListener(EventDie_Handler);
 
         StartLevel();
     }

@@ -10,9 +10,9 @@ namespace Cubes.CubeNew
         {
             base.IntWall(cubeLogic, wall);
             number.text = string.Join(".",
-                GetRomeNumber(MathCube.SumNumber(wall.number.x)),
-                GetRomeNumber(MathCube.SumNumber(wall.number.y)),
-                GetRomeNumber(MathCube.SumNumber(wall.number.z)));
+                GetRomeNumber(MathFunction.SumNumber(wall.number.x)),
+                GetRomeNumber(MathFunction.SumNumber(wall.number.y)),
+                GetRomeNumber(MathFunction.SumNumber(wall.number.z)));
         }
 
         private string GetRomeNumber(int number)

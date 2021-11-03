@@ -1,69 +1,82 @@
-﻿using System.Collections;
+﻿using Cubes;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using ShadowCube.DTO;
 
 public class MainMenuManager : MonoBehaviour
 {
-    public GameObject cameramoveone;
-
-    public List<GameObject> Cubes;
-
-    public GameObject menuMain;
-    public GameObject menuPlay;
-    public GameObject menuOnline;
-    public GameObject menuPerson;
-    public GameObject menuOptions;
-    public GameObject menuAbout;
-
-    public GameObject buttonBack;
+    [SerializeField] private CameraMoveOne cameraMoveOne;
+    [SerializeField] private List<CubeLogic> Cubes;
+    [Header("Controllers")]
+    [SerializeField] private ControllerMainMenu mainMenu;
+    [SerializeField] private ControllerPlayMenu menuPlay;
+    [SerializeField] private ControllerOnlineMenu menuOnline;
+    [SerializeField] private ControllerPersonMenu menuPerson;
+    [SerializeField] private ControllerOptionMenu menuOptions;
+    [SerializeField] private ControllerAbout menuAbout;
 
     private void Start()
 	{
-        Cookie.mainPlayer = new PlayerDTO();
-        Cookie.mainPlayer.Name = "ShadowMan";
-        Cookie.mainPlayer.Sex = true;
+        mainMenu.EventButtonClick += Event_ButtonClick;
 
-        ShowCube(0, Cookie.room.IndexCube);
+        menuPlay.EventButtonPlayClick.AddListener(Event_ButtonPlayClick);
+        menuPlay.EventClose.AddListener(Event_Menu_Close);
+        menuOnline.EventClose.AddListener(Event_Menu_Close);
+        menuPerson.EventClose.AddListener(Event_Menu_Close);
+        menuOptions.EventClose.AddListener(Event_Menu_Close);
+        menuAbout.EventClose.AddListener(Event_Menu_Close);
     }
 
-	private void Update()
+    private void Event_ButtonPlayClick()
 	{
-		if (Input.GetKeyDown(KeyCode.Escape))
-		{
-			ButtonBack_Click();
-		}
-	}
-
-	public void ButtonBack_Click()
-	{
-		menuMain.SetActive(true);
-		menuPlay.SetActive(false);
-		menuOnline.SetActive(false);
-		menuAbout.SetActive(false);
-		menuOptions.SetActive(false);
-		menuPerson.SetActive(false);
-        cameramoveone.SetActive(true);
-        buttonBack.SetActive(false);
-    }
-
-	public void Play()
-	{
-        buttonBack.SetActive(false);
-        Cubes[Cookie.room.IndexCube].SendMessage("OpenDoor", 2);
-        cameramoveone.SetActive(false);
+        End();
+        menuPlay.Deactive();
+        Cubes[Cookie.room.IndexCube].OpenDoor(2);
+        cameraMoveOne.gameObject.SetActive(false);
         Camera.main.transform.localEulerAngles = new Vector3(0, 90, 0);
         StartCoroutine(Animation_Camera());
     }
 
-    public void ShowCube(int index, int index2)
+    private void Event_ButtonClick(string name)
 	{
-        Cubes[index].SetActive(false);
-        Cubes[index2].SetActive(true);
+        switch ( name )
+		{
+            case "PlayMenu": menuPlay.Init(new IModel() ); break;
+            case "OnlineMenu": menuOnline.Init(new IModel() ); break;
+            case "PersonMenu": menuPerson.Init(new IModel() ); break;
+            case "OptionMenu": menuOptions.Init(new IModel() ); break;
+            case "AboutMenu": menuAbout.Init(new IModel() ); break;
+            default: return;
+        }
+            
+        mainMenu.Deactive();
     }
 
-    IEnumerator Animation_Camera()
+    private void Event_Menu_Close()
+    {
+        mainMenu.Init(new IModel());
+    }
+
+    public void ShowCube(int index, int index2)
+	{
+        Cubes[index].gameObject.SetActive(false);
+        Cubes[index2].gameObject.SetActive(true);
+    }
+
+    private void End()
+	{
+        mainMenu.EventButtonClick -= Event_ButtonClick;
+
+        menuPlay.EventButtonPlayClick.RemoveListener(Event_ButtonPlayClick);
+        menuPlay.EventClose.RemoveListener(Event_Menu_Close);
+        menuOnline.EventClose.RemoveListener(Event_Menu_Close);
+        menuPerson.EventClose.RemoveListener(Event_Menu_Close);
+        menuOptions.EventClose.RemoveListener(Event_Menu_Close);
+        menuAbout.EventClose.RemoveListener(Event_Menu_Close);
+    }
+
+    private IEnumerator Animation_Camera()
     {
         yield return new WaitForSecondsRealtime(4f);
         for (int i = 0; i < 120; i++)
