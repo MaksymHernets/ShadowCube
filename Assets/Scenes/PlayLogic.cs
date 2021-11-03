@@ -6,15 +6,15 @@ using UnityEngine.UI;
 
 public class PlayLogic : MonoBehaviour
 {
-    public GameObject MainMenu;
-    public MainMenuManager mainMenuManager;
+    [SerializeField] private GameObject MainMenu;
+    [SerializeField] private MainMenuManager mainMenuManager;
 
-    public Dropdown dropdownMap;
-    public Button[] maps;
-    public Text buttonPrivatePublic;
-    public Text textCountPlayers;
-    public Toggle toggleAddBots;
-    public Input inputCode;
+    [SerializeField] private Dropdown dropdownMap;
+    [SerializeField] private Button[] maps;
+    [SerializeField] private Text buttonPrivatePublic;
+    [SerializeField] private Text textCountPlayers;
+    [SerializeField] private Toggle toggleAddBots;
+    [SerializeField] private Input inputCode;
 
     private RoomLoby room = new RoomLoby();
     private List<Entity> players = new List<Entity>();

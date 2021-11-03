@@ -1,22 +1,19 @@
-﻿using System.Collections;
+﻿using Cubes;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraMoveTwo : MonoBehaviour
 {
-    public Transform cameraa;
-    public GameObject moveone;
-    public GameObject canvas;
-    public GameObject[] cubes;
+    [SerializeField] private Transform mainCamera;
+    [SerializeField] private GameObject moveone;
+    [SerializeField] private GameObject canvas;
+    [SerializeField] private CubeLogic[] cubes;
 
-    public float speed = 0.01f;
-    float time = 0;
-    bool key = true;
-
-	private void Start()
-	{
-        
-    }
+    [SerializeField] private float speed = 0.01f;
+    
+    private float time = 0;
+    private bool key = true;
 
 	void Update()
     {
@@ -31,11 +28,11 @@ public class CameraMoveTwo : MonoBehaviour
 
 	IEnumerator Animation_Door()
 	{
-        cubes[Cookie.room.IndexCube].SendMessage("OpenDoor", 4 , SendMessageOptions.DontRequireReceiver);
+        cubes[Cookie.room.IndexCube].OpenDoor(4);
         yield return new WaitForSeconds(6f);
         for (int i = 0; i < 40; ++i)
 		{
-			cameraa.transform.localPosition += new Vector3(speed, 0f, 0f);
+			mainCamera.transform.localPosition += new Vector3(speed, 0f, 0f);
 			yield return new WaitForSeconds(0.02f);
         }
         moveone.SetActive(true);

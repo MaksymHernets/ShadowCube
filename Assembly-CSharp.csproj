@@ -155,16 +155,20 @@
     <Compile Include="Assets\Scripts\Helpers\Blur.cs" />
     <Compile Include="Assets\Scripts\Helpers\Coro.cs" />
     <Compile Include="Assets\Scripts\Helpers\FileJsonExtension.cs" />
+    <Compile Include="Assets\Scripts\Helpers\MathFunction.cs" />
+    <Compile Include="Assets\Scripts\Helpers\PoolObjects.cs" />
     <Compile Include="Assets\Scripts\Helpers\SnapshotModeSelect.cs" />
     <Compile Include="Assets\Scripts\Helpers\Translate.cs" />
     <Compile Include="Assets\Scripts\InteractiveObject.cs" />
     <Compile Include="Assets\Scripts\Models\IModel.cs" />
     <Compile Include="Assets\Scripts\Models\ModelEndGame.cs" />
     <Compile Include="Assets\Scripts\Models\ModelHUD.cs" />
-    <Compile Include="Assets\Scripts\Player\ControlPlayer.cs" />
     <Compile Include="Assets\Scripts\Player\ControlPlayerAndroid.cs" />
+    <Compile Include="Assets\Scripts\Player\ControlPlayerPC.cs" />
+    <Compile Include="Assets\Scripts\Player\FactoryControl.cs" />
     <Compile Include="Assets\Scripts\Player\Inventory.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerLogic.cs" />
+    <Compile Include="Assets\Scripts\Player\PlayerMoveControl.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\PlayerPrefsInit.cs" />
     <Compile Include="Assets\Scripts\RoomLobyHost.cs" />
@@ -393,20 +397,20 @@
     <Reference Include="DOTween">
       <HintPath>D:/My_Projects/ShadowCube/Assets/Plugins/Demigiant/DOTween/DOTween.dll</HintPath>
     </Reference>
-    <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Mdb">
-      <HintPath>D:/My_Projects/ShadowCube/Assets/Plugins/Zenject/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.Mdb.dll</HintPath>
-    </Reference>
     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil">
       <HintPath>D:/My_Projects/ShadowCube/Assets/Plugins/Zenject/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.dll</HintPath>
     </Reference>
-    <Reference Include="Zenject-usage">
-      <HintPath>D:/My_Projects/ShadowCube/Assets/Plugins/Zenject/Source/Usage/Zenject-usage.dll</HintPath>
+    <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Mdb">
+      <HintPath>D:/My_Projects/ShadowCube/Assets/Plugins/Zenject/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.Mdb.dll</HintPath>
     </Reference>
     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Pdb">
       <HintPath>D:/My_Projects/ShadowCube/Assets/Plugins/Zenject/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.Pdb.dll</HintPath>
     </Reference>
     <Reference Include="Zenject.ReflectionBaking.Mono.Cecil.Rocks">
       <HintPath>D:/My_Projects/ShadowCube/Assets/Plugins/Zenject/OptionalExtras/ReflectionBaking/Lib/Zenject.ReflectionBaking.Mono.Cecil.Rocks.dll</HintPath>
+    </Reference>
+    <Reference Include="Zenject-usage">
+      <HintPath>D:/My_Projects/ShadowCube/Assets/Plugins/Zenject/Source/Usage/Zenject-usage.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.16f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
@@ -786,6 +790,10 @@
       <Project>{215E998C-03D4-50C8-3ABA-8D184C511C1C}</Project>
       <Name>Mirror.Weaver</Name>
     </ProjectReference>
+    <ProjectReference Include="Zenject-Editor.csproj">
+      <Project>{A50A2BB4-A25E-F683-CC90-EEE3146C9E98}</Project>
+      <Name>Zenject-Editor</Name>
+    </ProjectReference>
     <ProjectReference Include="Mirror.Authenticators.csproj">
       <Project>{7CE65DC3-4EC8-458D-6614-175CF009A3EB}</Project>
       <Name>Mirror.Authenticators</Name>
@@ -805,6 +813,10 @@
     <ProjectReference Include="DOTween.Modules.csproj">
       <Project>{79EFB8ED-6625-60A3-8B40-FC10D37EB6C7}</Project>
       <Name>DOTween.Modules</Name>
+    </ProjectReference>
+    <ProjectReference Include="Zenject-ReflectionBaking-Editor.csproj">
+      <Project>{B244ACB8-BCC1-1893-D2D3-2799E8A39251}</Project>
+      <Name>Zenject-ReflectionBaking-Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Mirror.Cloud.csproj">
       <Project>{B4E62AC5-27BB-E6DD-0822-4A27365DF4D4}</Project>
@@ -837,14 +849,6 @@
     <ProjectReference Include="SimpleWebTransport.csproj">
       <Project>{C38FE3D9-74D3-F3E8-F6E2-6D7FBA077275}</Project>
       <Name>SimpleWebTransport</Name>
-    </ProjectReference>
-    <ProjectReference Include="Zenject-Editor.csproj">
-      <Project>{A50A2BB4-A25E-F683-CC90-EEE3146C9E98}</Project>
-      <Name>Zenject-Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="Zenject-ReflectionBaking-Editor.csproj">
-      <Project>{B244ACB8-BCC1-1893-D2D3-2799E8A39251}</Project>
-      <Name>Zenject-ReflectionBaking-Editor</Name>
     </ProjectReference>
     <ProjectReference Include="Zenject-PoolMonitor-Editor.csproj">
       <Project>{00427CB0-7EB6-919B-B895-CBF64D66ACF5}</Project>

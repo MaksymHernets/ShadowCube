@@ -1,8 +1,9 @@
-﻿using Invector.vCharacterController;
+﻿using Cubes;
+using Invector.vCharacterController;
 using ShadowCube.DTO;
 using UnityEngine;
 
-public class PlayerLogic : Entity
+public class PlayerLogic : PlayerMoveControl , IPlayerLogic
 {
     [SerializeField] private float distanceUse = 1;
     [SerializeField] private StatusPlayer statusPlayer = StatusPlayer.alive;
@@ -31,30 +32,17 @@ public class PlayerLogic : Entity
         _player = player;
     }
 
-    public void Jump()
-    {
-
-    }
-
     public void ToUse()
 	{
         ray = Camera.main.ScreenPointToRay(new Vector3(_WC, _HC, 0f));
 
-        if (TakeObject != null)
-        {
-            TakeObject.GetComponent<Rigidbody>().useGravity = true;
-            TakeObject.Rigidbody.AddForce(new Vector3(transform.localRotation.x * forcee, transform.localRotation.y * forcee, transform.localRotation.z * forcee)
-                , ForceMode.Impulse);
-            TakeObject.transform.parent = null;
-            TakeObject = null;
-        }
-        else if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit))
         {
             if (hit.distance <= distanceUse)
             {
-                if (hit.transform.tag == "door")
+                if ( hit.transform.gameObject.GetComponent<DoorLogic>() )
                 {
-                    hit.transform.SendMessage("Using", SendMessageOptions.DontRequireReceiver);
+                    hit.transform.gameObject.GetComponent<DoorLogic>().Open();
                 }
                 else if ( hit.transform.gameObject.GetComponent<InteractiveObject>() )
                 {
@@ -64,36 +52,22 @@ public class PlayerLogic : Entity
         }
     }
 
-    public void OpenItem()
+    public void DropItem()
+	{
+        TakeObject.GetComponent<Rigidbody>().useGravity = true;
+        TakeObject.Rigidbody.AddForce(
+            new Vector3(transform.localRotation.x * forcee, transform.localRotation.y * forcee, transform.localRotation.z * forcee)
+            , ForceMode.Impulse);
+        TakeObject.transform.parent = null;
+        TakeObject = null;
+    }
+
+    public void OpenInventory()
 	{
         //itemsui.Show();
     }
 
-	private void OnCollisionEnter(Collision collision)
-	{
-		if ( collision.transform.tag == "Floor")
-		{
-            foolman.Play();
-        }
-	}
-
-	private void OnTriggerEnter(Collider other)
-	{
-		if ( other.transform.tag == "Cube")
-		{
-            _player.score.Rooms++;
-		}
-	}
-
-	private void OnCollisionStay(Collision collision)
-	{
-        if (collision.transform.tag == "Damage")
-        {
-            ToDamage(new Damage() { value = 5 });
-        }
-    }
-
-    public void EventDie_Handler()
+    private void EventDie_Handler()
     {
 	    vthirdPersonController.enabled = false;
 	    vthirdPersonCamera.enabled = false;
@@ -101,6 +75,13 @@ public class PlayerLogic : Entity
         statusPlayer = StatusPlayer.die;
 	}
 
+}
+
+public interface IPlayerLogic : IMoveControl
+{
+    void ToUse();
+    void OpenInventory();
+    void DropItem();
 }
 
 public enum StatusPlayer

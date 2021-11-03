@@ -25,7 +25,6 @@ public class MainMenuManager : MonoBehaviour
         Cookie.mainPlayer.Name = "ShadowMan";
         Cookie.mainPlayer.Sex = true;
 
-
         ShowCube(0, Cookie.room.IndexCube);
     }
 

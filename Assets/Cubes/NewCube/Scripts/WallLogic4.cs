@@ -1,21 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
 
 namespace Cubes.CubeNew
 {
-    public class WallLogic4 : MonoBehaviour
+	public class WallLogic4 : WallLogic
     {
-        private Wall wall;
+        [SerializeField] private TextMesh number;
 
-        public GameObject door;
-        public TextMesh number;
-
-        public void IntWall(object walll) // Gameobject
+        public override void IntWall(CubeLogic cubeLogic, WallDTO wall)
         {
-            wall = (Wall)walll;
+            base.IntWall(cubeLogic, wall);
             number.text = string.Join(".",
                 GetRomeNumber(MathCube.SumNumber(wall.number.x)),
                 GetRomeNumber(MathCube.SumNumber(wall.number.y)),
@@ -85,16 +78,6 @@ namespace Cubes.CubeNew
 
             return "";
 
-        }
-
-        public void ToOpenDoor()
-        {
-            door.SendMessage("MegaCubeToOpen");
-        }
-
-        public void OpenedDoor()
-        {
-            transform.parent.gameObject.SendMessage("EventOpenedDoor", (object)wall.id);
         }
     }
 }

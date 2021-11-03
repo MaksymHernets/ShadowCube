@@ -4,56 +4,34 @@ using UnityEngine;
 
 namespace Cubes.CubeZero
 {
-    public class DoorLogic3 : MonoBehaviour
+    public class DoorLogic3 : DoorLogic
     {
-        public GameObject door1;
-        public GameObject door2;
-        public GameObject doorhandle;
-        public AudioSource audio_door;
+        [SerializeField] private GameObject door1;
+        [SerializeField] private GameObject door2;
+        [SerializeField] private GameObject doorhandle;
 
-        public DoorStage dootstage = DoorStage.closed;
+        [SerializeField] private AudioSource audio_door;
 
         private float speedToOpen = 0.002f;
         private float speedToOpen2 = 2f;
 
-        
-
-        private void Open()
+        public override void Open()
         {
-            if (dootstage == DoorStage.closed)
+            if (_doorStage == DoorStage.closed)
             {
-                dootstage = DoorStage.opening;
+                _doorStage = DoorStage.opening;
                 audio_door.Play();
                 StartCoroutine("Animation_DoorHandle");
-                dootstage = DoorStage.open;
+                _doorStage = DoorStage.open;
             }
         }
 
-        public void Using()
+        public override void Close()
         {
-            if (dootstage == DoorStage.closed)
+            if (_doorStage == DoorStage.open || _doorStage == DoorStage.opening)
             {
-                UserToOpen();
-            }
-        }
-
-        public void UserToOpen()
-        {
-            Open();
-            transform.parent.gameObject.SendMessage("OpenedDoor");
-        }
-
-        public void MegaCubeToOpen()
-        {
-            Open();
-        }
-
-        public void Close()
-        {
-            if (dootstage == DoorStage.open || dootstage == DoorStage.opening)
-            {
-                dootstage = DoorStage.closing;
-                dootstage = DoorStage.closed;
+                _doorStage = DoorStage.closing;
+                _doorStage = DoorStage.closed;
             }
         }
 

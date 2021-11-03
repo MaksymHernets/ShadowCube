@@ -5,29 +5,23 @@ using UnityEngine;
 
 namespace Cubes.CubeOne
 {
-    public class DoorLogic1 : MonoBehaviour
+    public class DoorLogic1 : DoorLogic
     {
-        public GameObject door;
-        public GameObject doorhandle;
+        [SerializeField] private GameObject door;
+        [SerializeField] private GameObject doorhandle;
 
-        public AudioSource audio_door;
-        public AudioSource audio_doorhandle;
-
-        public DoorStage dootstage = DoorStage.closed;
-
-        private int CountPlayers = 0;
-        private float TimeWait = 10;
-        private float TimeLost = 0;
+        [SerializeField] private AudioSource audio_door;
+        [SerializeField] private AudioSource audio_doorhandle;
 
         private float speedToOpen0 = 2f;
         private float speedToOpen1 = 0.004f;
         private float speedToOpen2 = 0.005f;
 
-        private void Open()
+        public override void Open()
         {
-            if (dootstage == DoorStage.closed)
+            if (_doorStage == DoorStage.closed)
             {
-                dootstage = DoorStage.opening;
+                _doorStage = DoorStage.opening;
                 audio_doorhandle.Play();
 				var tt = Quaternion.Euler(doorhandle.transform.localEulerAngles.x, doorhandle.transform.localEulerAngles.y + 180f,
 							doorhandle.transform.localEulerAngles.z);
@@ -44,82 +38,19 @@ namespace Cubes.CubeOne
 				// Animation_Doorhandle(2f, doorhandle.transform.localRotation,
 				//  Quaternion.Euler(doorhandle.transform.localEulerAngles.x, doorhandle.transform.localEulerAngles.y + 180f,
 				//   doorhandle.transform.localEulerAngles.z)));
-				dootstage = DoorStage.open;
+				_doorStage = DoorStage.open;
             }
         }
 
-        public void Using()
+        public override void Close()
         {
-            if(dootstage == DoorStage.closed)
+            if (_doorStage == DoorStage.open)
             {
-                UserToOpen();
-            }
-            else if (dootstage == DoorStage.open)
-            {
-                //UserToClose();
-            }
-        }
-
-        public void UserToOpen()
-        {
-            Open();
-            transform.parent.gameObject.SendMessage("OpenedDoor");
-        }
-
-        public void UserToClose()
-        {
-            Close();
-            transform.parent.gameObject.SendMessage("OpenedDoor");
-        }
-
-        public void MegaCubeToClose()
-        {
-            Close();
-        }
-
-        public void MegaCubeToOpen()
-        {
-            Open();
-        }
-
-        public void Close()
-        {
-            if (dootstage == DoorStage.open)
-            {
-                dootstage = DoorStage.closing;
+                _doorStage = DoorStage.closing;
                 audio_door.Play();
                 StartCoroutine(Animation_DoorTwoClose(3f, new Vector3(door.transform.localPosition.x, door.transform.localPosition.y, door.transform.localPosition.z - 0.45f)));
-                dootstage = DoorStage.closed;
+                _doorStage = DoorStage.closed;
             }
-        }
-
-        public void OnTriggerEnter(Collider other)
-        {
-            if (other.gameObject.tag == "Player")
-            {
-                ++CountPlayers;
-            }
-        }
-
-        public void OnTriggerExit(Collider other)
-        {
-            if (other.gameObject.tag == "Player")
-            {
-                --CountPlayers;
-            }
-        }
-
-        public void Update()
-        {
-            //if (CountPlayers == 0)
-            //{
-            //    TimeLost += Time.deltaTime;
-            //    if (TimeWait <= TimeLost)
-            //    {
-            //        transform.parent.gameObject.SendMessage("ClosedDoor");
-            //        TimeLost = 0;
-            //    }
-            //}
         }
 
         #region Animation Open

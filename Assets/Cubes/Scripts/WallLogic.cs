@@ -5,53 +5,49 @@ using System.Linq;
 
 namespace Cubes
 {
-    public class WallLogic : MonoBehaviour
+    [RequireComponent(typeof(MeshRenderer))]
+    public abstract class WallLogic : MonoBehaviour
     {
-        protected Wall wall;
-        //public MeshRenderer renderer;
+        [SerializeField] private DoorLogic door;
+        [SerializeField] private MeshRenderer meshRenderer;
 
-        public GameObject door;
+        protected CubeLogic _cubeLogic;
+        protected WallDTO _wall;
 
-        public void IntWall(object _object) // Wall
+        public virtual void IntWall(CubeLogic cubeLogic, WallDTO wall)
         {
-            wall = (Wall)_object;
-            gameObject.GetComponent<MeshRenderer>().materials[1].SetColor("_EmissionColor", wall.color);
-            gameObject.GetComponent<MeshRenderer>().materials[2].SetColor("_EmissionColor", wall.color);
+            _cubeLogic = cubeLogic;
+            _wall = wall;
+
+            meshRenderer.materials[1].SetColor("_EmissionColor", wall.color);
+            meshRenderer.materials[2].SetColor("_EmissionColor", wall.color);
         }
         
-        public void ToOpenDoor()
+        public virtual void ToOpenDoor()
         {
-            door.SendMessage("MegaCubeToOpen");
+            door.Open();
         }
 
-        public void ToCloseDoor()
+        public virtual void ToCloseDoor()
         {
-            door.SendMessage("MegaCubeToClose");
+            door.Close();
         }
 
         public void OpenedDoor()
         {
-            transform.parent.gameObject.SendMessage("EventOpenedDoor", (object)wall.id);
+            _cubeLogic.EventOpenedDoor(_wall.id);
         }
 
         public void ClosedDoor()
         {
-            transform.parent.gameObject.SendMessage("EventClosedDoor", (object)wall.id);
+            _cubeLogic.EventClosedDoor(_wall.id);
         }
     }
 
-    public class Wall
+    public class WallDTO
     {
         public int id { set; get; }
-
         public Vector3Int number { set; get; }
-
         public Color color { set; get; }
-
-    }
-
-    interface IWallLogic
-    {
-
     }
 }

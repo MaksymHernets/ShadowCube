@@ -1,36 +1,33 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CameraMoveOne : MonoBehaviour
 {
-    public Transform cameraa;
+    [SerializeField] private Transform mainCamera;
 
     public float k = 0.2f;
     public float kk = 30;
     public float start = 0;
     public bool key = true;
-    public bool keyy = false;
 
     void Start()
 	{
-        start = cameraa.localEulerAngles.y;
+        start = mainCamera.localEulerAngles.y;
     }
 
 	void Update()
     {
         if ( key )
 		{
-            cameraa.localEulerAngles = new Vector3(cameraa.localEulerAngles.x, cameraa.localEulerAngles.y + k, cameraa.localEulerAngles.z);
-            if ( cameraa.localEulerAngles.y > start + kk)
+            mainCamera.localEulerAngles = new Vector3(mainCamera.localEulerAngles.x, mainCamera.localEulerAngles.y + k, mainCamera.localEulerAngles.z);
+            if ( mainCamera.localEulerAngles.y > start + kk)
             {
                 key = false;
             }
         }
         else
 		{
-            cameraa.localEulerAngles = new Vector3(cameraa.localEulerAngles.x, cameraa.localEulerAngles.y - k, cameraa.localEulerAngles.z);
-            if ( cameraa.localEulerAngles.y < start - kk)
+            mainCamera.localEulerAngles = new Vector3(mainCamera.localEulerAngles.x, mainCamera.localEulerAngles.y - k, mainCamera.localEulerAngles.z);
+            if ( mainCamera.localEulerAngles.y < start - kk)
             {
                 key = true;
             }

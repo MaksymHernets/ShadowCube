@@ -1,14 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using Mirror;
-using Invector.vCharacterController;
 
 public class PlaceLogic : MonoBehaviour
 {
     public GameObject player;
     public List<GameObject> MegaCubes;
-    public vThirdPersonInput inputmanager;
 
     void Start()
     {

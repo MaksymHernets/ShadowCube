@@ -4,56 +4,36 @@ using UnityEngine;
 
 namespace Cubes.CubeNew
 {
-    public class DoorLogic4 : MonoBehaviour
+    public class DoorLogic4 : DoorLogic
     {
-        public GameObject door;
-        public GameObject doorhandle;
+        [SerializeField] private GameObject door;
+        [SerializeField] private GameObject doorhandle;
 
-        public DoorStage dootstage = DoorStage.closed;
+        [SerializeField] private AudioSource audio_door;
+        [SerializeField] private AudioSource audio_doorhandle;
+
         private float speedToOpen0 = 2f;
         private float speedToOpen1 = 0.004f;
         private float speedToOpen2 = 0.005f;
 
-        public AudioSource audio_door;
-        public AudioSource audio_doorhandle;
-
-        private void Open()
+        public override void Open()
         {
-            if (dootstage == DoorStage.closed)
+            if (_doorStage == DoorStage.closed)
             {
-                dootstage = DoorStage.opening;
+                _doorStage = DoorStage.opening;
                 StartCoroutine("Animation_Doorhandle");
-                dootstage = DoorStage.open;
+                _doorStage = DoorStage.open;
             }
         }
 
-        public void Using()
+        public override void Close()
         {
-            if (dootstage == DoorStage.closed)
+            if (_doorStage == DoorStage.open || _doorStage == DoorStage.opening)
             {
-                UserToOpen();
-            }
-        }
-
-        public void UserToOpen()
-        {
-            Open();
-            transform.parent.gameObject.SendMessage("OpenedDoor");
-        }
-
-        public void MegaCubeToOpen()
-        {
-            Open();
-        }
-
-        public void Close()
-        {
-            if (dootstage == DoorStage.open || dootstage == DoorStage.opening)
-            {
-                dootstage = DoorStage.closing;
+                _doorStage = DoorStage.closing;
                 //audio_door.Play();
                 //StartCoroutine("Animation_Doorhandle");
-                dootstage = DoorStage.closed;
+                _doorStage = DoorStage.closed;
             }
         }
 

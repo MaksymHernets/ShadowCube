@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using ShadowCube.DTO;
 
 public class Trap4mesh : MonoBehaviour
 {
@@ -25,6 +26,14 @@ public class Trap4mesh : MonoBehaviour
 			//audioSource.Play();
 			damage.SetActive(true);
             StartCoroutine(Animation_Show(1f, Quaternion.Euler(-180f , 0f , 0f) ));
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.GetComponent<Entity>() != null)
+        {
+            other.gameObject.GetComponent<Entity>().ToDamage(new Damage() { type = TypeDamage.needles, value = 1 });
         }
     }
 

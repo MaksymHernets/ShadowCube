@@ -1,64 +1,42 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Cubes.CubeHyber
 {
-    public class DoorLogic2 : MonoBehaviour
+	public class DoorLogic2 : DoorLogic
     {
-        public GameObject door;
-        public GameObject door1;
-        public GameObject door2;
-        public GameObject door3;
-        public AudioSource audio_door;
+        [SerializeField] private GameObject door;
+        [SerializeField] private GameObject door1;
+        [SerializeField] private GameObject door2;
+        [SerializeField] private GameObject door3;
 
-        public DoorStage dootstage = DoorStage.closed;
+        [SerializeField] private AudioSource audioDoor;
 
         private float speedToOpen = 0.0015f;
 
-        private void Open()
+        public override void Open()
         {
-            if (dootstage == DoorStage.closed)
+            if (_doorStage == DoorStage.closed)
             {
-                dootstage = DoorStage.opening;
-                audio_door.Play();
+                _doorStage = DoorStage.opening;
+                audioDoor.Play();
                 StartCoroutine(Animation_Door(2f
                     , new Vector3(door.transform.localPosition.x, door.transform.localPosition.y, door.transform.localPosition.z + 0.4f)
                     , new Vector3(door1.transform.localPosition.x, door1.transform.localPosition.y, door1.transform.localPosition.z - 0.4f)
                     )
                     );
-                dootstage = DoorStage.open;
+                _doorStage = DoorStage.open;
             }
         }
 
-        public void Using()
+        public override void Close()
         {
-            if (dootstage == DoorStage.closed)
+            if (_doorStage == DoorStage.open || _doorStage == DoorStage.opening)
             {
-                UserToOpen();
+                _doorStage = DoorStage.closing;
+                _doorStage = DoorStage.closed;
             }
         }
-
-        public void UserToOpen()
-        {
-            Open();
-            transform.parent.gameObject.SendMessage("OpenedDoor");
-        }
-
-        public void MegaCubeToOpen()
-        {
-            Open();
-        }
-
-        public void Close()
-        {
-            if (dootstage == DoorStage.open || dootstage == DoorStage.opening)
-            {
-                dootstage = DoorStage.closing;
-                dootstage = DoorStage.closed;
-            }
-        }
-
 
         IEnumerator Animation_Door(float time, Vector3 endP, Vector3 endP2)
         {
@@ -81,7 +59,7 @@ namespace Cubes.CubeHyber
                 //door3.transform.localPosition = Vector3.Slerp(door3.transform.localPosition, endP2, Time.deltaTime);
                 yield return new WaitForFixedUpdate();
             }
-            //yield return new WaitForSecondsRealtime(1f);
+            yield return new WaitForSecondsRealtime(1f);
         }
-    }
+	}
 }
