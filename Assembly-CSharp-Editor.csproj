@@ -777,6 +777,10 @@
       <Project>{CBA05E0F-E391-3766-1663-62B7294A6975}</Project>
       <Name>Zenject</Name>
     </ProjectReference>
+    <ProjectReference Include="UniRx.csproj">
+      <Project>{1965D148-72E5-4A0E-4869-07D97743BF17}</Project>
+      <Name>UniRx</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

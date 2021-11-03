@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mirror.Examples.Cloud.Pong"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mirror.Authenticators", "Mirror.Authenticators.csproj", "{7CE65DC3-4EC8-458D-6614-175CF009A3EB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniRx", "UniRx.csproj", "{1965D148-72E5-4A0E-4869-07D97743BF17}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zenject-PoolMonitor-Editor", "Zenject-PoolMonitor-Editor.csproj", "{00427CB0-7EB6-919B-B895-CBF64D66ACF5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Zenject-UnitTests-Editor", "Zenject-UnitTests-Editor.csproj", "{63D2E9EE-AF7A-9658-E673-83A37FEC5EB8}"
@@ -115,6 +117,10 @@ Global
 		{7CE65DC3-4EC8-458D-6614-175CF009A3EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7CE65DC3-4EC8-458D-6614-175CF009A3EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7CE65DC3-4EC8-458D-6614-175CF009A3EB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1965D148-72E5-4A0E-4869-07D97743BF17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1965D148-72E5-4A0E-4869-07D97743BF17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1965D148-72E5-4A0E-4869-07D97743BF17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1965D148-72E5-4A0E-4869-07D97743BF17}.Release|Any CPU.Build.0 = Release|Any CPU
 		{00427CB0-7EB6-919B-B895-CBF64D66ACF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{00427CB0-7EB6-919B-B895-CBF64D66ACF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00427CB0-7EB6-919B-B895-CBF64D66ACF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
