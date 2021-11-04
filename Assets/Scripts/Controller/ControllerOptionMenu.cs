@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using ShadowCube.Setting;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -6,23 +7,39 @@ using Zenject;
 public class ControllerOptionMenu : IController
 {
     [SerializeField] private Button buttonBack;
+
+    [Header("Bar")]
+    [SerializeField] private Button buttonGeneric;
+    [SerializeField] private Button buttonControl;
+    [SerializeField] private Button buttonGraphic;
+
     [Header("Panels")]
     [SerializeField] private GameObject panelGeneric;
     [SerializeField] private GameObject panelControl;
     [SerializeField] private GameObject panelGraphic;
+
     [Header("Generic")]
     [SerializeField] private Dropdown DropDownLanguage;
     [SerializeField] private SliderTextUI sliderTextSound;
     [SerializeField] private SliderTextUI sliderTextMusic;
     [SerializeField] private Dropdown DropDownRegion;
+
+    [Header("Control")]
+    [SerializeField] private SliderTextUI sliderTextMouse;
+    [SerializeField] private Button buttonApply;
+
     [Header("Graphic")]
     [SerializeField] private Dropdown DropDownScale;
     [SerializeField] private Dropdown DropDownScreenMode;
     [SerializeField] private Dropdown DropDownSync;
-    [SerializeField] private Slider SliderMaxFps;
+    [SerializeField] private SliderTextUI SliderTextMaxFps;
+    [SerializeField] private SliderTextUI SliderTextView;
     [SerializeField] private Dropdown DropDownQuality;
+    [SerializeField] private Dropdown DropDownEffect;
 
     [Inject] GenericSetting genericSetting;
+    [Inject] ControlSetting controlSetting;
+    [Inject] GraphicSetting graphicSetting;
 
     protected ModelOptionMenu _model;
 
@@ -32,21 +49,54 @@ public class ControllerOptionMenu : IController
 
         gameObject.SetActive(true);
 
+        InitGeneric();
+        InitGraphic();
+        InitControl();
+    }
+
+    private void InitGeneric()
+	{
         sliderTextSound.Value = genericSetting.globalSound;
         sliderTextMusic.Value = genericSetting.globalMusic;
+    }
 
+    private void InitControl()
+	{
+        sliderTextMouse.Value = controlSetting.speedMouse;
+    }
+
+    private void InitGraphic()
+	{
         InsertDropdownScale();
-        DropDownSync.value = QualitySettings.vSyncCount;
-        SliderMaxFps.value = QualitySettings.maxQueuedFrames;
         InsertDropdownQuality();
+
+        DropDownSync.value = QualitySettings.vSyncCount;
+        SliderTextMaxFps.Value = graphicSetting.maxFPS;
     }
 
 	private void Start()
 	{
         buttonBack.onClick.AddListener(ButtonBack_Click);
 
+        if ( Application.platform != RuntimePlatform.WindowsPlayer &&
+            Application.platform != RuntimePlatform.WindowsEditor &&
+            Application.platform != RuntimePlatform.OSXEditor &&
+            Application.platform != RuntimePlatform.OSXPlayer )
+        {
+            buttonControl.gameObject.SetActive(false);
+        }
+
+        buttonGeneric.onClick.AddListener(ButtonGeneric_Click);
+        buttonControl.onClick.AddListener(ButtonControl_Click);
+        buttonGraphic.onClick.AddListener(ButtonGraphic_Click);
+
         sliderTextSound.slider.onValueChanged.AddListener(SliderSound_Changed);
         sliderTextMusic.slider.onValueChanged.AddListener(SliderMusic_Changed);
+        sliderTextMouse.slider.onValueChanged.AddListener(SliderMouse_Changed);
+
+        SliderTextMaxFps.slider.onValueChanged.AddListener(SliderFPS_Changed);
+
+        DropDownEffect.onValueChanged.AddListener(DropdownEffect_Changed);
     }
 
 
@@ -82,6 +132,13 @@ public class ControllerOptionMenu : IController
     public void SliderMusic_Changed(float value)
     {
         genericSetting.globalMusic = value;
+    }
+    #endregion
+
+    #region Control
+    public void SliderMouse_Changed(float value)
+    {
+        controlSetting.speedMouse = value;
     }
     #endregion
 
@@ -122,21 +179,12 @@ public class ControllerOptionMenu : IController
 
     public void SliderFPS_Changed(float index)
     {
-        //TextFpsValue.text = index.ToString("G");
-        QualitySettings.maxQueuedFrames = (int)index;
+        graphicSetting.maxFPS = (int)index;
     }
 
     public void SliderView_Changed(float index)
     {
         //TextViewValue.text = index.ToString("G");
-    }
-
-    public void InputFieldFps_Changed(string fps)
-    {
-        int intfps = int.Parse(fps);
-        //TextFpsValue.text = intfps.ToString();
-        //SliderMaxfps.value = intfps;
-        QualitySettings.maxQueuedFrames = intfps;
     }
 
     public void DropdownQuality_Changed(int index)
@@ -161,7 +209,7 @@ public class ControllerOptionMenu : IController
 
     public void DropdownEffect_Changed(int index)
     {
-        //snapshotModeSelect.filterIndex = index;
+        graphicSetting.screenEffect = index;
     }
     #endregion
 

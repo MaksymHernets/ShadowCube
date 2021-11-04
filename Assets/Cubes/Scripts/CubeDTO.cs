@@ -1,9 +1,7 @@
 ﻿using Cubes;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class CubeDTO : MonoBehaviour
+public class CubeDTO
 {
     public Vector3Int id;
 

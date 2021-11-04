@@ -1,5 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using ShadowCube.Setting;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;

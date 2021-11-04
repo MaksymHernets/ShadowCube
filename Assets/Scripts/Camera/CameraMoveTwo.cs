@@ -1,4 +1,5 @@
 ﻿using Cubes;
+using ShadowCube.Setting;
 using System.Collections;
 using UnityEngine;
 using Zenject;

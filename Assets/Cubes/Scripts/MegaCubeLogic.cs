@@ -10,25 +10,29 @@ namespace Cubes
 		[SerializeField] protected List<GameObject> Traps;
         [SerializeField] protected GameObject CubeBridge;
         [SerializeField] protected PlayerLogic player;
-		
-		private void Start()
-		{
-			Init();
-		}
+
+		protected float _WidhtCube = 2.6f;
+
+		//private void Start()
+		//{
+		//	Init();
+		//}
 
 		private void Update()
 		{
 			UpdateMegaCube();
 		}
 
-		protected virtual void Init()
+		public virtual void Init()
 		{
 			poolObjects = new PoolObjects<CubeLogic>(prefabCube);
 		}
 
 		public abstract void EventOpenedDoor(Vector3Int position, int indexDoor);
-		public abstract Vector3Int GetCube(Vector3Int position, int indexWall);
-		public abstract int GetCubeDoor(Vector3Int position, int indexWall);
+		protected abstract Vector3Int GetCube(Vector3Int position, int indexWall);
+		protected abstract int GetCubeDoor(Vector3Int position, int indexWall);
+		public abstract void PutObject(Vector3Int position, Transform transform);
+
 		protected abstract void UpdateMegaCube();
 
 		

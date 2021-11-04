@@ -4,33 +4,34 @@ using UnityEngine;
 
 public class PoolObjects<T> : MonoBehaviour where T : MonoBehaviour
 {
-	private List<GameObject> lists;
+	private List<MonoBehaviour> lists;
 	private T _prefab;
 
     public PoolObjects(T prefab, int defaultSize = 20)
 	{
-		lists = new List<GameObject>();
+		lists = new List<MonoBehaviour>();
 		_prefab = prefab;
 
 		for (int i = 0; i < defaultSize; ++i)
 		{
 			var newObject = GameObject.Instantiate(_prefab);
 			newObject.gameObject.SetActive(false);
-			lists.Add(newObject.gameObject);
+			lists.Add(newObject);
 		}
 	}
 
-	public GameObject Get()
+	public T Get()
 	{
 		for (int i = 0; i < lists.Count; ++i)
 		{
-			if ( lists[i].activeSelf == false)
+			if ( lists[i].gameObject.activeSelf == false)
 			{
-				return lists[i];
+				lists[i].gameObject.SetActive(true);
+				return (T)lists[i];
 			}
 		}
-		var newObject = GameObject.Instantiate(_prefab).gameObject;
+		var newObject = GameObject.Instantiate(_prefab);
 		lists.Add(newObject);
-		return newObject;
+		return (T)newObject;
 	}
 }

@@ -1,4 +1,5 @@
 ﻿using ShadowCube.DTO;
+using ShadowCube.Setting;
 using System.Collections.Generic;
 using System.Text;
 using UnityEngine;

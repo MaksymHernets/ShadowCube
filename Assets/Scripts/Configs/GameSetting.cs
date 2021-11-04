@@ -1,60 +1,68 @@
 ﻿using ShadowCube.DTO;
+using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
 
-public class GameSetting : MonoBehaviour
+namespace ShadowCube.Setting
 {
-	public int indexCube
+	public class GameSetting : MonoBehaviour
 	{
-		get
+		public int indexCube
 		{
-			return PlayerPrefs.GetInt("IndexCube");
+			get
+			{
+				return PlayerPrefs.GetInt("IndexCube");
+			}
+			set
+			{
+				PlayerPrefs.SetInt("IndexCube", value);
+				IndexCube.Value = value;
+			}
 		}
-		set
+
+		public PlayerDTO playerDTO
 		{
-			PlayerPrefs.SetInt("IndexCube", value);
-			_indexCube.Value = value;
+			get
+			{
+				return JsonUtility.FromJson<PlayerDTO>(PlayerPrefs.GetString("PlayerDTO"));
+			}
+			private set
+			{
+				var jsonplayer = JsonUtility.ToJson(value);
+				PlayerPrefs.SetString("PlayerDTO", jsonplayer);
+				PlayerDTO.Value = value;
+			}
 		}
+
+		public List<PlayerDTO> players
+		{
+			get;
+			set;
+		}
+
+		private void Start()
+		{
+			if (!PlayerPrefs.HasKey("IndexCube"))
+			{
+				PlayerPrefs.SetInt("IndexCube", 0);
+			}
+			if (!PlayerPrefs.HasKey("PlayerDTO"))
+			{
+				var jsonplayer = JsonUtility.ToJson(new PlayerDTO());
+				PlayerPrefs.SetString("PlayerDTO", jsonplayer);
+			}
+
+			IndexCube = new ReactiveProperty<int>();
+			PlayerDTO = new ReactiveProperty<PlayerDTO>();
+		}
+
+		public void UpdatePlayerDTO(PlayerDTO player)
+		{
+			playerDTO = player;
+		}
+
+		public ReactiveProperty<int> IndexCube;
+
+		public ReactiveProperty<PlayerDTO> PlayerDTO;
 	}
-
-	public PlayerDTO playerDTO
-	{
-		get
-		{
-			return JsonUtility.FromJson<PlayerDTO>(PlayerPrefs.GetString("PlayerDTO"));
-		}
-		private set
-		{
-			var jsonplayer = JsonUtility.ToJson(value);
-			PlayerPrefs.SetString("PlayerDTO", jsonplayer);
-			_playerDTO.Value = value;
-		}
-	}
-
-	private void Start()
-	{
-		if (!PlayerPrefs.HasKey("IndexCube"))
-		{
-			PlayerPrefs.SetInt("IndexCube", 0);
-		}
-		if (!PlayerPrefs.HasKey("PlayerDTO"))
-		{
-			var jsonplayer = JsonUtility.ToJson(new PlayerDTO());
-			PlayerPrefs.SetString("PlayerDTO", jsonplayer);
-		}
-
-		_indexCube = new ReactiveProperty<int>();
-		_playerDTO = new ReactiveProperty<PlayerDTO>();
-	}
-
-	public void UpdatePlayerDTO(PlayerDTO player)
-	{
-		playerDTO = player;
-	}
-
-	private ReactiveProperty<int> _indexCube;
-	public IReadOnlyReactiveProperty<int> IndexCube => _indexCube;
-
-	private ReactiveProperty<PlayerDTO> _playerDTO;
-	public IReadOnlyReactiveProperty<PlayerDTO> PlayerDTO => _playerDTO;
 }

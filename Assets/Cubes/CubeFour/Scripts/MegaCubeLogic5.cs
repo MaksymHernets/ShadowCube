@@ -9,12 +9,11 @@ namespace Cubes.CubeFour
         [SerializeField] private List<GameObject> Frames;
 
         private int _Size = 10;
-        private float _WidhtCube = 2.6f;
 
         private CubeLogic[,,] gamecubes;
         private CubeDTO[,,] cubes;
         
-		protected override void Init()
+		public override void Init()
 		{
 
 
@@ -164,7 +163,7 @@ namespace Cubes.CubeFour
             ActivateCube(position, indexwall, newposition, newdoor);
         }
 
-        public override Vector3Int GetCube(Vector3Int position, int indexWall)
+        protected override Vector3Int GetCube(Vector3Int position, int indexWall)
         {
             if (indexWall == 0) { return position + new Vector3Int(0, -1, 0); }
             else if (indexWall == 1) { return position + new Vector3Int(0, 0, 1); }
@@ -175,7 +174,7 @@ namespace Cubes.CubeFour
             return new Vector3Int();
         }
 
-        public override int GetCubeDoor(Vector3Int position, int indexWall)
+        protected override int GetCubeDoor(Vector3Int position, int indexWall)
         {
             if (indexWall == 0) { return 5; }
             else if (indexWall == 1) { return 3; }
@@ -216,6 +215,11 @@ namespace Cubes.CubeFour
 		protected override void UpdateMegaCube()
 		{
 			
+		}
+
+		public override void PutObject(Vector3Int position, Transform transform)
+		{
+			throw new System.NotImplementedException();
 		}
 
 

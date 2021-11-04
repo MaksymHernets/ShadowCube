@@ -1,53 +1,38 @@
-﻿using System.Collections.Generic;
+﻿using Cubes;
+using ShadowCube.Setting;
+using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
 public class PlaceLogic : MonoBehaviour
 {
-    public GameObject player;
-    public List<GameObject> MegaCubes;
+    [SerializeField] private PlayerLogic _player;
+    [SerializeField] private List<MegaCubeLogic> _megaCubes;
+
+    private MegaCubeLogic _currentMegaCube;
 
     [Inject] GameSetting gameSetting;
 
     void Start()
     {
-        var megacube = Instantiate(MegaCubes[gameSetting.indexCube], transform);
-        //megacube.SendMessage("IntPlayer", player);
-    }
+        _currentMegaCube = GameObject.Instantiate(_megaCubes[gameSetting.indexCube], transform);
 
-    //public override void OnServerAddPlayer(NetworkConnection conn)
-    //{
-    //    // add player at correct spawn position
-    //    //Transform start = numPlayers == 0 ? leftRacketSpawn : rightRacketSpawn;
-    //    GameObject player = Instantiate(playerPrefab);
-        
-    //    inputmanager.cc = player.GetComponent<vThirdPersonController>();
-    //    inputmanager.cc.animator = player.GetComponent<Animator>();
-    //    inputmanager.cc._rigidbody = player.GetComponent<Rigidbody>();
-    //    inputmanager.cc._capsuleCollider = player.GetComponent<CapsuleCollider>();
-    //    inputmanager.cc.colliderCenter = player.GetComponent<CapsuleCollider>().center;
-    //    inputmanager.cc.colliderRadius = player.GetComponent<CapsuleCollider>().radius;
-    //    inputmanager.cc.colliderHeight = player.GetComponent<CapsuleCollider>().height;
+		_currentMegaCube.Init();
+		PutPlayer(_player);
+	}
 
-    //    inputmanager.gameObject.SetActive(true);
-    //    player.SetActive(true);
-    //    NetworkServer.AddPlayerForConnection(conn, player);
+    private void PutPlayer(PlayerLogic playerLogic)
+	{
+		Vector3Int position = new Vector3Int();
+		position.x = Random.Range(0, 15);
+		position.y = Random.Range(0, 15);
+		position.z = Random.Range(0, 15);
 
-    //    // spawn ball if two players
-    //    //if (numPlayers == 2)
-    //    //{
-    //    //    ball = Instantiate(spawnPrefabs.Find(prefab => prefab.name == "Ball"));
-    //    //    NetworkServer.Spawn(ball);
-    //    //}
-    //}
+		_currentMegaCube.PutObject(position, playerLogic.gameObject.transform);
+	}
 
-    //public override void OnServerDisconnect(NetworkConnection conn)
-    //{
-    //    // destroy ball
-    //    //if (ball != null)
-    //    //    NetworkServer.Destroy(ball);
-
-    //    // call base functionality (actually destroys the player)
-    //    base.OnServerDisconnect(conn);
-    //}
+    private void PutPlayers()
+    {
+		
+	}
 }

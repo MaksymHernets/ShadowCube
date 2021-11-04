@@ -133,10 +133,13 @@
     <Compile Include="Assets\Scenes\MainMenuLogic.cs" />
     <Compile Include="Assets\Scenes\MainMenuManager.cs" />
     <Compile Include="Assets\Scenes\PlaceLogic.cs" />
+    <Compile Include="Assets\Scripts\AudioController.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraMoveOne.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraMoveTwo.cs" />
+    <Compile Include="Assets\Scripts\Configs\ControlSetting.cs" />
     <Compile Include="Assets\Scripts\Configs\GameSetting.cs" />
     <Compile Include="Assets\Scripts\Configs\GenericSetting.cs" />
+    <Compile Include="Assets\Scripts\Configs\GraphicSetting.cs" />
     <Compile Include="Assets\Scripts\Controller\ControllerAbout.cs" />
     <Compile Include="Assets\Scripts\Controller\ControllerEndGame.cs" />
     <Compile Include="Assets\Scripts\Controller\ControllerHUD.cs" />

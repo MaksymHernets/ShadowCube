@@ -1,4 +1,5 @@
 ﻿using ShadowCube.DTO;
+using ShadowCube.Setting;
 using UnityEngine;
 using Zenject;
 

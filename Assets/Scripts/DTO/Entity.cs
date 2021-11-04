@@ -5,8 +5,8 @@ namespace ShadowCube.DTO
 {
 	public class Entity : MonoBehaviour, IDamage
     {
-        public UnityEvent EventDie;
-        public UnityEvent EventDamage;
+        [HideInInspector] public UnityEvent EventDie;
+        [HideInInspector] public UnityEvent EventDamage;
 
         public int Id { get; set; }
         public string Name { get; set; }
