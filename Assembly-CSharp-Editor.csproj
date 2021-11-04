@@ -713,6 +713,10 @@
       <Project>{A50A2BB4-A25E-F683-CC90-EEE3146C9E98}</Project>
       <Name>Zenject-Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="UniRx.csproj">
+      <Project>{1965D148-72E5-4A0E-4869-07D97743BF17}</Project>
+      <Name>UniRx</Name>
+    </ProjectReference>
     <ProjectReference Include="Mirror.Authenticators.csproj">
       <Project>{7CE65DC3-4EC8-458D-6614-175CF009A3EB}</Project>
       <Name>Mirror.Authenticators</Name>
@@ -776,10 +780,6 @@
     <ProjectReference Include="Zenject.csproj">
       <Project>{CBA05E0F-E391-3766-1663-62B7294A6975}</Project>
       <Name>Zenject</Name>
-    </ProjectReference>
-    <ProjectReference Include="UniRx.csproj">
-      <Project>{1965D148-72E5-4A0E-4869-07D97743BF17}</Project>
-      <Name>UniRx</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

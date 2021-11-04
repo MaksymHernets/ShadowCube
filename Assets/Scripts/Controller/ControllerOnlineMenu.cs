@@ -12,7 +12,6 @@ public class ControllerOnlineMenu : IController
 	[SerializeField] private Button buttonCubeZero;
 	[SerializeField] private Button buttonSketchCube;
 	[Header("Table")]
-	[SerializeField] private ItemHost prefabItem;
 	[SerializeField] private Transform contect;
 
 	protected ModelOnlineMenu _model;

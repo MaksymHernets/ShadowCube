@@ -7,7 +7,12 @@ public class ControllerAbout : IController
 
 	public override void Init(IModel model)
 	{
+		gameObject.SetActive(true);
+	}
 
+	private void Start()
+	{
+		buttonBack.onClick.AddListener(ButtonBack_Click);
 	}
 
 	public void ButtonBack_Click()

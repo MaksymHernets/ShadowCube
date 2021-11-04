@@ -1,7 +1,7 @@
 ﻿using Cubes;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class CameraMoveTwo : MonoBehaviour
 {
@@ -11,7 +11,9 @@ public class CameraMoveTwo : MonoBehaviour
     [SerializeField] private CubeLogic[] cubes;
 
     [SerializeField] private float speed = 0.01f;
-    
+
+    [Inject] GameSetting gameSetting;
+
     private float time = 0;
     private bool key = true;
 
@@ -28,7 +30,7 @@ public class CameraMoveTwo : MonoBehaviour
 
 	IEnumerator Animation_Door()
 	{
-        cubes[Cookie.room.IndexCube].OpenDoor(4);
+        cubes[gameSetting.indexCube].OpenDoor(4);
         yield return new WaitForSeconds(6f);
         for (int i = 0; i < 40; ++i)
 		{

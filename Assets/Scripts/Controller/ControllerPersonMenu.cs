@@ -2,14 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public class ControllerPersonMenu : IController
 {
-	[SerializeField] private Button buttonBack; 
-    [SerializeField] private CPC_CameraPath cameraPath;
+	[SerializeField] private Button buttonBack;
+
+	[Header("Property")]
+	[SerializeField] private InputField inputFieldName;
+	[SerializeField] private Dropdown dropdownGender;
+
+	[Header("Other")]
+	[SerializeField] private CPC_CameraPath cameraPath;
     [SerializeField] private GameObject person;
 
     private ModelPersonMenu _model;
+
+	[Inject] GameSetting gameSetting;
 
     public override void Init(IModel model)
     {
@@ -20,15 +29,32 @@ public class ControllerPersonMenu : IController
 		cameraPath.points.Reverse();
 		cameraPath.PlayPath(2);
 		person.SetActive(true);
+
+		inputFieldName.text = _model.playerDTO.Name;
+		dropdownGender.value = _model.playerDTO.Gender;
 	}
 
 	private void Start()
 	{
 		buttonBack.onClick.AddListener(ButtonBack_Click);
+
+		inputFieldName.onValueChanged.AddListener(inputFieldName_click);
+		dropdownGender.onValueChanged.AddListener(dropdownGender_click);
+	}
+
+	private void inputFieldName_click(string newtext)
+	{
+		_model.playerDTO.Name = newtext;
+	}
+
+	private void dropdownGender_click(int newindex)
+	{
+		_model.playerDTO.Gender = newindex;
 	}
 
 	public void ButtonBack_Click()
 	{
+		gameSetting.UpdatePlayerDTO(_model.playerDTO);
 		Deactive();
 	}
 

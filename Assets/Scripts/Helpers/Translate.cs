@@ -45,18 +45,18 @@ namespace Assets.Scripts.Helpers
         [NonSerialized]
         private static string pathToTranslate = @"\Saves\Translate\";
 
-        public static List<ClassDictinaory> GetDictionaryTranslate(string nameScene, string launcher)
-        {
-            var path = Application.dataPath + pathToTranslate + nameScene + ".json";
-            var result = FileJsonExtension.GetObjectsFromJsonFile<Translate>(path);
-            var elements = result.Where(w => w.name == launcher).FirstOrDefault().elements;
-            return elements;
-        }
+		//public static List<ClassDictinaory> GetDictionaryTranslate(string nameScene, string launcher)
+		//{
+		//	var path = Application.dataPath + pathToTranslate + nameScene + ".json";
+		//	var result = FileJsonExtension.GetObjectsFromJsonFile<Translate>(path);
+		//	var elements = result.Where(w => w.name == launcher).FirstOrDefault().elements;
+		//	return elements;
+		//}
 
-        public static void SetDictionaryTranslate(string nameScene, List<Translate> translates)
+		public static void SetDictionaryTranslate(string nameScene, List<Translate> translates)
         {
             var path = Application.dataPath + pathToTranslate + nameScene + ".json";
-            FileJsonExtension.SetObjectsFromJsonFile(path, translates.Select(w => (object)w).ToList() );
+            //FileJsonExtension.SetObjectsFromJsonFile(path, translates.Select(w => (object)w).ToList() );
         }
 
         public static void ToTranslate(List<ClassDictinaory> elements)

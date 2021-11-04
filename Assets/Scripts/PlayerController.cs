@@ -1,5 +1,6 @@
 ﻿using ShadowCube.DTO;
 using UnityEngine;
+using Zenject;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private ControllerEndGame controllerEndGame;
 
     private float timeStartLevel;
+
+    [Inject] GameSetting gameSetting;
 
     void Start()
     {
@@ -21,12 +24,7 @@ public class PlayerController : MonoBehaviour
 	{
         timeStartLevel = 0f;
 
-        var player = new PlayerDTO();
-        player.score = new ScoreCube();
-        player.Name = "player";
-        player.Id = 1;
-
-        playerLogic.Init(player);
+        playerLogic.Init(gameSetting.playerDTO);
 
         controllerHUD.Init(new ModelHUD());
     }

@@ -112,19 +112,19 @@ namespace Cubes.CubeFour
 
         private void SetPlayers()
         {
-            foreach (var item in Cookie.players)
-            {
-                int x = 0, y = 0, z = 0;
-                do
-                {
-                    x = Random.Range(0, _Size);
-                    y = Random.Range(0, _Size);
-                    z = Random.Range(0, _Size);
-                }
-                while (cubes[x, y, z].trap != null);
-                player.transform.localPosition = gamecubes[x, y, z].transform.localPosition;
-                gamecubes[x, y, z].gameObject.SetActive(true);
-            }
+            //foreach (var item in Cookie.players)
+            //{
+            //    int x = 0, y = 0, z = 0;
+            //    do
+            //    {
+            //        x = Random.Range(0, _Size);
+            //        y = Random.Range(0, _Size);
+            //        z = Random.Range(0, _Size);
+            //    }
+            //    while (cubes[x, y, z].trap != null);
+            //    player.transform.localPosition = gamecubes[x, y, z].transform.localPosition;
+            //    gamecubes[x, y, z].gameObject.SetActive(true);
+            //}
         }
 
         private Color GetColor(int index)

@@ -1,14 +1,17 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class PlaceLogic : MonoBehaviour
 {
     public GameObject player;
     public List<GameObject> MegaCubes;
 
+    [Inject] GameSetting gameSetting;
+
     void Start()
     {
-        var megacube = Instantiate(MegaCubes[Cookie.room.IndexCube], transform);
+        var megacube = Instantiate(MegaCubes[gameSetting.indexCube], transform);
         //megacube.SendMessage("IntPlayer", player);
     }
 

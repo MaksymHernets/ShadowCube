@@ -1,8 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using ShadowCube.DTO;
 
 public class ModelPersonMenu : IModel
 {
+	public PlayerDTO playerDTO { get; }
 
+	public ModelPersonMenu(PlayerDTO player)
+	{
+		playerDTO = player;
+	}
 }

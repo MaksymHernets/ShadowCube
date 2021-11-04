@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Zenject;
 
 public class MainMenuManager : MonoBehaviour
 {
@@ -16,6 +17,8 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private ControllerOptionMenu menuOptions;
     [SerializeField] private ControllerAbout menuAbout;
 
+    [Inject] GameSetting gameSetting;
+
     private void Start()
 	{
         mainMenu.EventButtonClick += Event_ButtonClick;
@@ -26,13 +29,15 @@ public class MainMenuManager : MonoBehaviour
         menuPerson.EventClose.AddListener(Event_Menu_Close);
         menuOptions.EventClose.AddListener(Event_Menu_Close);
         menuAbout.EventClose.AddListener(Event_Menu_Close);
+
+        ShowCube(0, gameSetting.indexCube);
     }
 
     private void Event_ButtonPlayClick()
 	{
         End();
         menuPlay.Deactive();
-        Cubes[Cookie.room.IndexCube].OpenDoor(2);
+        Cubes[gameSetting.indexCube].OpenDoor(2);
         cameraMoveOne.gameObject.SetActive(false);
         Camera.main.transform.localEulerAngles = new Vector3(0, 90, 0);
         StartCoroutine(Animation_Camera());
@@ -42,10 +47,10 @@ public class MainMenuManager : MonoBehaviour
 	{
         switch ( name )
 		{
-            case "PlayMenu": menuPlay.Init(new IModel() ); break;
-            case "OnlineMenu": menuOnline.Init(new IModel() ); break;
-            case "PersonMenu": menuPerson.Init(new IModel() ); break;
-            case "OptionMenu": menuOptions.Init(new IModel() ); break;
+            case "PlayMenu": menuPlay.Init(new ModelPlayMenu() { mainMenuManager = this }); break;
+            case "OnlineMenu": menuOnline.Init(new ModelOnlineMenu() ); break;
+            case "PersonMenu": menuPerson.Init(new ModelPersonMenu(gameSetting.playerDTO) ); break;
+            case "OptionMenu": menuOptions.Init(new ModelOptionMenu() ); break;
             case "AboutMenu": menuAbout.Init(new IModel() ); break;
             default: return;
         }

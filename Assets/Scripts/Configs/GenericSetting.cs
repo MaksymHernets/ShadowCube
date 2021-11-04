@@ -1,20 +1,23 @@
-﻿using UnityEngine;
+﻿using UniRx;
+using UnityEngine;
 
-public class GenericSetting
+public class GenericSetting : MonoBehaviour
 {
-    public float _globalSound
+    public float globalSound
 	{
         get
 		{
-			return AudioListener.volume;
+			return PlayerPrefs.GetFloat("GlobalSound");
 		}
         set
 		{
-			AudioListener.volume = value;
+			PlayerPrefs.SetFloat("GlobalSound", value);
+			AudioListener.volume = value * 0.01f;
+			_globalSound.Value = value;
 		}
 	}
 
-    public float _globalMusic
+    public float globalMusic
 	{
 		get
 		{
@@ -23,36 +26,51 @@ public class GenericSetting
 		set
 		{
 			PlayerPrefs.SetFloat("GlobalMusic", value);
+			_globalSound.Value = value;
 		}
 	}
 
-    public int _launcher
+    public int language
 	{
 		get
 		{
-			return PlayerPrefs.GetInt("Launcher");
+			return PlayerPrefs.GetInt("Language");
 		}
 		set
 		{
-			PlayerPrefs.SetInt("Launcher", value);
+			PlayerPrefs.SetInt("Language", value);
+			_launcher.Value = value;
 		}
 	}
 
-	public GenericSetting()
+	private void Start()
 	{
-		//if (!PlayerPrefs.HasKey("GlobalMusic"))
-		//{
-		//	PlayerPrefs.SetFloat("GlobalMusic", 0f);
-		//}
-		//if (!PlayerPrefs.HasKey("Launcher"))
-		//{
-		//	PlayerPrefs.SetInt("Launcher", 0);
-		//}
+		if (!PlayerPrefs.HasKey("GlobalSound"))
+		{
+			PlayerPrefs.SetFloat("GlobalSound", 0f);
+		}
+		if (!PlayerPrefs.HasKey("GlobalMusic"))
+		{
+			PlayerPrefs.SetFloat("GlobalMusic", 0f);
+		}
+		if (!PlayerPrefs.HasKey("Launcher"))
+		{
+			PlayerPrefs.SetInt("Launcher", 0);
+		}
+
+		AudioListener.volume = PlayerPrefs.GetFloat("GlobalSound") * 0.01f;
+
+		_globalSound = new ReactiveProperty<float>(globalSound);
+		_globalMusic = new ReactiveProperty<float>(globalMusic);
+		_launcher = new ReactiveProperty<int>(language);
 	}
 
-	//public IReadOnlyReactiveProperty<int> GlobalSound => _globalSound;
+	private ReactiveProperty<float> _globalSound;
+	public IReadOnlyReactiveProperty<float> GlobalSound => _globalSound;
 
-	//public IReadOnlyReactiveProperty<int> GlobalMusic => _globalMusic;
+	private ReactiveProperty<float> _globalMusic;
+	public IReadOnlyReactiveProperty<float> GlobalMusic => _globalMusic;
 
-	//public IReadOnlyReactiveProperty<int> Launcher => _launcher;
+	private ReactiveProperty<int> _launcher;
+	public IReadOnlyReactiveProperty<int> Launcher => _launcher;
 }

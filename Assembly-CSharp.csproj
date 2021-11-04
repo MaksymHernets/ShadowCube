@@ -130,16 +130,12 @@
     <Compile Include="Assets\OthersAsset\UJoystick\Content\Script\Core\bl_Joystick.cs" />
     <Compile Include="Assets\OthersAsset\UJoystick\Content\Script\Internal\bl_JoystickUtils.cs" />
     <Compile Include="Assets\OthersAsset\UJoystick\Example\Scrips\bl_ControllerExample.cs" />
-    <Compile Include="Assets\Scenes\ItemHost.cs" />
     <Compile Include="Assets\Scenes\MainMenuLogic.cs" />
     <Compile Include="Assets\Scenes\MainMenuManager.cs" />
-    <Compile Include="Assets\Scenes\OnlineLogic.cs" />
-    <Compile Include="Assets\Scenes\OptionsLogic.cs" />
-    <Compile Include="Assets\Scenes\PersonLogic.cs" />
     <Compile Include="Assets\Scenes\PlaceLogic.cs" />
-    <Compile Include="Assets\Scenes\PlayLogic.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraMoveOne.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraMoveTwo.cs" />
+    <Compile Include="Assets\Scripts\Configs\GameSetting.cs" />
     <Compile Include="Assets\Scripts\Configs\GenericSetting.cs" />
     <Compile Include="Assets\Scripts\Controller\ControllerAbout.cs" />
     <Compile Include="Assets\Scripts\Controller\ControllerEndGame.cs" />
@@ -151,22 +147,18 @@
     <Compile Include="Assets\Scripts\Controller\ControllerPersonMenu.cs" />
     <Compile Include="Assets\Scripts\Controller\ControllerPlayMenu.cs" />
     <Compile Include="Assets\Scripts\Controller\IController.cs" />
-    <Compile Include="Assets\Scripts\Cookie.cs" />
     <Compile Include="Assets\Scripts\DTO\Bot.cs" />
     <Compile Include="Assets\Scripts\DTO\Control.cs" />
     <Compile Include="Assets\Scripts\DTO\Damage.cs" />
     <Compile Include="Assets\Scripts\DTO\Entity.cs" />
     <Compile Include="Assets\Scripts\DTO\PlayerDTO.cs" />
     <Compile Include="Assets\Scripts\DTO\Score.cs" />
-    <Compile Include="Assets\Scripts\Helpers\Blur.cs" />
-    <Compile Include="Assets\Scripts\Helpers\Coro.cs" />
-    <Compile Include="Assets\Scripts\Helpers\FileJsonExtension.cs" />
+    <Compile Include="Assets\Scripts\Helpers\InteractiveObject.cs" />
     <Compile Include="Assets\Scripts\Helpers\MathFunction.cs" />
     <Compile Include="Assets\Scripts\Helpers\PoolObjects.cs" />
     <Compile Include="Assets\Scripts\Helpers\SnapshotModeSelect.cs" />
     <Compile Include="Assets\Scripts\Helpers\Translate.cs" />
     <Compile Include="Assets\Scripts\Installers\SceneInstaller.cs" />
-    <Compile Include="Assets\Scripts\InteractiveObject.cs" />
     <Compile Include="Assets\Scripts\Models\IModel.cs" />
     <Compile Include="Assets\Scripts\Models\ModelEndGame.cs" />
     <Compile Include="Assets\Scripts\Models\ModelHUD.cs" />
@@ -182,13 +174,12 @@
     <Compile Include="Assets\Scripts\Player\PlayerLogic.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMoveControl.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\PlayerPrefsInit.cs" />
-    <Compile Include="Assets\Scripts\RoomLobyHost.cs" />
     <Compile Include="Assets\Scripts\UI\FrameDamageUI.cs" />
     <Compile Include="Assets\Scripts\UI\GameOverUI.cs" />
     <Compile Include="Assets\Scripts\UI\Items.cs" />
     <Compile Include="Assets\Scripts\UI\Menu.cs" />
     <Compile Include="Assets\Scripts\UI\ScoreUI.cs" />
+    <Compile Include="Assets\Scripts\UI\SliderTextUI.cs" />
     <None Include="Assets\OthersAsset\SnapshotShaders\Shaders\Silhouette.shader" />
     <None Include="Assets\OthersAsset\SnapshotShaders\Shaders\Greyscale.shader" />
     <None Include="Assets\OthersAsset\SnapshotShaders\Shaders\Sepia.shader" />
@@ -806,6 +797,10 @@
       <Project>{A50A2BB4-A25E-F683-CC90-EEE3146C9E98}</Project>
       <Name>Zenject-Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="UniRx.csproj">
+      <Project>{1965D148-72E5-4A0E-4869-07D97743BF17}</Project>
+      <Name>UniRx</Name>
+    </ProjectReference>
     <ProjectReference Include="Mirror.Authenticators.csproj">
       <Project>{7CE65DC3-4EC8-458D-6614-175CF009A3EB}</Project>
       <Name>Mirror.Authenticators</Name>
@@ -869,10 +864,6 @@
     <ProjectReference Include="Zenject.csproj">
       <Project>{CBA05E0F-E391-3766-1663-62B7294A6975}</Project>
       <Name>Zenject</Name>
-    </ProjectReference>
-    <ProjectReference Include="UniRx.csproj">
-      <Project>{1965D148-72E5-4A0E-4869-07D97743BF17}</Project>
-      <Name>UniRx</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

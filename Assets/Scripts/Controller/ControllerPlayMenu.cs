@@ -1,28 +1,33 @@
 ﻿using ShadowCube.DTO;
 using System.Collections.Generic;
+using System.Text;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using Zenject;
 
 public class ControllerPlayMenu : IController
 {
     [HideInInspector] public UnityEvent EventButtonPlayClick;
 
     [SerializeField] private Button buttonBack;
+
     [Header("BarUP")]
     [SerializeField] private Dropdown dropdownMap;
     [SerializeField] private Text buttonPrivatePublic;
     [SerializeField] private Text textCountPlayers;
     [SerializeField] private Toggle toggleAddBots;
     [SerializeField] private Button[] maps;
-    [Header("Table")]
 
     [Header("BarDOWN")]
-    [SerializeField] private Input inputCode;
+    [SerializeField] private Text inputCode;
     [SerializeField] private Button buttonStart;
+
+    [Inject] GameSetting gameSetting;
 
     private RoomLoby room = new RoomLoby();
     private List<Entity> players = new List<Entity>();
+
     private ModelPlayMenu _model;
 
     public override void Init(IModel model)
@@ -31,21 +36,33 @@ public class ControllerPlayMenu : IController
 
         gameObject.SetActive(true);
 
-        //room = Cookie.room;
-        //dropdownMap.value = Cookie.room.IndexCube;
-        //ChangedButton(0, Cookie.room.IndexCube);
+        inputCode.text = "CODE: " + GetCode();
+        dropdownMap.value = gameSetting.indexCube;
+    }
+
+    private string GetCode(int length = 6)
+	{
+        StringBuilder result = new StringBuilder(length);
+        result.Length = length;
+        for (int i = 0; i < length; ++i)
+		{
+            result[i] = (char)Random.Range(65,90);
+        }
+        return result.ToString();
     }
 
     private void Start()
     {
         buttonBack.onClick.AddListener(ButtonBack_Click);
         buttonStart.onClick.AddListener(ButtonStart_Click);
+
+        dropdownMap.onValueChanged.AddListener(DropdownMap_Click);
     }
 
     public void DropdownMap_Click(int newindex)
     {
-        _model.mainMenuManager.ShowCube(room.IndexCube, newindex);
-        room.IndexCube = newindex;
+        _model.mainMenuManager.ShowCube(gameSetting.indexCube, newindex);
+        gameSetting.indexCube = newindex;
     }
 
     public void ButtonStart_Click()
@@ -57,8 +74,6 @@ public class ControllerPlayMenu : IController
                 players.Add(new Entity());
             }
         }
-        Cookie.room = room;
-        Cookie.players = players;
 
         EventButtonPlayClick.Invoke();
     }

@@ -11,10 +11,10 @@ public class ControllerOptionMenu : IController
     [SerializeField] private GameObject panelControl;
     [SerializeField] private GameObject panelGraphic;
     [Header("Generic")]
-    [SerializeField] private Slider SliderSound;
-    [SerializeField] private Text LabelSoundValue;
-    [SerializeField] private Slider SliderMusic;
-    [SerializeField] private Text LabelMusicValue;
+    [SerializeField] private Dropdown DropDownLanguage;
+    [SerializeField] private SliderTextUI sliderTextSound;
+    [SerializeField] private SliderTextUI sliderTextMusic;
+    [SerializeField] private Dropdown DropDownRegion;
     [Header("Graphic")]
     [SerializeField] private Dropdown DropDownScale;
     [SerializeField] private Dropdown DropDownScreenMode;
@@ -32,10 +32,8 @@ public class ControllerOptionMenu : IController
 
         gameObject.SetActive(true);
 
-        SliderSound.value = AudioListener.volume;
-        //LabelSoundValue.text = SliderSound.value.ToString("G") + "%";
-        Debug.Log(genericSetting._globalSound.ToString("G"));
-        LabelSoundValue.text = genericSetting._globalSound.ToString("G") + "%";
+        sliderTextSound.Value = genericSetting.globalSound;
+        sliderTextMusic.Value = genericSetting.globalMusic;
 
         InsertDropdownScale();
         DropDownSync.value = QualitySettings.vSyncCount;
@@ -47,7 +45,8 @@ public class ControllerOptionMenu : IController
 	{
         buttonBack.onClick.AddListener(ButtonBack_Click);
 
-        
+        sliderTextSound.slider.onValueChanged.AddListener(SliderSound_Changed);
+        sliderTextMusic.slider.onValueChanged.AddListener(SliderMusic_Changed);
     }
 
 
@@ -77,8 +76,12 @@ public class ControllerOptionMenu : IController
     #region Generic
     public void SliderSound_Changed(float value)
     {
-        LabelSoundValue.text = value.ToString("G") + "%";
-        AudioListener.volume = value * 0.01f;
+        genericSetting.globalSound = value;
+    }
+
+    public void SliderMusic_Changed(float value)
+    {
+        genericSetting.globalMusic = value;
     }
     #endregion
 
