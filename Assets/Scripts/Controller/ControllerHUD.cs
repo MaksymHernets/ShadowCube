@@ -3,8 +3,6 @@
 public class ControllerHUD : IController
 {
     public GameObject Menu;
-    public FrameDamageUI frameDamageUI;
-    public Items itemsui;
 
     private ModelHUD _model;
 
@@ -19,6 +17,6 @@ public class ControllerHUD : IController
 
     private void eventDamage_Handler()
 	{
-        frameDamageUI.Show(_model.playerLogic.Health);
+        //frameDamageUI.Show(_model.playerLogic.Health);
     }
 }
