@@ -12,6 +12,7 @@ public class ControllerPlayMenu : IController
     [HideInInspector] public UnityEvent EventButtonPlayClick;
 
     [SerializeField] private Button buttonBack;
+    [SerializeField] private Animator _animator;
 
     [Header("BarUP")]
     [SerializeField] private Dropdown dropdownMap;
@@ -140,7 +141,7 @@ public class ControllerPlayMenu : IController
 
     public void ButtonBack_Click()
     {
-        Deactive();
-        gameObject.SetActive(false);
+        _animator.SetBool("Close", true);
+        Invoke("Deactive", 3f);
     }
 }

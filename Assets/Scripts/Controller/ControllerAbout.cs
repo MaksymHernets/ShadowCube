@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class ControllerAbout : IController
 {
 	[SerializeField] private Button buttonBack;
+	[SerializeField] private Animator _animator;
 
 	public override void Init(IModel model)
 	{
@@ -17,8 +18,8 @@ public class ControllerAbout : IController
 
 	public void ButtonBack_Click()
 	{
-		Deactive();
-		gameObject.SetActive(false);
+		_animator.SetBool("Close", true);
+		Invoke("Deactive", 3f);
 	}
 }
 

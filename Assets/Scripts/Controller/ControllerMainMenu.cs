@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UniRx;
+using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
@@ -6,6 +7,7 @@ public class ControllerMainMenu : IController
 {
     public UnityAction<string> EventButtonClick;
 
+    [SerializeField] private Animator _animator;
     [SerializeField] private Text textVersion;
     [SerializeField] private Button buttonPlay;
     [SerializeField] private Button buttonOnline;
@@ -63,5 +65,12 @@ public class ControllerMainMenu : IController
     public void ButtonExit_Click()
     {
         Application.Quit();
+    }
+
+	public override void Deactive()
+	{
+        _animator.SetBool("Close", true);
+        Observable.Timer(System.TimeSpan.FromSeconds(2.5f))
+        .Subscribe( _ => { base.Deactive(); } );
     }
 }

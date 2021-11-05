@@ -1,5 +1,6 @@
 ﻿using ShadowCube.Setting;
 using System.Linq;
+using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -7,6 +8,7 @@ using Zenject;
 public class ControllerOptionMenu : IController
 {
     [SerializeField] private Button buttonBack;
+    [SerializeField] private Animator _animator;
 
     [Header("Bar")]
     [SerializeField] private Button buttonGeneric;
@@ -215,6 +217,8 @@ public class ControllerOptionMenu : IController
 
     public void ButtonBack_Click()
     {
-        Deactive();
+        _animator.SetBool("Close", true);
+        Invoke("Deactive", 3f);
     }
+
 }

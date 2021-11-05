@@ -141,6 +141,7 @@
     <Compile Include="Assets\Scripts\Configs\GenericSetting.cs" />
     <Compile Include="Assets\Scripts\Configs\GraphicSetting.cs" />
     <Compile Include="Assets\Scripts\Controller\ControllerAbout.cs" />
+    <Compile Include="Assets\Scripts\Controller\ControllerDisplayDamage.cs" />
     <Compile Include="Assets\Scripts\Controller\ControllerEndGame.cs" />
     <Compile Include="Assets\Scripts\Controller\ControllerHUD.cs" />
     <Compile Include="Assets\Scripts\Controller\ControllerItem.cs" />

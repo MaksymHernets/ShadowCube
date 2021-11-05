@@ -2,6 +2,7 @@
 using ShadowCube.Setting;
 using System.Collections;
 using System.Collections.Generic;
+using UniRx;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
@@ -18,16 +19,23 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private ControllerOptionMenu menuOptions;
     [SerializeField] private ControllerAbout menuAbout;
 
+    [Header("Other")]
+    [SerializeField] private CPC_CameraPath cameraPath;
+    [SerializeField] private GameObject person;
+
+    private string _namePanel;
+
     [Inject] GameSetting gameSetting;
 
     private void Start()
 	{
         mainMenu.EventButtonClick += Event_ButtonClick;
+        mainMenu.EventClose.AddListener(Handler_MainMenu_Close);
 
         menuPlay.EventButtonPlayClick.AddListener(Event_ButtonPlayClick);
         menuPlay.EventClose.AddListener(Event_Menu_Close);
         menuOnline.EventClose.AddListener(Event_Menu_Close);
-        menuPerson.EventClose.AddListener(Event_Menu_Close);
+        menuPerson.EventClose.AddListener(Event_MenuPerson_Close);
         menuOptions.EventClose.AddListener(Event_Menu_Close);
         menuAbout.EventClose.AddListener(Event_Menu_Close);
 
@@ -46,22 +54,41 @@ public class MainMenuManager : MonoBehaviour
 
     private void Event_ButtonClick(string name)
 	{
-        switch ( name )
-		{
-            case "PlayMenu": menuPlay.Init(new ModelPlayMenu() { mainMenuManager = this }); break;
-            case "OnlineMenu": menuOnline.Init(new ModelOnlineMenu() ); break;
-            case "PersonMenu": menuPerson.Init(new ModelPersonMenu(gameSetting.playerDTO) ); break;
-            case "OptionMenu": menuOptions.Init(new ModelOptionMenu() ); break;
-            case "AboutMenu": menuAbout.Init(new IModel() ); break;
-            default: return;
-        }
-            
+        _namePanel = name;
         mainMenu.Deactive();
+    }
+
+    private void Handler_MainMenu_Close()
+	{
+        switch (_namePanel)
+        {
+            case "PlayMenu": menuPlay.Init(new ModelPlayMenu() { mainMenuManager = this }); break;
+            case "OnlineMenu": menuOnline.Init(new ModelOnlineMenu()); break;
+            case "PersonMenu":
+                cameraPath.points.Reverse();
+                cameraPath.PlayPath(2);
+                person.SetActive(true);
+                cameraMoveOne.gameObject.SetActive(false);
+                menuPerson.Init(new ModelPersonMenu(gameSetting.playerDTO)); 
+                break;
+            case "OptionMenu": menuOptions.Init(new ModelOptionMenu()); break;
+            case "AboutMenu": menuAbout.Init(new IModel()); break;
+        }
     }
 
     private void Event_Menu_Close()
     {
         mainMenu.Init(new IModel());
+    }
+
+    private void Event_MenuPerson_Close()
+    {
+        cameraPath.points.Reverse();
+        cameraPath.PlayPath(2);
+        person.SetActive(false);
+        cameraMoveOne.gameObject.SetActive(true);
+        Observable.Timer(System.TimeSpan.FromSeconds(2f))
+        .Subscribe(_ => { mainMenu.Init(new IModel()); });
     }
 
     public void ShowCube(int index, int index2)

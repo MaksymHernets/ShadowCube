@@ -4,6 +4,8 @@ using UnityEngine.UI;
 public class ControllerOnlineMenu : IController
 {
 	[SerializeField] private Button buttonBack;
+	[SerializeField] private Animator _animator;
+
 	[Header("BarUP")]
 	[SerializeField] private Button buttonIsLocal;
 	[SerializeField] private Button buttonRefresh;
@@ -11,6 +13,7 @@ public class ControllerOnlineMenu : IController
 	[SerializeField] private Button buttonHyperCube;
 	[SerializeField] private Button buttonCubeZero;
 	[SerializeField] private Button buttonSketchCube;
+
 	[Header("Table")]
 	[SerializeField] private Transform contect;
 
@@ -45,7 +48,7 @@ public class ControllerOnlineMenu : IController
 
 	public void ButtonBack_Click()
 	{
-		Deactive();
-		gameObject.SetActive(false);
+		_animator.SetBool("Close", true);
+		Invoke("Deactive", 3f);
 	}
 }

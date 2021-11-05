@@ -7,14 +7,11 @@ using Zenject;
 public class ControllerPersonMenu : IController
 {
 	[SerializeField] private Button buttonBack;
+	[SerializeField] private Animator _animator;
 
 	[Header("Property")]
 	[SerializeField] private InputField inputFieldName;
 	[SerializeField] private Dropdown dropdownGender;
-
-	[Header("Other")]
-	[SerializeField] private CPC_CameraPath cameraPath;
-    [SerializeField] private GameObject person;
 
     private ModelPersonMenu _model;
 
@@ -25,10 +22,6 @@ public class ControllerPersonMenu : IController
         _model = model as ModelPersonMenu;
 
 		gameObject.SetActive(true);
-
-		cameraPath.points.Reverse();
-		cameraPath.PlayPath(2);
-		person.SetActive(true);
 
 		inputFieldName.text = _model.playerDTO.Name;
 		dropdownGender.value = _model.playerDTO.Gender;
@@ -55,20 +48,7 @@ public class ControllerPersonMenu : IController
 	public void ButtonBack_Click()
 	{
 		gameSetting.UpdatePlayerDTO(_model.playerDTO);
-		Deactive();
-	}
-
-	public override void Deactive()
-	{
-		StartCoroutine(DeactiveScript());
-	}
-
-	private IEnumerator DeactiveScript()
-	{
-		cameraPath.points.Reverse();
-		cameraPath.PlayPath(2);
-		person.SetActive(false);
-		yield return new WaitForSeconds(2.5f);
-		base.Deactive();
+		_animator.SetBool("Close", true);
+		Invoke("Deactive", 3f);
 	}
 }
