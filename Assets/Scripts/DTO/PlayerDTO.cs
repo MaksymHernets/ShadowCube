@@ -1,6 +1,5 @@
-﻿using Playerr;
+﻿using ShadowCube.Player;
 using System;
-using UnityEngine;
 
 namespace ShadowCube.DTO
 {
@@ -17,7 +16,7 @@ namespace ShadowCube.DTO
             Name = "Nomad";
             ID = Guid.NewGuid();
             Gender = 0;
-            inventory = new Inventory(10);
+            inventory = new Inventory();
             score = new ScoreCube();
         }
     }
