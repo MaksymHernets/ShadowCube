@@ -44,9 +44,9 @@ public class ControllerMenu : IController
     {
         if ( Input.GetKeyDown(KeyCodeCallMenu) )
 		{
-			IsActive = !IsActive;
-			Fon.SetActive(IsActive);
 			Cursor.visible = IsActive;
+			IsActive = !IsActive;
+			Fon.SetActive(IsActive);	
 			if ( IsActive )
 			{
 				EventOpenedMenu.Invoke();
