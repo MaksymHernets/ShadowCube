@@ -27,7 +27,7 @@ public class ControllerPlayMenu : IController
 
     [Inject] GameSetting gameSetting;
 
-    private RoomLoby room = new RoomLoby();
+    //private RoomLoby room = new RoomLoby();
     private List<Entity> players = new List<Entity>();
 
     private ModelPlayMenu _model;
@@ -69,13 +69,13 @@ public class ControllerPlayMenu : IController
 
     public void ButtonStart_Click()
     {
-        if (toggleAddBots.isOn)
-        {
-            for (int i = 0; i < room.Size - players.Count; i++)
-            {
-                players.Add(new Entity());
-            }
-        }
+        //if (toggleAddBots.isOn)
+        //{
+        //    for (int i = 0; i < room.Size - players.Count; i++)
+        //    {
+        //        players.Add(new Entity());
+        //    }
+        //}
 
         _animator.SetBool("Close", true);
         Invoke("Call_EventButtonPlay", 3f);
@@ -90,27 +90,27 @@ public class ControllerPlayMenu : IController
     #region Maps
     public void ButtonCubeOne_Click()
     {
-        ChangedButton(room.IndexCube, 0);
+        ChangedButton(gameSetting.indexCube, 0);
     }
 
     public void ButtonHyberCube_Click()
     {
-        ChangedButton(room.IndexCube, 1);
+        ChangedButton(gameSetting.indexCube, 1);
     }
 
     public void ButtonCubeZero_Click()
     {
-        ChangedButton(room.IndexCube, 2);
+        ChangedButton(gameSetting.indexCube, 2);
     }
 
     public void ButtonNewCube_Click()
     {
-        ChangedButton(room.IndexCube, 3);
+        ChangedButton(gameSetting.indexCube, 3);
     }
 
     public void ButtonCubeFour_Click()
     {
-        ChangedButton(room.IndexCube, 4);
+        ChangedButton(gameSetting.indexCube, 4);
     }
     #endregion
 
@@ -118,7 +118,7 @@ public class ControllerPlayMenu : IController
     {
         if (oldindex != newindex)
         {
-            room.IndexCube = newindex;
+            gameSetting.indexCube = newindex;
             maps[oldindex].image.color = new Color(0.3f, 0.3f, 0.3f, 0.8f);
             maps[newindex].image.color = Color.black;
             _model.mainMenuManager.ShowCube(oldindex, newindex);
@@ -128,21 +128,21 @@ public class ControllerPlayMenu : IController
     #region Property
     public void SliderPlayerCount_Click(float value)
     {
-        room.Size = (int)value;
+        //room.Size = (int)value;
         textCountPlayers.text = value.ToString();
     }
 
     public void ButtonPrivatPublic_Click()
     {
-        room.IsPrivate = !room.IsPrivate;
-        if (room.IsPrivate)
-        {
-            buttonPrivatePublic.text = "Private";
-        }
-        else
-        {
-            buttonPrivatePublic.text = "Public";
-        }
+        //room.IsPrivate = !room.IsPrivate;
+        //if (room.IsPrivate)
+        //{
+        //    buttonPrivatePublic.text = "Private";
+        //}
+        //else
+        //{
+        //    buttonPrivatePublic.text = "Public";
+        //}
     }
     #endregion
 
