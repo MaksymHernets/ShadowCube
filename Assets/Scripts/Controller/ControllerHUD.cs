@@ -2,15 +2,15 @@
 
 public class ControllerHUD : IController
 {
-    public GameObject Menu;
-
     private ModelHUD _model;
 
     public override void Init(IModel model)
 	{
         _model = model as ModelHUD;
 
-        _model.playerLogic.EventDamage.AddListener( eventDamage_Handler );
+        gameObject.SetActive(true);
+
+        //_model.playerLogic.EventDamage.AddListener( eventDamage_Handler );
 
         Cursor.visible = false;
     }

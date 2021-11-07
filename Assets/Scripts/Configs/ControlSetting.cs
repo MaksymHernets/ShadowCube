@@ -1,4 +1,5 @@
-﻿using UniRx;
+﻿using DTO;
+using UniRx;
 using UnityEngine;
 
 namespace ShadowCube.Setting
@@ -14,7 +15,21 @@ namespace ShadowCube.Setting
 			set
 			{
 				PlayerPrefs.SetFloat("SpeedMouse", value);
-				_speedMouse.Value = value;
+				SpeedMouse.Value = value;
+			}
+		}
+
+		public ControlPC controlPC
+		{
+			get
+			{
+				return JsonUtility.FromJson<ControlPC>(PlayerPrefs.GetString("ControlPC"));
+			}
+			private set
+			{
+				var jsonplayer = JsonUtility.ToJson(value);
+				PlayerPrefs.SetString("ControlPC", jsonplayer);
+				ReactControlPC.Value = value;
 			}
 		}
 
@@ -24,10 +39,18 @@ namespace ShadowCube.Setting
 			{
 				PlayerPrefs.SetFloat("SpeedMouse", 0f);
 			}
+			if (!PlayerPrefs.HasKey("ControlPC"))
+			{
+				var newControlPC = new ControlPC();
+				PlayerPrefs.SetString("ControlPC", JsonUtility.ToJson(newControlPC));
+			}
 
-			_speedMouse = new ReactiveProperty<float>(speedMouse);
+			SpeedMouse = new ReactiveProperty<float>(speedMouse);
+			ReactControlPC = new ReactiveProperty<ControlPC>(controlPC);
 		}
 
-		private ReactiveProperty<float> _speedMouse;
+		private ReactiveProperty<float> SpeedMouse;
+
+		private ReactiveProperty<ControlPC> ReactControlPC;
 	}
 }

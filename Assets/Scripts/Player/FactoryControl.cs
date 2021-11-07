@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class FactoryControl : MonoBehaviour
 {
-    [SerializeField] private PlayerLogic playerLogic;
-    [SerializeField] private ControlPlayerPC controlPlayerPC;
-    [SerializeField] private ControlPlayerAndroid controlPlayerAndroid;
+	[SerializeField] private PlayerLogic playerLogic;
+	[SerializeField] private ControlPlayerPC controlPlayerPC;
+	[SerializeField] private ControlPlayerAndroid controlPlayerAndroid;
 
 	private void Start()
 	{
-		if ( Application.platform == RuntimePlatform.WindowsPlayer)
+		if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor)
 		{
 			GameObject.Instantiate(controlPlayerPC).Init(playerLogic);
 		}

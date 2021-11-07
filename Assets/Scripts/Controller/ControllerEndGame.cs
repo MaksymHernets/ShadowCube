@@ -19,7 +19,7 @@ public class ControllerEndGame : IController
 		buttonReturn.onClick.AddListener(ButtonReturn_clicked);
 		buttonOverwatch.onClick.AddListener(ButtonOverwatch_clicked);
 
-		UnityEngine.Cursor.visible = true;
+		Cursor.visible = true;
 	}
 
 	private void ButtonOverwatch_clicked()

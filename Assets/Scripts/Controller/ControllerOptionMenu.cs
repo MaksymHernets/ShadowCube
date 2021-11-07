@@ -10,10 +10,14 @@ public class ControllerOptionMenu : IController
     [SerializeField] private Button buttonBack;
     [SerializeField] private Animator _animator;
 
-    [Header("Bar")]
+    [Header("BarUP")]
     [SerializeField] private Button buttonGeneric;
     [SerializeField] private Button buttonControl;
     [SerializeField] private Button buttonGraphic;
+
+    [Header("BarDown")]
+    [SerializeField] private Button buttonDefault;
+    [SerializeField] private Button buttonApply;
 
     [Header("Panels")]
     [SerializeField] private GameObject panelGeneric;
@@ -28,7 +32,6 @@ public class ControllerOptionMenu : IController
 
     [Header("Control")]
     [SerializeField] private SliderTextUI sliderTextMouse;
-    [SerializeField] private Button buttonApply;
 
     [Header("Graphic")]
     [SerializeField] private Dropdown DropDownScale;
@@ -51,9 +54,9 @@ public class ControllerOptionMenu : IController
 
         gameObject.SetActive(true);
 
-        InitGeneric();
-        InitGraphic();
-        InitControl();
+        //InitGeneric();
+        //InitGraphic();
+        //InitControl();
     }
 
     private void InitGeneric()
@@ -218,6 +221,7 @@ public class ControllerOptionMenu : IController
     public void ButtonBack_Click()
     {
         _animator.SetBool("Close", true);
+        //_animator.GetCurrentAnimatorStateInfo(0).
         Invoke("Deactive", 3f);
     }
 
