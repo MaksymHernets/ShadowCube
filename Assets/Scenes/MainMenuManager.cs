@@ -44,8 +44,7 @@ public class MainMenuManager : MonoBehaviour
 
     private void Event_ButtonPlayClick()
 	{
-        End();
-        menuPlay.Deactive();
+        Dispose();
         Cubes[gameSetting.indexCube].OpenDoor(2);
         cameraMoveOne.gameObject.SetActive(false);
         Camera.main.transform.localEulerAngles = new Vector3(0, 90, 0);
@@ -97,7 +96,7 @@ public class MainMenuManager : MonoBehaviour
         Cubes[index2].gameObject.SetActive(true);
     }
 
-    private void End()
+    private void Dispose()
 	{
         mainMenu.EventButtonClick -= Event_ButtonClick;
 

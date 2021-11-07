@@ -77,6 +77,13 @@ public class ControllerPlayMenu : IController
             }
         }
 
+        _animator.SetBool("Close", true);
+        Invoke("Call_EventButtonPlay", 3f);
+        
+    }
+
+    private void Call_EventButtonPlay()
+	{
         EventButtonPlayClick.Invoke();
     }
 
