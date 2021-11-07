@@ -1,10 +1,14 @@
 ﻿using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ControllerMenu : IController
 {
+	[HideInInspector] public UnityEvent EventOpenedMenu;
+	[HideInInspector] public UnityEvent EventClosedMenu;
+
 	[SerializeField] private KeyCode KeyCodeCallMenu = KeyCode.Escape;
 	[SerializeField] private GameObject Fon;
 	[SerializeField] private GameObject BlockLeft;
@@ -43,6 +47,14 @@ public class ControllerMenu : IController
 			IsActive = !IsActive;
 			Fon.SetActive(IsActive);
 			Cursor.visible = IsActive;
+			if ( IsActive )
+			{
+				EventOpenedMenu.Invoke();
+			}
+			else
+			{
+				EventClosedMenu.Invoke();
+			}
 		}
     }
 
@@ -58,6 +70,7 @@ public class ControllerMenu : IController
 		IsActive = false;
 		Fon.SetActive(false);
 		Cursor.visible = false;
+		EventClosedMenu.Invoke();
 	}
 
 	private void ButtonStatus_Click()
