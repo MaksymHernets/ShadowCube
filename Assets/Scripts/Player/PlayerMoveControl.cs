@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerMoveControl : Entity , IMoveControl
 {
 	#region Components
-	private Animator _animator;
-	private Rigidbody _rigidbody;
+	[SerializeField] private Animator _animator;
+    [SerializeField] private Rigidbody _rigidbody;
 	private CapsuleCollider _capsuleCollider;
     #endregion
 
@@ -21,6 +21,9 @@ public class PlayerMoveControl : Entity , IMoveControl
     private float extraGravity = -10f;
     private float verticalVelocity;
     private float heightReached;
+
+    internal Vector3 inputSmooth;
+    internal Vector3 input;
 
     private void Start()
 	{
@@ -39,42 +42,49 @@ public class PlayerMoveControl : Entity , IMoveControl
 	public void SitDown()
 	{
         isSitDown = !isSitDown;
+        _animator.SetBool("Crouch", true);
     }
 
     public void Jump()
 	{
         if (isGrounded == true && isSitDown == false)
 		{
-           // _rigidbody.AddForce();
+            // _rigidbody.AddForce();
+            _animator.SetBool("Jump", true);
         }
-        
+    }
+
+    public void Forward()
+	{
+        MoveCharacter(this.transform.forward);
+    }
+
+    public virtual void MoveCharacter(Vector3 _direction)
+    {
+        _animator.SetBool("Walk", true);
+        // calculate input smooth
+        inputSmooth = Vector3.Lerp(inputSmooth, input, 6 * Time.deltaTime);
+
+        if (!isGrounded || isJumping) return;
+
+        _direction.y = 0;
+        _direction.x = Mathf.Clamp(_direction.x, -1f, 1f);
+        _direction.z = Mathf.Clamp(_direction.z, -1f, 1f);
+        // limit the input
+        if (_direction.magnitude > 1f)
+            _direction.Normalize();
+
+        Vector3 targetPosition = _rigidbody.position + _direction * 1 * Time.deltaTime;
+        Vector3 targetVelocity = (targetPosition - transform.position) / Time.deltaTime;
+
+        bool useVerticalVelocity = true;
+        if (useVerticalVelocity) targetVelocity.y = _rigidbody.velocity.y;
+        _rigidbody.velocity = targetVelocity;
     }
 
     public void HeadTurn(Vector3 direction)
 	{
         _mainCamera.transform.localEulerAngles += direction;
-    }
-
-    public virtual void MoveCharacter(Vector3 _direction)
-    {
-        // calculate input smooth
-        //inputSmooth = Vector3.Lerp(inputSmooth, input, (isStrafing ? strafeSpeed.movementSmooth : freeSpeed.movementSmooth) * Time.deltaTime);
-
-        //if (!isGrounded || isJumping) return;
-
-        //_direction.y = 0;
-        //_direction.x = Mathf.Clamp(_direction.x, -1f, 1f);
-        //_direction.z = Mathf.Clamp(_direction.z, -1f, 1f);
-        //// limit the input
-        //if (_direction.magnitude > 1f)
-        //    _direction.Normalize();
-
-        //Vector3 targetPosition = (useRootMotion ? animator.rootPosition : _rigidbody.position) + _direction * (stopMove ? 0 : moveSpeed) * Time.deltaTime;
-        //Vector3 targetVelocity = (targetPosition - transform.position) / Time.deltaTime;
-
-        //bool useVerticalVelocity = true;
-        //if (useVerticalVelocity) targetVelocity.y = _rigidbody.velocity.y;
-        //_rigidbody.velocity = targetVelocity;
     }
 
     protected void CheckGround()
@@ -137,6 +147,26 @@ public class PlayerMoveControl : Entity , IMoveControl
         //    groundDistance = (float)System.Math.Round(dist, 2);
         //}
     }
+
+    public virtual void RotateToPosition(Vector3 position)
+    {
+        Vector3 desiredDirection = position - transform.position;
+        RotateToDirection(desiredDirection.normalized);
+    }
+
+    public virtual void RotateToDirection(Vector3 direction)
+    {
+        RotateToDirection(direction, 16f);
+    }
+
+    public virtual void RotateToDirection(Vector3 direction, float rotationSpeed)
+    {
+        //if (!jumpAndRotate && !isGrounded) return;
+        direction.y = 0f;
+        Vector3 desiredForward = Vector3.RotateTowards(transform.forward, direction.normalized, rotationSpeed * Time.deltaTime, .1f);
+        Quaternion _newRotation = Quaternion.LookRotation(desiredForward);
+        transform.rotation = _newRotation;
+    }
 }
 
 public interface IMoveControl
@@ -144,4 +174,9 @@ public interface IMoveControl
     void SitDown();
     void Jump();
     void HeadTurn(Vector3 direction);
+
+    void Forward();
+    void MoveCharacter(Vector3 _direction);
+
+    void RotateToPosition(Vector3 position);
 }

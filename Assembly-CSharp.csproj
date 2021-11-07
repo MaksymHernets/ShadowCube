@@ -133,7 +133,6 @@
     <Compile Include="Assets\Scenes\MainMenuLogic.cs" />
     <Compile Include="Assets\Scenes\MainMenuManager.cs" />
     <Compile Include="Assets\Scenes\PlaceLogic.cs" />
-    <Compile Include="Assets\Scripts\AudioController.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraMoveOne.cs" />
     <Compile Include="Assets\Scripts\Camera\CameraMoveTwo.cs" />
     <Compile Include="Assets\Scripts\Configs\ControlSetting.cs" />
@@ -146,13 +145,14 @@
     <Compile Include="Assets\Scripts\Controller\ControllerHUD.cs" />
     <Compile Include="Assets\Scripts\Controller\ControllerItem.cs" />
     <Compile Include="Assets\Scripts\Controller\ControllerMainMenu.cs" />
+    <Compile Include="Assets\Scripts\Controller\ControllerMenu.cs" />
     <Compile Include="Assets\Scripts\Controller\ControllerOnlineMenu.cs" />
     <Compile Include="Assets\Scripts\Controller\ControllerOptionMenu.cs" />
     <Compile Include="Assets\Scripts\Controller\ControllerPersonMenu.cs" />
     <Compile Include="Assets\Scripts\Controller\ControllerPlayMenu.cs" />
     <Compile Include="Assets\Scripts\Controller\IController.cs" />
     <Compile Include="Assets\Scripts\DTO\Bot.cs" />
-    <Compile Include="Assets\Scripts\DTO\Control.cs" />
+    <Compile Include="Assets\Scripts\DTO\ControlPC.cs" />
     <Compile Include="Assets\Scripts\DTO\Damage.cs" />
     <Compile Include="Assets\Scripts\DTO\Entity.cs" />
     <Compile Include="Assets\Scripts\DTO\PlayerDTO.cs" />
