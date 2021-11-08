@@ -1,6 +1,5 @@
 ﻿using Cubes;
 using ShadowCube.Setting;
-using System.Collections;
 using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
@@ -11,6 +10,7 @@ public class MainMenuManager : MonoBehaviour
 {
     [SerializeField] private Animator animator;
     [SerializeField] private List<CubeLogic> Cubes;
+
     [Header("Controllers")]
     [SerializeField] private ControllerMainMenu mainMenu;
     [SerializeField] private ControllerPlayMenu menuPlay;
@@ -20,7 +20,6 @@ public class MainMenuManager : MonoBehaviour
     [SerializeField] private ControllerAbout menuAbout;
 
     [Header("Other")]
-    [SerializeField] private CPC_CameraPath cameraPath;
     [SerializeField] private GameObject person;
 
     private string _namePanel;
@@ -49,7 +48,7 @@ public class MainMenuManager : MonoBehaviour
         Dispose();
         Cubes[gameSetting.indexCube].OpenDoor(2);
         animator.SetBool("End", true);
-        StartCoroutine(Animation_Camera());
+        Invoke("LoadSceneGame", 8f);
     }
 
     private void Event_ButtonClick(string name)
@@ -65,10 +64,9 @@ public class MainMenuManager : MonoBehaviour
             case "PlayMenu": menuPlay.Init(new ModelPlayMenu() { mainMenuManager = this }); break;
             case "OnlineMenu": menuOnline.Init(new ModelOnlineMenu()); break;
             case "PersonMenu":
-                cameraPath.points.Reverse();
-                cameraPath.PlayPath(2);
                 person.SetActive(true);
-                //animator
+                animator.SetBool("PersonEnd", false);
+                animator.SetBool("PersonStart", true);
                 menuPerson.Init(new ModelPersonMenu(gameSetting.playerDTO)); 
                 break;
             case "OptionMenu": menuOptions.Init(new ModelOptionMenu()); break;
@@ -83,10 +81,9 @@ public class MainMenuManager : MonoBehaviour
 
     private void Event_MenuPerson_Close()
     {
-        cameraPath.points.Reverse();
-        cameraPath.PlayPath(2);
         person.SetActive(false);
-        //animator
+        animator.SetBool("PersonStart", false);
+        animator.SetBool("PersonEnd", true);
         Observable.Timer(System.TimeSpan.FromSeconds(2f))
         .Subscribe(_ => { mainMenu.Init(new IModel()); });
     }
@@ -109,14 +106,8 @@ public class MainMenuManager : MonoBehaviour
         menuAbout.EventClose.RemoveListener(Event_Menu_Close);
     }
 
-    private IEnumerator Animation_Camera()
-    {
-        yield return new WaitForSecondsRealtime(4f);
-        for (int i = 0; i < 120; i++)
-        {
-            Camera.main.transform.position += new Vector3(0.02f, 0f, 0f);
-            yield return new WaitForSecondsRealtime(0.03f);
-        }
+    private void LoadSceneGame()
+	{
         SceneManager.LoadScene(1);
     }
 }
