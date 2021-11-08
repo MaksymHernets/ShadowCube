@@ -9,7 +9,7 @@ using Zenject;
 
 public class MainMenuManager : MonoBehaviour
 {
-    [SerializeField] private CameraMoveOne cameraMoveOne;
+    [SerializeField] private Animator animator;
     [SerializeField] private List<CubeLogic> Cubes;
     [Header("Controllers")]
     [SerializeField] private ControllerMainMenu mainMenu;
@@ -40,14 +40,15 @@ public class MainMenuManager : MonoBehaviour
         menuAbout.EventClose.AddListener(Event_Menu_Close);
 
         ShowCube(0, gameSetting.indexCube);
+        Cubes[gameSetting.indexCube].OpenDoor(4);
+        Invoke("Event_Menu_Close", 5f);
     }
 
     private void Event_ButtonPlayClick()
 	{
         Dispose();
         Cubes[gameSetting.indexCube].OpenDoor(2);
-        cameraMoveOne.gameObject.SetActive(false);
-        Camera.main.transform.localEulerAngles = new Vector3(0, 90, 0);
+        animator.SetBool("End", true);
         StartCoroutine(Animation_Camera());
     }
 
@@ -67,7 +68,7 @@ public class MainMenuManager : MonoBehaviour
                 cameraPath.points.Reverse();
                 cameraPath.PlayPath(2);
                 person.SetActive(true);
-                cameraMoveOne.gameObject.SetActive(false);
+                //animator
                 menuPerson.Init(new ModelPersonMenu(gameSetting.playerDTO)); 
                 break;
             case "OptionMenu": menuOptions.Init(new ModelOptionMenu()); break;
@@ -85,7 +86,7 @@ public class MainMenuManager : MonoBehaviour
         cameraPath.points.Reverse();
         cameraPath.PlayPath(2);
         person.SetActive(false);
-        cameraMoveOne.gameObject.SetActive(true);
+        //animator
         Observable.Timer(System.TimeSpan.FromSeconds(2f))
         .Subscribe(_ => { mainMenu.Init(new IModel()); });
     }
