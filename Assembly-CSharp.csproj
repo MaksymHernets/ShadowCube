@@ -102,8 +102,6 @@
     <Compile Include="Assets\OthersAsset\3rdPerson+Fly\Scripts\PlayerScripts\BasicBehaviour.cs" />
     <Compile Include="Assets\OthersAsset\3rdPerson+Fly\Scripts\PlayerScripts\FlyBehaviour.cs" />
     <Compile Include="Assets\OthersAsset\3rdPerson+Fly\Scripts\PlayerScripts\MoveBehaviour.cs" />
-    <Compile Include="Assets\OthersAsset\Addons\CameraPathCreator\DEMO\CPC_DEMO_UpDown.cs" />
-    <Compile Include="Assets\OthersAsset\Addons\CameraPathCreator\Scripts\CPC_CameraPath.cs" />
     <Compile Include="Assets\OthersAsset\EffectExamples\Shared\Scripts\DecalDestroyer.cs" />
     <Compile Include="Assets\OthersAsset\EffectExamples\Shared\Scripts\ExtinguishableFire.cs" />
     <Compile Include="Assets\OthersAsset\EffectExamples\Shared\Scripts\GunAim.cs" />

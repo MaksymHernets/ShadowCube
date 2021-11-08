@@ -64,7 +64,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\OthersAsset\Addons\CameraPathCreator\Scripts\Editor\CPC_CameraPathInspector.cs" />
     <Compile Include="Assets\OthersAsset\EffectExamples\TutorialInfo\Scripts\Editor\ReadmeEditor.cs" />
     <Compile Include="Assets\OthersAsset\Invector-3rdPersonController_LITE\Scripts\Camera\Editor\vThirdPersonCameraEditor.cs" />
     <Compile Include="Assets\OthersAsset\Invector-3rdPersonController_LITE\Scripts\CharacterController\Editor\Resources\vEditorStartupPrefs.cs" />
