@@ -219,7 +219,7 @@ namespace Cubes.CubeFour
 
 		public override void PutObject(Vector3Int position, Transform transform)
 		{
-			throw new System.NotImplementedException();
+			//throw new System.NotImplementedException();
 		}
 
 

@@ -40,7 +40,7 @@ public class MainMenuManager : MonoBehaviour
 
         ShowCube(0, gameSetting.indexCube);
         Cubes[gameSetting.indexCube].OpenDoor(4);
-        Invoke("Event_Menu_Close", 5f);
+        Invoke("Event_Menu_Close", 7f);
     }
 
     private void Event_ButtonPlayClick()
