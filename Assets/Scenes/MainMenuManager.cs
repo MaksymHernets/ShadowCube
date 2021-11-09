@@ -10,6 +10,7 @@ public class MainMenuManager : MonoBehaviour
 {
     [SerializeField] private Animator animator;
     [SerializeField] private List<CubeLogic> Cubes;
+    [SerializeField] private List<CubeLogic> CubesFirst;
 
     [Header("Controllers")]
     [SerializeField] private ControllerMainMenu mainMenu;
@@ -39,6 +40,7 @@ public class MainMenuManager : MonoBehaviour
         menuAbout.EventClose.AddListener(Event_Menu_Close);
 
         ShowCube(0, gameSetting.indexCube);
+        CubesFirst[gameSetting.indexCube].OpenDoor(2);
         Cubes[gameSetting.indexCube].OpenDoor(4);
         Invoke("Event_Menu_Close", 7f);
     }
@@ -92,6 +94,8 @@ public class MainMenuManager : MonoBehaviour
 	{
         Cubes[index].gameObject.SetActive(false);
         Cubes[index2].gameObject.SetActive(true);
+        CubesFirst[index].gameObject.SetActive(false);
+        CubesFirst[index2].gameObject.SetActive(true);
     }
 
     private void Dispose()
