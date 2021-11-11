@@ -1,6 +1,9 @@
 ﻿using UnityEngine;
 
-public class IModel : MonoBehaviour
+namespace ShadowCube.Models
 {
+	public class IModel : MonoBehaviour
+	{
 
+	}
 }

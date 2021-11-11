@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using ShadowCube.Cubes;
+using UnityEngine;
 
-namespace Cubes.CubeFour
+namespace ShadowCubeCubes.CubeFour
 {
 	public class WallLogic5 : WallLogic
     {      

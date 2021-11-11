@@ -1,37 +1,39 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
-public class PoolObjects<T> : MonoBehaviour where T : MonoBehaviour
+namespace ShadowCube.Helpers
 {
-	private List<MonoBehaviour> lists;
-	private T _prefab;
-
-    public PoolObjects(T prefab, int defaultSize = 20)
+	public class PoolObjects<T> : MonoBehaviour where T : MonoBehaviour
 	{
-		lists = new List<MonoBehaviour>();
-		_prefab = prefab;
+		private List<MonoBehaviour> lists;
+		private T _prefab;
 
-		for (int i = 0; i < defaultSize; ++i)
+		public PoolObjects(T prefab, int defaultSize = 20)
 		{
-			var newObject = GameObject.Instantiate(_prefab);
-			newObject.gameObject.SetActive(false);
-			lists.Add(newObject);
-		}
-	}
+			lists = new List<MonoBehaviour>();
+			_prefab = prefab;
 
-	public T Get()
-	{
-		for (int i = 0; i < lists.Count; ++i)
-		{
-			if ( lists[i].gameObject.activeSelf == false)
+			for (int i = 0; i < defaultSize; ++i)
 			{
-				lists[i].gameObject.SetActive(true);
-				return (T)lists[i];
+				var newObject = GameObject.Instantiate(_prefab);
+				newObject.gameObject.SetActive(false);
+				lists.Add(newObject);
 			}
 		}
-		var newObject = GameObject.Instantiate(_prefab);
-		lists.Add(newObject);
-		return (T)newObject;
+
+		public T Get()
+		{
+			for (int i = 0; i < lists.Count; ++i)
+			{
+				if (lists[i].gameObject.activeSelf == false)
+				{
+					lists[i].gameObject.SetActive(true);
+					return (T)lists[i];
+				}
+			}
+			var newObject = GameObject.Instantiate(_prefab);
+			lists.Add(newObject);
+			return (T)newObject;
+		}
 	}
 }

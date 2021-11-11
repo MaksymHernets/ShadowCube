@@ -1,42 +1,44 @@
-﻿using System.Collections;
+﻿using ShadowCube.Setting;
 using System.Collections.Generic;
+using UniRx;
 using UnityEngine;
 using Zenject;
-using ShadowCube.Setting;
-using UniRx;
 
-[RequireComponent(typeof(Camera))]
-public class SnapshotModeSelect : MonoBehaviour
+namespace ShadowCube.Helpers
 {
-    [SerializeField] private int filterIndex = 0;
-    [SerializeField] private Shader[] Shaders;
-
-    private List<SnapshotFilter> filters = new List<SnapshotFilter>();
-
-    [Inject] GraphicSetting graphicSetting;
-
-    private void Awake()
+	[RequireComponent(typeof(Camera))]
+    public class SnapshotModeSelect : MonoBehaviour
     {
-        foreach (var shader in Shaders)
+        [SerializeField] private int filterIndex = 0;
+        [SerializeField] private Shader[] Shaders;
+
+        private List<SnapshotFilter> filters = new List<SnapshotFilter>();
+
+        [Inject] GraphicSetting graphicSetting;
+
+        private void Awake()
         {
-            filters.Add(new BaseFilter("None", Color.white, shader));
+            foreach (var shader in Shaders)
+            {
+                filters.Add(new BaseFilter("None", Color.white, shader));
+            }
+
+            filterIndex = graphicSetting.screenEffect;
         }
 
-        filterIndex = graphicSetting.screenEffect;
-    }
+        private void Start()
+        {
+            graphicSetting.ScreenEffect.AsObservable().Subscribe(Handler_ScreenEffect);
+        }
 
-	private void Start()
-	{
-        graphicSetting.ScreenEffect.AsObservable().Subscribe(Handler_ScreenEffect);
-    }
+        private void Handler_ScreenEffect(int newindex)
+        {
+            filterIndex = newindex;
+        }
 
-    private void Handler_ScreenEffect(int newindex)
-	{
-        filterIndex = newindex;
-    }
-
-	private void OnRenderImage(RenderTexture src, RenderTexture dst)
-    {
-        filters[filterIndex].OnRenderImage(src, dst);
+        private void OnRenderImage(RenderTexture src, RenderTexture dst)
+        {
+            filters[filterIndex].OnRenderImage(src, dst);
+        }
     }
 }

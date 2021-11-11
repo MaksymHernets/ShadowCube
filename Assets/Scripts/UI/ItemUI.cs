@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class ItemUI : MonoBehaviour
+namespace ShadowCube.UI
 {
-    [SerializeField] public Image image;
+    public class ItemUI : MonoBehaviour
+    {
+        [SerializeField] public Image image;
 
 
+    }
 }

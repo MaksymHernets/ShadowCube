@@ -1,8 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using ShadowCube.Scenes;
 
-public class ModelMainMenu : IModel
+namespace ShadowCube.Models
 {
-	public MainMenuManager mainMenuManager;
+	public class ModelMainMenu : IModel
+	{
+		public MainMenuManager mainMenuManager;
+	}
 }

@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Cubes
+namespace ShadowCube.Cubes
 {
     public abstract class CubeLogic : MonoBehaviour
     {

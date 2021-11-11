@@ -1,11 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System.Linq;
+﻿using UnityEngine;
 
-namespace Cubes
+namespace ShadowCube.Cubes
 {
-    [RequireComponent(typeof(MeshRenderer))]
+	[RequireComponent(typeof(MeshRenderer))]
     public abstract class WallLogic : MonoBehaviour
     {
         [SerializeField] private DoorLogic door;

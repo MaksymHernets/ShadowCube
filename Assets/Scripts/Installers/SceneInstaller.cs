@@ -2,7 +2,7 @@
 using UnityEngine;
 using Zenject;
 
-namespace Installers
+namespace ShadowCube.Installers
 {
 	public class SceneInstaller : MonoInstaller
     {

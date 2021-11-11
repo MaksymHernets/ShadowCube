@@ -1,25 +1,28 @@
 ﻿using UnityEngine;
 
-public class InteractiveObject : MonoBehaviour
+namespace ShadowCube.Helpers
 {
-	public Rigidbody Rigidbody { get; set; }
-
-	private void Start()
+	public class InteractiveObject : MonoBehaviour
 	{
-		Rigidbody = gameObject.GetComponent<Rigidbody>();
-	}
+		public Rigidbody Rigidbody { get; set; }
 
-	public void HeaveTo()
-	{
-		Rigidbody.isKinematic = true;
-		Rigidbody.isKinematic = false;
-	}
+		private void Start()
+		{
+			Rigidbody = gameObject.GetComponent<Rigidbody>();
+		}
 
-	public void Taken(Transform transform)
-	{
-		Rigidbody.useGravity = false;
-		Rigidbody.isKinematic = false;
-		transform.parent = transform;
-	}
+		public void HeaveTo()
+		{
+			Rigidbody.isKinematic = true;
+			Rigidbody.isKinematic = false;
+		}
 
+		public void Taken(Transform transform)
+		{
+			Rigidbody.useGravity = false;
+			Rigidbody.isKinematic = false;
+			transform.parent = transform;
+		}
+
+	}
 }

@@ -1,7 +1,8 @@
 ﻿using DG.Tweening;
+using ShadowCube.Cubes;
 using UnityEngine;
 
-namespace Cubes.CubeHyber
+namespace ShadowCubeCubes.CubeHyber
 {
 	public class DoorLogic2 : DoorLogic
     {

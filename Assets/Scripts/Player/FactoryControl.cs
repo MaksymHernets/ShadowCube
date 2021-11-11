@@ -1,22 +1,23 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class FactoryControl : MonoBehaviour
+namespace ShadowCube.Player
 {
-	[SerializeField] private PlayerLogic playerLogic;
-	[SerializeField] private ControlPlayerPC controlPlayerPC;
-	[SerializeField] private ControlPlayerAndroid controlPlayerAndroid;
-
-	private void Start()
+	public class FactoryControl : MonoBehaviour
 	{
-		if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor)
+		[SerializeField] private PlayerLogic playerLogic;
+		[SerializeField] private ControlPlayerPC controlPlayerPC;
+		[SerializeField] private ControlPlayerAndroid controlPlayerAndroid;
+
+		private void Start()
 		{
-			GameObject.Instantiate(controlPlayerPC).Init(playerLogic);
-		}
-		else if ( Application.platform == RuntimePlatform.Android )
-		{
-			GameObject.Instantiate(controlPlayerAndroid).Init(playerLogic);
+			if (Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor)
+			{
+				GameObject.Instantiate(controlPlayerPC).Init(playerLogic);
+			}
+			else if (Application.platform == RuntimePlatform.Android)
+			{
+				GameObject.Instantiate(controlPlayerAndroid).Init(playerLogic);
+			}
 		}
 	}
 }

@@ -1,5 +1,10 @@
-﻿public class ModelPlayMenu : IModel
+﻿using ShadowCube.Scenes;
+
+namespace ShadowCube.Models
 {
-    public MainMenuManager mainMenuManager;
-    //public RoomLoby roomLoby { get; set; }
+    public class ModelPlayMenu : IModel
+    {
+        public MainMenuManager mainMenuManager;
+        //public RoomLoby roomLoby { get; set; }
+    }
 }

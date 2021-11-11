@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Cubes
+namespace ShadowCube.Cubes
 {
 	public abstract class DoorLogic : MonoBehaviour
     {

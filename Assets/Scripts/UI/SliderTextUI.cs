@@ -1,32 +1,35 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class SliderTextUI : MonoBehaviour
+namespace ShadowCube.UI
 {
-    [SerializeField] public Slider slider;
-    [SerializeField] private Text text;
-
-	[HideInInspector]
-	public float Value
+	public class SliderTextUI : MonoBehaviour
 	{
-		get
+		[SerializeField] public Slider slider;
+		[SerializeField] private Text text;
+
+		[HideInInspector]
+		public float Value
 		{
-			return slider.value;
+			get
+			{
+				return slider.value;
+			}
+			set
+			{
+				slider.value = value;
+				text.text = value.ToString("G");
+			}
 		}
-		set
+
+		private void Start()
 		{
-			slider.value = value;
+			slider.onValueChanged.AddListener(OnValueChanged);
+		}
+
+		private void OnValueChanged(float value)
+		{
 			text.text = value.ToString("G");
 		}
-	}
-
-	private void Start()
-	{
-		slider.onValueChanged.AddListener(OnValueChanged);
-	}
-
-	private void OnValueChanged(float value)
-	{
-		text.text = value.ToString("G");
 	}
 }

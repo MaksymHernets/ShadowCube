@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using ShadowCube.Cubes;
 using UnityEngine;
 
-namespace Cubes.CubeHyber
+namespace ShadowCubeCubes.CubeHyber
 {
-    public class CubeLogic2 : CubeLogic
+	public class CubeLogic2 : CubeLogic
     {
         [SerializeField] private AudioSource audioSource;
 

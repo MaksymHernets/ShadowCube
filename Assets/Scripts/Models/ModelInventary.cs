@@ -1,6 +1,6 @@
 ﻿using ShadowCube.DTO;
 
-namespace ShadowCube.Model
+namespace ShadowCube.Models
 {
 	public class ModelInventary : IModel
     {

@@ -1,22 +1,26 @@
-﻿using UnityEngine;
+﻿using ShadowCube.Models;
+using UnityEngine;
 
-public class ControllerHUD : IController
+namespace ShadowCube.Controller
 {
-    private ModelHUD _model;
+    public class ControllerHUD : IController
+    {
+        private ModelHUD _model;
 
-    public override void Init(IModel model)
-	{
-        _model = model as ModelHUD;
+        public override void Init(IModel model)
+        {
+            _model = model as ModelHUD;
 
-        gameObject.SetActive(true);
+            gameObject.SetActive(true);
 
-        //_model.playerLogic.EventDamage.AddListener( eventDamage_Handler );
+            //_model.playerLogic.EventDamage.AddListener( eventDamage_Handler );
 
-        Cursor.visible = false;
-    }
+            Cursor.visible = false;
+        }
 
-    private void eventDamage_Handler()
-	{
-        //frameDamageUI.Show(_model.playerLogic.Health);
+        private void eventDamage_Handler()
+        {
+            //frameDamageUI.Show(_model.playerLogic.Health);
+        }
     }
 }

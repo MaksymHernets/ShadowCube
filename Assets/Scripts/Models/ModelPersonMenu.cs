@@ -1,11 +1,14 @@
 ﻿using ShadowCube.DTO;
 
-public class ModelPersonMenu : IModel
+namespace ShadowCube.Models
 {
-	public PlayerDTO playerDTO { get; }
-
-	public ModelPersonMenu(PlayerDTO player)
+	public class ModelPersonMenu : IModel
 	{
-		playerDTO = player;
+		public PlayerDTO playerDTO { get; }
+
+		public ModelPersonMenu(PlayerDTO player)
+		{
+			playerDTO = player;
+		}
 	}
 }

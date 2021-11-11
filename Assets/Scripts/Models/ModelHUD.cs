@@ -1,4 +1,9 @@
-﻿public class ModelHUD : IModel
+﻿using ShadowCube.Player;
+
+namespace ShadowCube.Models
 {
-    public PlayerLogic playerLogic { get; set; }
+    public class ModelHUD : IModel
+    {
+        public PlayerLogic playerLogic { get; set; }
+    }
 }

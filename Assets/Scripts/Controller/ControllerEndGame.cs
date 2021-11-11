@@ -1,34 +1,38 @@
-﻿using ShadowCube.UI;
+﻿using ShadowCube.Models;
+using ShadowCube.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class ControllerEndGame : IController
+namespace ShadowCube.Controller
 {
-	[SerializeField] private ScoreUI scoreUI;
-	[SerializeField] private Button buttonReturn;
-	[SerializeField] private Button buttonOverwatch;
-
-	protected ModelEndGame _model;
-
-	public override void Init(IModel model)
+	public class ControllerEndGame : IController
 	{
-		_model = model as ModelEndGame;
+		[SerializeField] private ScoreUI scoreUI;
+		[SerializeField] private Button buttonReturn;
+		[SerializeField] private Button buttonOverwatch;
 
-		scoreUI.Show(new ShadowCube.DTO.ScoreCube() { Time = _model.Time });
-		buttonReturn.onClick.AddListener(ButtonReturn_clicked);
-		buttonOverwatch.onClick.AddListener(ButtonOverwatch_clicked);
+		protected ModelEndGame _model;
 
-		Cursor.visible = true;
-	}
+		public override void Init(IModel model)
+		{
+			_model = model as ModelEndGame;
 
-	private void ButtonOverwatch_clicked()
-	{
-		
-	}
+			scoreUI.Show(new ShadowCube.DTO.ScoreCube() { Time = _model.Time });
+			buttonReturn.onClick.AddListener(ButtonReturn_clicked);
+			buttonOverwatch.onClick.AddListener(ButtonOverwatch_clicked);
 
-	private void ButtonReturn_clicked()
-	{
-		SceneManager.LoadScene(0);
+			Cursor.visible = true;
+		}
+
+		private void ButtonOverwatch_clicked()
+		{
+
+		}
+
+		private void ButtonReturn_clicked()
+		{
+			SceneManager.LoadScene(0);
+		}
 	}
 }

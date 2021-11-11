@@ -1,94 +1,98 @@
-﻿using Cubes;
-using Invector.vCharacterController;
+﻿using Invector.vCharacterController;
+using ShadowCube.Cubes;
 using ShadowCube.DTO;
+using ShadowCube.Helpers;
 using UnityEngine;
 
-public class PlayerLogic : PlayerMoveControl , IPlayerLogic
+namespace ShadowCube.Player
 {
-    [SerializeField] private float distanceUse = 1;
-    [SerializeField] private StatusPlayer statusPlayer = StatusPlayer.alive;
-    [SerializeField] private vThirdPersonController vthirdPersonController;
-    [SerializeField] private vThirdPersonCamera vthirdPersonCamera;
-    [SerializeField] private AudioSource foolman;
-
-    private PlayerDTO _player;
-    private InteractiveObject TakeObject;
-    private PlayerController _playerController;
-
-    #region temp
-    private int _WC = Screen.width / 2;
-    private int _HC = Screen.height / 2;
-    private RaycastHit hit;
-    private Ray ray;
-    private float forcee = 4f;
-    #endregion
-
-    void Start()
+	public class PlayerLogic : PlayerMoveControl, IPlayerLogic
     {
-        EventDie.AddListener(EventDie_Handler);
-    }
+        [SerializeField] private float distanceUse = 1;
+        [SerializeField] private StatusPlayer statusPlayer = StatusPlayer.alive;
+        [SerializeField] private vThirdPersonController vthirdPersonController;
+        [SerializeField] private vThirdPersonCamera vthirdPersonCamera;
+        [SerializeField] private AudioSource foolman;
 
-	public void Init(PlayerController playerController, PlayerDTO player)
-	{
-        _playerController = playerController;
-        _player = player;
-    }
+        private PlayerDTO _player;
+        private InteractiveObject TakeObject;
+        private PlayerController _playerController;
 
-    public void ToUse()
-	{
-        ray = Camera.main.ScreenPointToRay(new Vector3(_WC, _HC, 0f));
+        #region temp
+        private int _WC = Screen.width / 2;
+        private int _HC = Screen.height / 2;
+        private RaycastHit hit;
+        private Ray ray;
+        private float forcee = 4f;
+        #endregion
 
-        if (Physics.Raycast(ray, out hit))
+        void Start()
         {
-            if (hit.distance <= distanceUse)
+            EventDie.AddListener(EventDie_Handler);
+        }
+
+        public void Init(PlayerController playerController, PlayerDTO player)
+        {
+            _playerController = playerController;
+            _player = player;
+        }
+
+        public void ToUse()
+        {
+            ray = Camera.main.ScreenPointToRay(new Vector3(_WC, _HC, 0f));
+
+            if (Physics.Raycast(ray, out hit))
             {
-                if ( hit.transform.gameObject.GetComponent<DoorLogic>() )
+                if (hit.distance <= distanceUse)
                 {
-                    hit.transform.gameObject.GetComponent<DoorLogic>().Open();
-                }
-                else if ( hit.transform.gameObject.GetComponent<InteractiveObject>() )
-                {
-                    hit.transform.gameObject.GetComponent<InteractiveObject>().Taken(this.transform);
+                    if (hit.transform.gameObject.GetComponent<DoorLogic>())
+                    {
+                        hit.transform.gameObject.GetComponent<DoorLogic>().Open();
+                    }
+                    else if (hit.transform.gameObject.GetComponent<InteractiveObject>())
+                    {
+                        hit.transform.gameObject.GetComponent<InteractiveObject>().Taken(this.transform);
+                    }
                 }
             }
         }
-    }
 
-    public void DropItem()
-	{
-        TakeObject.GetComponent<Rigidbody>().useGravity = true;
-        TakeObject.Rigidbody.AddForce(
-            new Vector3(transform.localRotation.x * forcee, transform.localRotation.y * forcee, transform.localRotation.z * forcee)
-            , ForceMode.Impulse);
-        TakeObject.transform.parent = null;
-        TakeObject = null;
-    }
+        public void DropItem()
+        {
+            TakeObject.GetComponent<Rigidbody>().useGravity = true;
+            TakeObject.Rigidbody.AddForce(
+                new Vector3(transform.localRotation.x * forcee, transform.localRotation.y * forcee, transform.localRotation.z * forcee)
+                , ForceMode.Impulse);
+            TakeObject.transform.parent = null;
+            TakeObject = null;
+        }
 
-    public void OpenInventory()
-	{
+        public void OpenInventory()
+        {
             _playerController.OpenInventary();
+        }
+
+        private void EventDie_Handler()
+        {
+            vthirdPersonController.enabled = false;
+            vthirdPersonCamera.enabled = false;
+            gameObject.SetActive(false);
+            statusPlayer = StatusPlayer.die;
+        }
+
     }
 
-    private void EventDie_Handler()
+    public interface IPlayerLogic : IMoveControl
     {
-	    vthirdPersonController.enabled = false;
-	    vthirdPersonCamera.enabled = false;
-        gameObject.SetActive(false);
-        statusPlayer = StatusPlayer.die;
-	}
+        void ToUse();
+        void OpenInventory();
+        void DropItem();
+    }
 
-}
-
-public interface IPlayerLogic : IMoveControl
-{
-    void ToUse();
-    void OpenInventory();
-    void DropItem();
-}
-
-public enum StatusPlayer
-{
-    sleep,
-    alive,
-    die
+    public enum StatusPlayer
+    {
+        sleep,
+        alive,
+        die
+    }
 }

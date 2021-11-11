@@ -1,7 +1,9 @@
-﻿using ShadowCube.DTO;
+﻿using ShadowCube.Player;
 
-
-public class Bot : PlayerLogic
+namespace ShadowCube.DTO
 {
+	public class Bot : PlayerLogic
+	{
 
+	}
 }

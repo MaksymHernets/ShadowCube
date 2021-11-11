@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using ShadowCube.Helpers;
+using ShadowCube.Player;
+using System.Collections.Generic;
 using UnityEngine;
 
-namespace Cubes
+namespace ShadowCube.Cubes
 {
 	public abstract class MegaCubeLogic : MonoBehaviour
     {
@@ -32,9 +34,6 @@ namespace Cubes
 		protected abstract Vector3Int GetCube(Vector3Int position, int indexWall);
 		protected abstract int GetCubeDoor(Vector3Int position, int indexWall);
 		public abstract void PutObject(Vector3Int position, Transform transform);
-
 		protected abstract void UpdateMegaCube();
-
-		
 	}
 }

@@ -1,5 +1,5 @@
 ﻿using ShadowCube.DTO;
-using ShadowCube.Model;
+using ShadowCube.Models;
 using ShadowCube.UI;
 using System.Collections;
 using UnityEngine;
@@ -105,7 +105,6 @@ namespace ShadowCube.Controller
 				yield return new WaitForEndOfFrame();
 			}
 		}
-
 	}
 
 	public class CellItem

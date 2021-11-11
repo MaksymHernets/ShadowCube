@@ -1,14 +1,18 @@
-﻿using UnityEngine;
+﻿using ShadowCube.Models;
+using UnityEngine;
 using UnityEngine.Events;
 
-public abstract class IController : MonoBehaviour
+namespace ShadowCube.Controller
 {
-	[HideInInspector] public UnityEvent EventClose;
-	public abstract void Init(IModel model);
-	
-	public virtual void Deactive()
+	public abstract class IController : MonoBehaviour
 	{
-		EventClose.Invoke();
-		gameObject.SetActive(false);
+		[HideInInspector] public UnityEvent EventClose;
+		public abstract void Init(IModel model);
+
+		public virtual void Deactive()
+		{
+			EventClose.Invoke();
+			gameObject.SetActive(false);
+		}
 	}
 }

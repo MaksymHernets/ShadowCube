@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using ShadowCube.Cubes;
+using ShadowCube.Helpers;
+using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-namespace Cubes.CubeFour
+namespace ShadowCubeCubes.CubeFour
 {
     public class MegaCubeLogic1 : MegaCubeLogic
     {

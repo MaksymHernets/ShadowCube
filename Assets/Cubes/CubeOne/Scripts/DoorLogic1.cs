@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using ShadowCube.Cubes;
+using UnityEngine;
 
-namespace Cubes.CubeOne
+namespace ShadowCubeCubes.CubeOne
 {
     public class DoorLogic1 : DoorLogic
     {

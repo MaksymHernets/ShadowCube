@@ -1,10 +1,11 @@
-﻿using System.Collections;
+﻿using ShadowCube.Cubes;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Cubes.CubeOne
+namespace ShadowCubeCubes.CubeOne
 {
     public class WallLogic1 : WallLogic
     {      

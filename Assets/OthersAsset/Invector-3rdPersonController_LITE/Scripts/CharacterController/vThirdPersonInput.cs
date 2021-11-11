@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using ShadowCube.Player;
+using UnityEngine;
 
 namespace Invector.vCharacterController
 {

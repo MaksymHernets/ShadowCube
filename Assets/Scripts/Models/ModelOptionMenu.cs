@@ -1,4 +1,7 @@
-﻿public class ModelOptionMenu : IModel
+﻿namespace ShadowCube.Models
 {
-	
+	public class ModelOptionMenu : IModel
+	{
+
+	}
 }

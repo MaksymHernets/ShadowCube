@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace DTO
+namespace ShadowCube.DTO
 {
     public class ControlPC
     {
