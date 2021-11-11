@@ -174,9 +174,7 @@ public interface IMoveControl
     void SitDown();
     void Jump();
     void HeadTurn(Vector3 direction);
-
     void Forward();
     void MoveCharacter(Vector3 _direction);
-
     void RotateToPosition(Vector3 position);
 }

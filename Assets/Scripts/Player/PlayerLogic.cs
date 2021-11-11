@@ -13,9 +13,10 @@ public class PlayerLogic : PlayerMoveControl , IPlayerLogic
 
     private PlayerDTO _player;
     private InteractiveObject TakeObject;
+    private PlayerController _playerController;
 
-	#region temp
-	private int _WC = Screen.width / 2;
+    #region temp
+    private int _WC = Screen.width / 2;
     private int _HC = Screen.height / 2;
     private RaycastHit hit;
     private Ray ray;
@@ -27,8 +28,9 @@ public class PlayerLogic : PlayerMoveControl , IPlayerLogic
         EventDie.AddListener(EventDie_Handler);
     }
 
-	public void Init(PlayerDTO player)
+	public void Init(PlayerController playerController, PlayerDTO player)
 	{
+        _playerController = playerController;
         _player = player;
     }
 
@@ -64,7 +66,7 @@ public class PlayerLogic : PlayerMoveControl , IPlayerLogic
 
     public void OpenInventory()
 	{
-        //itemsui.Show();
+            _playerController.OpenInventary();
     }
 
     private void EventDie_Handler()

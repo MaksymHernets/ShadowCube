@@ -47,7 +47,7 @@
   <PropertyGroup>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <UnityProjectGenerator>Unity/VSTU</UnityProjectGenerator>
-    <UnityProjectGeneratorVersion>4.11.3.0</UnityProjectGeneratorVersion>
+    <UnityProjectGeneratorVersion>4.11.4.0</UnityProjectGeneratorVersion>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2019.4.16f1</UnityVersion>
@@ -134,10 +134,12 @@
     <Compile Include="Assets\Scripts\Configs\GameSetting.cs" />
     <Compile Include="Assets\Scripts\Configs\GenericSetting.cs" />
     <Compile Include="Assets\Scripts\Configs\GraphicSetting.cs" />
+    <Compile Include="Assets\Scripts\Configs\ItemsConfig.cs" />
     <Compile Include="Assets\Scripts\Controller\ControllerAbout.cs" />
     <Compile Include="Assets\Scripts\Controller\ControllerDisplayDamage.cs" />
     <Compile Include="Assets\Scripts\Controller\ControllerEndGame.cs" />
     <Compile Include="Assets\Scripts\Controller\ControllerHUD.cs" />
+    <Compile Include="Assets\Scripts\Controller\ControllerInventary.cs" />
     <Compile Include="Assets\Scripts\Controller\ControllerItem.cs" />
     <Compile Include="Assets\Scripts\Controller\ControllerMainMenu.cs" />
     <Compile Include="Assets\Scripts\Controller\ControllerMenu.cs" />
@@ -150,6 +152,7 @@
     <Compile Include="Assets\Scripts\DTO\ControlPC.cs" />
     <Compile Include="Assets\Scripts\DTO\Damage.cs" />
     <Compile Include="Assets\Scripts\DTO\Entity.cs" />
+    <Compile Include="Assets\Scripts\DTO\ItemDTO.cs" />
     <Compile Include="Assets\Scripts\DTO\PlayerDTO.cs" />
     <Compile Include="Assets\Scripts\DTO\Score.cs" />
     <Compile Include="Assets\Scripts\Helpers\InteractiveObject.cs" />
@@ -162,6 +165,7 @@
     <Compile Include="Assets\Scripts\Models\ModelDisplayDamage.cs" />
     <Compile Include="Assets\Scripts\Models\ModelEndGame.cs" />
     <Compile Include="Assets\Scripts\Models\ModelHUD.cs" />
+    <Compile Include="Assets\Scripts\Models\ModelInventary.cs" />
     <Compile Include="Assets\Scripts\Models\ModelMainMenu.cs" />
     <Compile Include="Assets\Scripts\Models\ModelOnlineMenu.cs" />
     <Compile Include="Assets\Scripts\Models\ModelOptionMenu.cs" />
@@ -174,6 +178,8 @@
     <Compile Include="Assets\Scripts\Player\PlayerLogic.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerMoveControl.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\UI\BoxHolderUI.cs" />
+    <Compile Include="Assets\Scripts\UI\ItemUI.cs" />
     <Compile Include="Assets\Scripts\UI\ScoreUI.cs" />
     <Compile Include="Assets\Scripts\UI\SliderTextUI.cs" />
     <None Include="Assets\OthersAsset\SnapshotShaders\Shaders\Silhouette.shader" />
@@ -416,12 +422,6 @@
     </Reference>
     <Reference Include="Zenject-usage">
       <HintPath>D:/My_Projects/ShadowCube/Assets/Plugins/Zenject/Source/Usage/Zenject-usage.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
-      <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.16f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Common">
-      <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.16f1/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Common.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.16f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
