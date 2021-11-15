@@ -1,10 +1,13 @@
 ﻿using ShadowCube.Models;
+using ShadowCube.UI;
 using UnityEngine;
 
 namespace ShadowCube.Controller
 {
     public class ControllerHUD : IController
     {
+        [SerializeField] private SliderTextUI healthBar;
+
         private ModelHUD _model;
 
         public override void Init(IModel model)
@@ -13,14 +16,14 @@ namespace ShadowCube.Controller
 
             gameObject.SetActive(true);
 
-            //_model.playerLogic.EventDamage.AddListener( eventDamage_Handler );
+            _model.playerLogic.EventDamage.AddListener( eventDamage_Handler );
 
             Cursor.visible = false;
         }
 
         private void eventDamage_Handler()
         {
-            //frameDamageUI.Show(_model.playerLogic.Health);
+            healthBar.Value = _model.playerLogic.Health;
         }
     }
 }
