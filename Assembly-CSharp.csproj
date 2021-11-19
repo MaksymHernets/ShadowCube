@@ -137,6 +137,7 @@
     <Compile Include="Assets\Scripts\Configs\ItemsConfig.cs" />
     <Compile Include="Assets\Scripts\Controller\ControllerAbout.cs" />
     <Compile Include="Assets\Scripts\Controller\ControllerDisplayDamage.cs" />
+    <Compile Include="Assets\Scripts\Controller\ControllerEmotions.cs" />
     <Compile Include="Assets\Scripts\Controller\ControllerEndGame.cs" />
     <Compile Include="Assets\Scripts\Controller\ControllerHUD.cs" />
     <Compile Include="Assets\Scripts\Controller\ControllerInventary.cs" />
