@@ -5,3 +5,6 @@
 /Library/Artifacts
 /Library
 /Temp/UnityLockfile
+/Temp
+/Logs
+/.vs
