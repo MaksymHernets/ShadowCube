@@ -122,7 +122,6 @@
     <Compile Include="Assets\Cubes\CubeZero\Scripts\CubeLogic3.cs" />
     <Compile Include="Assets\OthersAsset\EffectExamples\Shared\Scripts\ParticleCollision.cs" />
     <Compile Include="Assets\Cubes\Traps\Trap2fire\Trap2fire.cs" />
-    <Compile Include="Assets\Scripts\ExampleRenderPipelineAsset.cs" />
     <Compile Include="Assets\OthersAsset\Invector-3rdPersonController_LITE\Scripts\CharacterController\vThirdPersonController.cs" />
     <Compile Include="Assets\OthersAsset\EffectExamples\Shared\Scripts\GunShoot.cs" />
     <Compile Include="Assets\Scripts\Configs\GameSetting.cs" />
@@ -180,17 +179,17 @@
     <None Include="Assets\OthersAsset\Mirror\Plugins\Mono.Cecil\Mono.CecilX.Mdb.dll" />
     <None Include="Assets\OthersAsset\SnapshotShaders\Shaders\Greyscale.shader" />
     <None Include="Assets\OthersAsset\SnapshotShaders\Shaders\Sepia.shader" />
-    <None Include="Assets\Shaders\TextPlus1.shader" />
+    <None Include="Assets\Scripts\Shaders\TextPlus1.shader" />
     <None Include="Assets\OthersAsset\SnapshotShaders\Shaders\Base.shader" />
     <None Include="Assets\OthersAsset\Mirror\Plugins\Mono.Cecil\Mono.CecilX.Pdb.dll" />
     <None Include="Assets\OthersAsset\SnapshotShaders\Shaders\EdgeBlur.shader" />
-    <None Include="Assets\Shaders\DoubleSided.shader" />
+    <None Include="Assets\Scripts\Shaders\DoubleSided.shader" />
     <None Include="Assets\OthersAsset\SnapshotShaders\Shaders\Bloom.shader" />
     <None Include="Assets\OthersAsset\UJoystick\ReadMe.txt" />
     <None Include="Assets\OthersAsset\SnapshotShaders\Shaders\CRTScreen.shader" />
     <None Include="Assets\OthersAsset\Invector-3rdPersonController_LITE\README_Basic.txt" />
     <None Include="Assets\OthersAsset\Mirror\Plugins\Mono.Cecil\Mono.CecilX.Rocks.dll" />
-    <None Include="Assets\Shaders\1.shader" />
+    <None Include="Assets\Scripts\Shaders\1.shader" />
     <None Include="Assets\OthersAsset\SnapshotShaders\Shaders\PixelSNES.shader" />
     <None Include="Assets\OthersAsset\Mirror\Version.txt" />
     <None Include="Assets\OthersAsset\Mirror\Readme.txt" />
@@ -202,10 +201,10 @@
     <None Include="Assets\OthersAsset\SnapshotShaders\Shaders\Pride.shader" />
     <None Include="Assets\OthersAsset\EffectExamples\Shared\Shaders\SurfaceShader_VC.shader" />
     <None Include="Assets\OthersAsset\SnapshotShaders\Shaders\PixelNES.shader" />
-    <None Include="Assets\Shaders\WaterBlurFinal.shader" />
+    <None Include="Assets\Scripts\Shaders\WaterBlurFinal.shader" />
     <None Include="Assets\OthersAsset\SnapshotShaders\Shaders\Painting.shader" />
-    <None Include="Assets\Shaders\TextPlus2.shader" />
-    <None Include="Assets\Shaders\WaterBlurModified.shader" />
+    <None Include="Assets\Scripts\Shaders\TextPlus2.shader" />
+    <None Include="Assets\Scripts\Shaders\WaterBlurModified.shader" />
     <None Include="Assets\OthersAsset\SnapshotShaders\Shaders\GaussianBlur.shader" />
   </ItemGroup>
   <ItemGroup>
@@ -809,14 +808,20 @@
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.CacheServer">
+      <HintPath>Library\ScriptAssemblies\UnityEditor.CacheServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Addressables">
+      <HintPath>Library\ScriptAssemblies\Unity.Addressables.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VisualStudio.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.Timeline.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.Timeline">
       <HintPath>Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ResourceManager">
+      <HintPath>Library\ScriptAssemblies\Unity.ResourceManager.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
@@ -827,12 +832,20 @@
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Timeline.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ScriptableBuildPipeline">
+      <HintPath>Library\ScriptAssemblies\Unity.ScriptableBuildPipeline.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Addressables.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Addressables.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ScriptableBuildPipeline.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.ScriptableBuildPipeline.Editor.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="UniRx.csproj">
-      <Project>{1965D148-72E5-4A0E-4869-07D97743BF17}</Project>
-      <Name>UniRx</Name>
-    </ProjectReference>
     <ProjectReference Include="Mirror.csproj">
       <Project>{1579A9E4-60CC-7FFA-C330-9CA34A60D19E}</Project>
       <Name>Mirror</Name>
@@ -840,6 +853,34 @@
     <ProjectReference Include="kcp2k.csproj">
       <Project>{5D9174B9-76F7-827E-9ADD-168FD4100E88}</Project>
       <Name>kcp2k</Name>
+    </ProjectReference>
+    <ProjectReference Include="Mirror.Examples.csproj">
+      <Project>{DCEB96AB-7F5C-BCD7-E04F-F40D7E8D2608}</Project>
+      <Name>Mirror.Examples</Name>
+    </ProjectReference>
+    <ProjectReference Include="Zenject-Editor.csproj">
+      <Project>{A50A2BB4-A25E-F683-CC90-EEE3146C9E98}</Project>
+      <Name>Zenject-Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="DOTween.Modules.csproj">
+      <Project>{79EFB8ED-6625-60A3-8B40-FC10D37EB6C7}</Project>
+      <Name>DOTween.Modules</Name>
+    </ProjectReference>
+    <ProjectReference Include="Mirror.Cloud.csproj">
+      <Project>{B4E62AC5-27BB-E6DD-0822-4A27365DF4D4}</Project>
+      <Name>Mirror.Cloud</Name>
+    </ProjectReference>
+    <ProjectReference Include="Zenject-PoolMonitor-Editor.csproj">
+      <Project>{00427CB0-7EB6-919B-B895-CBF64D66ACF5}</Project>
+      <Name>Zenject-PoolMonitor-Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Mirror.Weaver.csproj">
+      <Project>{215E998C-03D4-50C8-3ABA-8D184C511C1C}</Project>
+      <Name>Mirror.Weaver</Name>
+    </ProjectReference>
+    <ProjectReference Include="UniRx.csproj">
+      <Project>{1965D148-72E5-4A0E-4869-07D97743BF17}</Project>
+      <Name>UniRx</Name>
     </ProjectReference>
     <ProjectReference Include="Zenject-ReflectionBaking-Editor.csproj">
       <Project>{B244ACB8-BCC1-1893-D2D3-2799E8A39251}</Project>
@@ -853,10 +894,6 @@
       <Project>{07B24B8E-7193-6B7C-B483-6C689E4DDFBF}</Project>
       <Name>Mirror.Editor</Name>
     </ProjectReference>
-    <ProjectReference Include="Mirror.Examples.csproj">
-      <Project>{DCEB96AB-7F5C-BCD7-E04F-F40D7E8D2608}</Project>
-      <Name>Mirror.Examples</Name>
-    </ProjectReference>
     <ProjectReference Include="Mirror.CompilerSymbols.csproj">
       <Project>{E75C65E8-6BDC-F40C-C846-8B067C5A8330}</Project>
       <Name>Mirror.CompilerSymbols</Name>
@@ -869,33 +906,13 @@
       <Project>{548F1CB2-741A-995B-E8CD-5E423779117F}</Project>
       <Name>Telepathy</Name>
     </ProjectReference>
-    <ProjectReference Include="Zenject-Editor.csproj">
-      <Project>{A50A2BB4-A25E-F683-CC90-EEE3146C9E98}</Project>
-      <Name>Zenject-Editor</Name>
-    </ProjectReference>
     <ProjectReference Include="Mirror.Examples.Cloud.GUI.csproj">
       <Project>{E3ECBEAF-8E3A-464C-9F2E-24EEED98ED3F}</Project>
       <Name>Mirror.Examples.Cloud.GUI</Name>
     </ProjectReference>
-    <ProjectReference Include="DOTween.Modules.csproj">
-      <Project>{79EFB8ED-6625-60A3-8B40-FC10D37EB6C7}</Project>
-      <Name>DOTween.Modules</Name>
-    </ProjectReference>
-    <ProjectReference Include="Mirror.Cloud.csproj">
-      <Project>{B4E62AC5-27BB-E6DD-0822-4A27365DF4D4}</Project>
-      <Name>Mirror.Cloud</Name>
-    </ProjectReference>
     <ProjectReference Include="SimpleWebTransport.csproj">
       <Project>{C38FE3D9-74D3-F3E8-F6E2-6D7FBA077275}</Project>
       <Name>SimpleWebTransport</Name>
-    </ProjectReference>
-    <ProjectReference Include="Zenject-PoolMonitor-Editor.csproj">
-      <Project>{00427CB0-7EB6-919B-B895-CBF64D66ACF5}</Project>
-      <Name>Zenject-PoolMonitor-Editor</Name>
-    </ProjectReference>
-    <ProjectReference Include="Mirror.Weaver.csproj">
-      <Project>{215E998C-03D4-50C8-3ABA-8D184C511C1C}</Project>
-      <Name>Mirror.Weaver</Name>
     </ProjectReference>
     <ProjectReference Include="Mirror.Components.csproj">
       <Project>{0D56B9E1-61FE-3D55-E6EB-09207A39C278}</Project>
