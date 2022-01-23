@@ -46,7 +46,7 @@ namespace ShadowCube.Scenes
             ShowCube(0, gameSetting.indexCube);
             CubesFirst[gameSetting.indexCube].OpenDoor(2);
             Cubes[gameSetting.indexCube].OpenDoor(4);
-            Invoke("Event_Menu_Close", 7f);
+            Invoke("Event_Menu_Close", 9f);
         }
 
         private void Event_ButtonPlayClick()
@@ -83,6 +83,10 @@ namespace ShadowCube.Scenes
         private void Event_Menu_Close()
         {
             mainMenu.Init(new IModel());
+            foreach (var cube in CubesFirst)
+            {
+                GameObject.Destroy(cube.gameObject);
+            }
         }
 
         private void Event_MenuPerson_Close()
@@ -98,8 +102,6 @@ namespace ShadowCube.Scenes
         {
             Cubes[index].gameObject.SetActive(false);
             Cubes[index2].gameObject.SetActive(true);
-            CubesFirst[index].gameObject.SetActive(false);
-            CubesFirst[index2].gameObject.SetActive(true);
         }
 
         private void Dispose()
