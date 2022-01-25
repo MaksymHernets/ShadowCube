@@ -56,15 +56,15 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Common\CecilExtensions.cs" />
     <Compile Include="Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Common\ReflectionBakingModuleEditor.cs" />
     <Compile Include="Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Unity\ReflectionBakingMenuItems.cs" />
-    <Compile Include="Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Unity\ReflectionBakingBuildObserver.cs" />
     <Compile Include="Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Unity\ReflectionBakingInternalUtil.cs" />
-    <Compile Include="Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Unity\ZenjectReflectionBakingSettings.cs" />
     <Compile Include="Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Unity\AssemblyPathRegistry.cs" />
     <Compile Include="Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Unity\UnityAssemblyResolver.cs" />
     <Compile Include="Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Unity\ZenjectReflectionBakingSettingsEditor.cs" />
+    <Compile Include="Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Common\CecilExtensions.cs" />
+    <Compile Include="Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Unity\ReflectionBakingBuildObserver.cs" />
+    <Compile Include="Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Unity\ZenjectReflectionBakingSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Plugins\Zenject\OptionalExtras\ReflectionBaking\Zenject-ReflectionBaking-Editor.asmdef" />

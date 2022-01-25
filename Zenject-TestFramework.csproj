@@ -56,10 +56,10 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Plugins\Zenject\OptionalExtras\TestFramework\SceneTestFixtureSceneReference.cs" />
-    <Compile Include="Assets\Plugins\Zenject\OptionalExtras\TestFramework\SceneTestFixture.cs" />
     <Compile Include="Assets\Plugins\Zenject\OptionalExtras\TestFramework\ZenjectUnitTestFixture.cs" />
     <Compile Include="Assets\Plugins\Zenject\OptionalExtras\TestFramework\ZenjectIntegrationTestFixture.cs" />
+    <Compile Include="Assets\Plugins\Zenject\OptionalExtras\TestFramework\SceneTestFixtureSceneReference.cs" />
+    <Compile Include="Assets\Plugins\Zenject\OptionalExtras\TestFramework\SceneTestFixture.cs" />
     <Compile Include="Assets\Plugins\Zenject\OptionalExtras\TestFramework\ZenjectTestUtil.cs" />
     <Compile Include="Assets\Plugins\Zenject\OptionalExtras\TestFramework\ValidateOnlyAttribute.cs" />
   </ItemGroup>

@@ -16,8 +16,13 @@ namespace ShadowCube.Cubes
             _cubeLogic = cubeLogic;
             _wall = wall;
 
-            meshRenderer.materials[1].SetColor("_EmissionColor", wall.color);
-            meshRenderer.materials[2].SetColor("_EmissionColor", wall.color);
+            SetColorPanel(_wall.color);
+        }
+
+        public void SetColorPanel(Color color)
+        {
+            meshRenderer.sharedMaterials[1].SetColor("_EmissionColor", _wall.color);
+            meshRenderer.sharedMaterials[2].SetColor("_EmissionColor", _wall.color);
         }
         
         public virtual void ToOpenDoor()
