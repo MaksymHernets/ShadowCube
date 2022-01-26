@@ -6,6 +6,7 @@ namespace ShadowCube.Cubes
     public abstract class WallLogic : MonoBehaviour
     {
         [SerializeField] private DoorLogic door;
+        [SerializeField] private Light _light;
         [SerializeField] private MeshRenderer meshRenderer;
 
         protected CubeLogic _cubeLogic;
@@ -27,11 +28,14 @@ namespace ShadowCube.Cubes
         
         public virtual void ToOpenDoor()
         {
+            _light.gameObject.SetActive(true);
             door.Open();
+
         }
 
         public virtual void ToCloseDoor()
         {
+            _light.gameObject.SetActive(false);
             door.Close();
         }
 

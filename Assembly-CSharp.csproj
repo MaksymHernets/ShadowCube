@@ -56,151 +56,17 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\OthersAsset\Invector-3rdPersonController_LITE\Scripts\CharacterController\vThirdPersonMotor.cs" />
-    <Compile Include="Assets\Scripts\Controller\ControllerPlayMenu.cs" />
-    <Compile Include="Assets\Cubes\Traps\Trap5WalkWall\Trap5WalkWall.cs" />
-    <Compile Include="Assets\Cubes\HyperCube\Scripts\CubeLogic2.cs" />
-    <Compile Include="Assets\Scripts\Controller\ControllerOnlineMenu.cs" />
-    <Compile Include="Assets\Cubes\CubeFour\Scripts\MegaCubeLogic5.cs" />
-    <Compile Include="Assets\Scripts\DTO\ControlPC.cs" />
-    <Compile Include="Assets\Cubes\CubeOne\Scripts\WallLogic1.cs" />
-    <Compile Include="Assets\Scripts\Player\FactoryControl.cs" />
-    <Compile Include="Assets\Scripts\DTO\Entity.cs" />
-    <Compile Include="Assets\OthersAsset\UJoystick\Content\Script\Core\bl_Joystick.cs" />
-    <Compile Include="Assets\Scenes\PlaceLogic.cs" />
-    <Compile Include="Assets\Scripts\DTO\Bot.cs" />
-    <Compile Include="Assets\Cubes\Scripts\DoorLogic.cs" />
-    <Compile Include="Assets\Scripts\Controller\ControllerMenu.cs" />
-    <Compile Include="Assets\Cubes\HyperCube\Scripts\DoorLogic2.cs" />
-    <Compile Include="Assets\Scripts\Models\ModelPlayMenu.cs" />
-    <Compile Include="Assets\Scripts\Controller\ControllerDisplayDamage.cs" />
-    <Compile Include="Assets\Scripts\Player\ControlPlayerPC.cs" />
-    <Compile Include="Assets\Scripts\Configs\GenericSetting.cs" />
-    <Compile Include="Assets\OthersAsset\UJoystick\Content\Script\Internal\bl_JoystickUtils.cs" />
-    <Compile Include="Assets\Scripts\Models\ModelPersonMenu.cs" />
-    <Compile Include="Assets\OthersAsset\3rdPerson+Fly\Scripts\PlayerScripts\BasicBehaviour.cs" />
-    <Compile Include="Assets\Scripts\Controller\ControllerAbout.cs" />
-    <Compile Include="Assets\Cubes\CubeFour\Scripts\WallLogic5.cs" />
     <Compile Include="Assets\OthersAsset\EffectExamples\Shared\Scripts\DecalDestroyer.cs" />
-    <Compile Include="Assets\Scripts\UI\ScoreUI.cs" />
-    <Compile Include="Assets\OthersAsset\UJoystick\Example\Scrips\bl_ControllerExample.cs" />
-    <Compile Include="Assets\Scripts\UI\SliderTextUI.cs" />
-    <Compile Include="Assets\Scripts\Controller\ControllerMainMenu.cs" />
-    <Compile Include="Assets\OthersAsset\Invector-3rdPersonController_LITE\3D Models\Others\HealthItem\vAnimateUV.cs" />
-    <Compile Include="Assets\Scripts\Player\ControlPlayerAndroid.cs" />
-    <Compile Include="Assets\Cubes\CubeZero\Scripts\DoorLogic3.cs" />
-    <Compile Include="Assets\OthersAsset\Invector-3rdPersonController_LITE\Scripts\Generic\Utils\vComment.cs" />
-    <Compile Include="Assets\OthersAsset\3rdPerson+Fly\Scripts\PlayerScripts\MoveBehaviour.cs" />
-    <Compile Include="Assets\OthersAsset\SnapshotShaders\Scenes\Scripts\Rotate.cs" />
-    <Compile Include="Assets\Cubes\CubeZero\Scripts\MegaCubeLogic3.cs" />
-    <Compile Include="Assets\Cubes\CubeZero\Scripts\CubeLogic3.cs" />
-    <Compile Include="Assets\Cubes\Traps\Trap2fire\Trap2fire.cs" />
-    <Compile Include="Assets\Cubes\Scripts\CubeDTO.cs" />
-    <Compile Include="Assets\Scripts\Models\ModelDisplayDamage.cs" />
-    <Compile Include="Assets\Scripts\Helpers\InteractiveObject.cs" />
-    <Compile Include="Assets\Scripts\Configs\ControlSetting.cs" />
-    <Compile Include="Assets\Scripts\Controller\ControllerItem.cs" />
-    <Compile Include="Assets\OthersAsset\Invector-3rdPersonController_LITE\Scripts\CharacterController\vThirdPersonAnimator.cs" />
-    <Compile Include="Assets\OthersAsset\3rdPerson+Fly\Scripts\LevelScripts\ControlsTutorial.cs" />
-    <Compile Include="Assets\OthersAsset\SnapshotShaders\Scripts\SnapshotCanvas.cs" />
-    <Compile Include="Assets\Scripts\Player\Inventory.cs" />
-    <Compile Include="Assets\OthersAsset\Invector-3rdPersonController_LITE\Scripts\CharacterController\vThirdPersonInput.cs" />
-    <Compile Include="Assets\Scripts\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\Player\PlayerLogic.cs" />
-    <Compile Include="Assets\OthersAsset\SnapshotShaders\Scenes\Scripts\Hover.cs" />
-    <Compile Include="Assets\OthersAsset\3rdPerson+Fly\Scripts\PlayerScripts\AimBehaviourBasic.cs" />
-    <Compile Include="Assets\Scripts\DTO\PlayerDTO.cs" />
-    <Compile Include="Assets\Scripts\Helpers\PoolObjects.cs" />
-    <Compile Include="Assets\Scripts\Helpers\SnapshotModeSelect.cs" />
-    <Compile Include="Assets\Scripts\Installers\SceneInstaller.cs" />
-    <Compile Include="Assets\Cubes\CubeFour\Scripts\DoorLogic5.cs" />
-    <Compile Include="Assets\Scripts\Controller\ControllerEmotions.cs" />
-    <Compile Include="Assets\Scripts\Controller\ControllerInventary.cs" />
-    <Compile Include="Assets\OthersAsset\3rdPerson+Fly\Scripts\PlayerScripts\FlyBehaviour.cs" />
-    <Compile Include="Assets\Cubes\CubeOne\Scripts\DoorLogic1.cs" />
-    <Compile Include="Assets\Scripts\DTO\Score.cs" />
-    <Compile Include="Assets\OthersAsset\Invector-3rdPersonController_LITE\Scripts\Generic\Utils\vPickupItem.cs" />
-    <Compile Include="Assets\Scenes\MainMenuManager.cs" />
-    <Compile Include="Assets\Cubes\Scripts\MegaCubeLogic.cs" />
-    <Compile Include="Assets\Cubes\Traps\Trap1needles\Trap1needles.cs" />
-    <Compile Include="Assets\Scripts\Controller\IController.cs" />
-    <Compile Include="Assets\Scripts\Helpers\MathFunction.cs" />
-    <Compile Include="Assets\Scripts\Models\ModelHUD.cs" />
-    <Compile Include="Assets\Cubes\CubeOne\Scripts\CubeLogic1.cs" />
-    <Compile Include="Assets\Cubes\NewCube\Scripts\DoorLogic4.cs" />
-    <Compile Include="Assets\Cubes\CubeFour\Scripts\CubeLogic5.cs" />
-    <Compile Include="Assets\Cubes\Scripts\WallLogic.cs" />
     <Compile Include="Assets\OthersAsset\EffectExamples\Shared\Scripts\ExtinguishableFire.cs" />
     <Compile Include="Assets\OthersAsset\EffectExamples\Shared\Scripts\ParticleMenu.cs" />
-    <Compile Include="Assets\Scripts\DTO\Damage.cs" />
-    <Compile Include="Assets\Cubes\Traps\Trap3gas\Trap3gas.cs" />
-    <Compile Include="Assets\Scripts\Controller\ControllerOptionMenu.cs" />
-    <Compile Include="Assets\OthersAsset\3rdPerson+Fly\Scripts\LevelScripts\HintManagement.cs" />
-    <Compile Include="Assets\Cubes\Scripts\Trap.cs" />
     <Compile Include="Assets\OthersAsset\EffectExamples\TutorialInfo\Scripts\Readme.cs" />
-    <Compile Include="Assets\OthersAsset\SnapshotShaders\Scripts\SnapshotMode.cs" />
-    <Compile Include="Assets\Scripts\Helpers\Translate.cs" />
-    <Compile Include="Assets\Cubes\CubeOne\Scripts\MegaCubeLogic1.cs" />
-    <Compile Include="Assets\Cubes\HyperCube\Scripts\MegaCubeLogic2.cs" />
-    <Compile Include="Assets\Scripts\Models\ModelMainMenu.cs" />
-    <Compile Include="Assets\Scripts\UI\BoxHolderUI.cs" />
-    <Compile Include="Assets\Scripts\Controller\ControllerHUD.cs" />
-    <Compile Include="Assets\Scripts\Controller\ControllerEndGame.cs" />
     <Compile Include="Assets\OthersAsset\EffectExamples\Shared\Scripts\ParticleExamples.cs" />
-    <Compile Include="Assets\Scripts\Configs\GraphicSetting.cs" />
-    <Compile Include="Assets\Scripts\Player\PlayerMoveControl.cs" />
-    <Compile Include="Assets\Scripts\Models\ModelOptionMenu.cs" />
-    <Compile Include="Assets\Cubes\Traps\Trap4mesh\Trap4mesh.cs" />
-    <Compile Include="Assets\Cubes\NewCube\Scripts\WallLogic4.cs" />
-    <Compile Include="Assets\Cubes\NewCube\Scripts\CubeLogic4.cs" />
     <Compile Include="Assets\OthersAsset\EffectExamples\Shared\Scripts\ParticleCollision.cs" />
-    <Compile Include="Assets\OthersAsset\Invector-3rdPersonController_LITE\Scripts\CharacterController\vThirdPersonController.cs" />
     <Compile Include="Assets\OthersAsset\EffectExamples\Shared\Scripts\GunShoot.cs" />
-    <Compile Include="Assets\Scripts\Configs\GameSetting.cs" />
-    <Compile Include="Assets\OthersAsset\Invector-3rdPersonController_LITE\Scripts\Generic\Utils\vExtensions.cs" />
-    <Compile Include="Assets\Scripts\Controller\ControllerPersonMenu.cs" />
-    <Compile Include="Assets\Scripts\Models\ModelInventary.cs" />
-    <Compile Include="Assets\Scripts\Models\ModelEndGame.cs" />
-    <Compile Include="Assets\Cubes\CubeZero\Scripts\WallLogic3.cs" />
-    <Compile Include="Assets\OthersAsset\Invector-3rdPersonController_LITE\Scripts\Camera\vThirdPersonCamera.cs" />
-    <Compile Include="Assets\Cubes\HyperCube\Scripts\WallLogic2.cs" />
-    <Compile Include="Assets\Scripts\UI\ItemUI.cs" />
-    <Compile Include="Assets\Scripts\Configs\ItemsConfig.cs" />
-    <Compile Include="Assets\Cubes\Scripts\CubeLogic.cs" />
-    <Compile Include="Assets\Scripts\Models\IModel.cs" />
-    <Compile Include="Assets\Scripts\DTO\ItemDTO.cs" />
-    <Compile Include="Assets\OthersAsset\SnapshotShaders\Scripts\SnapshotFilter.cs" />
-    <Compile Include="Assets\OthersAsset\SnapshotShaders\Scenes\Scripts\CameraMove.cs" />
-    <Compile Include="Assets\OthersAsset\3rdPerson+Fly\Scripts\LevelScripts\ThirdPersonOrbitCamBasic.cs" />
-    <Compile Include="Assets\Cubes\NewCube\Scripts\MegaCubeLogic4.cs" />
     <Compile Include="Assets\OthersAsset\EffectExamples\Shared\Scripts\GunAim.cs" />
-    <Compile Include="Assets\Scripts\Models\ModelOnlineMenu.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\OthersAsset\SnapshotShaders\Shaders\Silhouette.shader" />
-    <None Include="Assets\OthersAsset\SnapshotShaders\Shaders\Greyscale.shader" />
-    <None Include="Assets\OthersAsset\SnapshotShaders\Shaders\Sepia.shader" />
-    <None Include="Assets\Scripts\Shaders\TextPlus1.shader" />
-    <None Include="Assets\OthersAsset\SnapshotShaders\Shaders\Base.shader" />
-    <None Include="Assets\OthersAsset\SnapshotShaders\Shaders\EdgeBlur.shader" />
-    <None Include="Assets\Scripts\Shaders\DoubleSided.shader" />
-    <None Include="Assets\OthersAsset\SnapshotShaders\Shaders\Bloom.shader" />
-    <None Include="Assets\OthersAsset\UJoystick\ReadMe.txt" />
-    <None Include="Assets\OthersAsset\SnapshotShaders\Shaders\CRTScreen.shader" />
-    <None Include="Assets\OthersAsset\Invector-3rdPersonController_LITE\README_Basic.txt" />
-    <None Include="Assets\Scripts\Shaders\1.shader" />
-    <None Include="Assets\OthersAsset\SnapshotShaders\Shaders\PixelSNES.shader" />
-    <None Include="Assets\OthersAsset\SnapshotShaders\Shaders\Neon.shader" />
-    <None Include="Assets\OthersAsset\SnapshotShaders\Shaders\EdgeDetect.shader" />
-    <None Include="Assets\OthersAsset\SnapshotShaders\Shaders\PixelGB.shader" />
-    <None Include="Assets\OthersAsset\SnapshotShaders\Shaders\Pride.shader" />
     <None Include="Assets\OthersAsset\EffectExamples\Shared\Shaders\SurfaceShader_VC.shader" />
-    <None Include="Assets\OthersAsset\SnapshotShaders\Shaders\PixelNES.shader" />
-    <None Include="Assets\Scripts\Shaders\WaterBlurFinal.shader" />
-    <None Include="Assets\OthersAsset\SnapshotShaders\Shaders\Painting.shader" />
-    <None Include="Assets\Scripts\Shaders\TextPlus2.shader" />
-    <None Include="Assets\Scripts\Shaders\WaterBlurModified.shader" />
-    <None Include="Assets\OthersAsset\SnapshotShaders\Shaders\GaussianBlur.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -983,6 +849,10 @@
       <Project>{A50A2BB4-A25E-F683-CC90-EEE3146C9E98}</Project>
       <Name>Zenject-Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="ShadowCube.csproj">
+      <Project>{E362212C-E426-8809-282D-901246BEC666}</Project>
+      <Name>ShadowCube</Name>
+    </ProjectReference>
     <ProjectReference Include="Zenject-ReflectionBaking-Editor.csproj">
       <Project>{B244ACB8-BCC1-1893-D2D3-2799E8A39251}</Project>
       <Name>Zenject-ReflectionBaking-Editor</Name>
@@ -990,6 +860,10 @@
     <ProjectReference Include="Zenject.csproj">
       <Project>{CBA05E0F-E391-3766-1663-62B7294A6975}</Project>
       <Name>Zenject</Name>
+    </ProjectReference>
+    <ProjectReference Include="UJoystick.csproj">
+      <Project>{5A69404E-C5B2-0FF1-C95E-84EB479B9A6C}</Project>
+      <Name>UJoystick</Name>
     </ProjectReference>
     <ProjectReference Include="DOTween.Modules.csproj">
       <Project>{79EFB8ED-6625-60A3-8B40-FC10D37EB6C7}</Project>

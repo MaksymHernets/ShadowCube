@@ -1,5 +1,4 @@
-﻿using Invector.vCharacterController;
-using ShadowCube.Cubes;
+﻿using ShadowCube.Cubes;
 using ShadowCube.DTO;
 using ShadowCube.Helpers;
 using UnityEngine;
@@ -10,8 +9,8 @@ namespace ShadowCube.Player
     {
         [SerializeField] private float distanceUse = 1;
         [SerializeField] private StatusPlayer statusPlayer = StatusPlayer.alive;
-        [SerializeField] private vThirdPersonController vthirdPersonController;
-        [SerializeField] private vThirdPersonCamera vthirdPersonCamera;
+        //[SerializeField] private vThirdPersonController vthirdPersonController;
+        //[SerializeField] private vThirdPersonCamera vthirdPersonCamera;
         [SerializeField] private AudioSource foolman;
 
         private PlayerDTO _player;
@@ -74,8 +73,8 @@ namespace ShadowCube.Player
 
         private void EventDie_Handler()
         {
-            vthirdPersonController.enabled = false;
-            vthirdPersonCamera.enabled = false;
+            //vthirdPersonController.enabled = false;
+            //vthirdPersonCamera.enabled = false;
             gameObject.SetActive(false);
             statusPlayer = StatusPlayer.die;
         }

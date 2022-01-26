@@ -56,16 +56,7 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\OthersAsset\Invector-3rdPersonController_LITE\Scripts\Camera\Editor\vThirdPersonCameraEditor.cs" />
-    <Compile Include="Assets\OthersAsset\Invector-3rdPersonController_LITE\Scripts\CharacterCreator\Script\Editor\vCreateBasicCharacterEditor.cs" />
     <Compile Include="Assets\OthersAsset\EffectExamples\TutorialInfo\Scripts\Editor\ReadmeEditor.cs" />
-    <Compile Include="Assets\OthersAsset\Invector-3rdPersonController_LITE\Scripts\CharacterController\Editor\vInvectorStartup.cs" />
-    <Compile Include="Assets\OthersAsset\Invector-3rdPersonController_LITE\Scripts\Generic\Utils\Editor\vCommentEditor.cs" />
-    <Compile Include="Assets\OthersAsset\Invector-3rdPersonController_LITE\Scripts\CharacterCreator\Script\Editor\vHelperEditor.cs" />
-    <Compile Include="Assets\OthersAsset\Invector-3rdPersonController_LITE\Scripts\CharacterController\Editor\vThirdPersonInputEditor.cs" />
-    <Compile Include="Assets\OthersAsset\Invector-3rdPersonController_LITE\Scripts\CharacterController\Editor\Resources\vEditorStartupPrefs.cs" />
-    <Compile Include="Assets\OthersAsset\Invector-3rdPersonController_LITE\Scripts\CharacterController\Editor\vCharacterEditor.cs" />
-    <Compile Include="Assets\OthersAsset\Invector-3rdPersonController_LITE\Scripts\CharacterController\Editor\vInvectorWelcomeWindow.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -870,6 +861,10 @@
       <Project>{A50A2BB4-A25E-F683-CC90-EEE3146C9E98}</Project>
       <Name>Zenject-Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="ShadowCube.csproj">
+      <Project>{E362212C-E426-8809-282D-901246BEC666}</Project>
+      <Name>ShadowCube</Name>
+    </ProjectReference>
     <ProjectReference Include="Zenject-ReflectionBaking-Editor.csproj">
       <Project>{B244ACB8-BCC1-1893-D2D3-2799E8A39251}</Project>
       <Name>Zenject-ReflectionBaking-Editor</Name>
@@ -877,6 +872,10 @@
     <ProjectReference Include="Zenject.csproj">
       <Project>{CBA05E0F-E391-3766-1663-62B7294A6975}</Project>
       <Name>Zenject</Name>
+    </ProjectReference>
+    <ProjectReference Include="UJoystick.csproj">
+      <Project>{5A69404E-C5B2-0FF1-C95E-84EB479B9A6C}</Project>
+      <Name>UJoystick</Name>
     </ProjectReference>
     <ProjectReference Include="DOTween.Modules.csproj">
       <Project>{79EFB8ED-6625-60A3-8B40-FC10D37EB6C7}</Project>
