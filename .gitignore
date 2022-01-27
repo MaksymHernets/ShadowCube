@@ -2,6 +2,7 @@
 # Данный GITIGNORE-файл был автоматически создан Microsoft(R) Visual Studio.
 ################################################################################
 
+/Build
 /Library/Artifacts
 /Library
 /Temp/UnityLockfile
