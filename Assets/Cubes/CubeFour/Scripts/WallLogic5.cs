@@ -1,21 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using ShadowCube.Cubes;
 using UnityEngine;
-using UnityEngine.UI;
 
-namespace Cubes.CubeFour
+namespace ShadowCubeCubes.CubeFour
 {
-    public class WallLogic5 : WallLogic
+	public class WallLogic5 : WallLogic
     {      
-        public TextMesh number;
+        [SerializeField] private TextMesh number;
 
-        public new void IntWall(object _object) // Wall
+        public override void IntWall(CubeLogic cubeLogic, WallDTO wall)
         {
-            base.IntWall(_object);
-            number.text = wall.number.x.ToString() + " " + wall.number.y.ToString() + " " + wall.number.z.ToString();
+            base.IntWall(cubeLogic, wall);
+            number.text = _wall.number.x.ToString() + " " + _wall.number.y.ToString() + " " + _wall.number.z.ToString();
         }
-
-        
     }
 }

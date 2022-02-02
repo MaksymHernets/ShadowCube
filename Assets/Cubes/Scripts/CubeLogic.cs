@@ -1,108 +1,84 @@
-﻿using System.Collections;
+﻿using ShadowCube.DTO;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Cubes
+namespace ShadowCube.Cubes
 {
-    
-
-    public class ICubeLogic
+    public abstract class CubeLogic : MonoBehaviour
     {
+        [SerializeField] protected Light _light;
+        [SerializeField] protected List<WallLogic> _walls;
 
-    }
-
-
-    public class CubeLogic : MonoBehaviour
-    {
-        protected CubeDTO cube;
-
-        public Light lightt;
-        public List<GameObject> walls;
+        protected MegaCubeLogic _megaCubeLogic;
+        protected CubeDTO _cube;
 
         private int CountPlayers = 0;
         private float TimeWait = 10;
         private float TimeLost = 0;
 
-        public void IntCube(object cubee) // CubeDTO
+        public void IntCube(MegaCubeLogic megaCubeLogic, CubeDTO cube)
         {
-            cube = (CubeDTO)cubee;
-            int index = 0;
-            foreach (var item in walls)
-            {
-                Wall wall = new Wall();
-                wall.id = index;
-                wall.number = cube.id;
-                wall.color = cube.Color;
-                item.SendMessage("IntWall", (object)wall);
-                index++;
+            _megaCubeLogic = megaCubeLogic;
+            _cube = cube;
+
+			for (int i = 0; i < _walls.Count; ++i)
+			{
+                WallDTO wall = new WallDTO();
+                wall.id = i;
+                wall.number = _cube.id;
+                wall.color = _cube.Color;
+                _walls[i].IntWall(this, wall);
             }
 
-            lightt.color = cube.Color;
+            _light.color = _cube.Color;
         }
 
-        public void OpenDoor(object indexDoor) // int
+        public void Update()
         {
-            walls[(int)indexDoor].SendMessage("ToOpenDoor");
-        }
-
-        public void CloseDoor(object indexDoor) // int
-        {
-            walls[(int)indexDoor].SendMessage("ToCloseDoor");
-        }
-
-        public void CloseAllDoor()
-        {
-            foreach (var item in walls)
+            if ( CountPlayers == 0 )
             {
-                item.SendMessage("ToCloseDoor");
+                TimeLost += Time.deltaTime;
+                if (TimeWait <= TimeLost)
+                {
+                    CloseAllDoor();
+                    StartCoroutine("Wait");
+                    TimeLost = 0;
+                }
             }
         }
 
-        public void EventOpenedDoor(object indexwall) // int
+        public virtual void OpenDoor(int indexDoor)
         {
-            var argument = new Vector4();
-            argument.x = cube.position.x;
-            argument.y = cube.position.y;
-            argument.z = cube.position.z;
-            argument.w = (int)indexwall;
-            transform.parent.gameObject.SendMessage("EventOpenedDoor", (object)argument);
+            _walls[indexDoor].ToOpenDoor();
         }
 
-        public void EventClosedDoor(object indexwall) // int
+        public virtual void CloseDoor(int indexDoor) 
         {
-            var argument = new Vector4();
-            argument.x = cube.position.x;
-            argument.y = cube.position.y;
-            argument.z = cube.position.z;
-            argument.w = (int)indexwall;
+            _walls[indexDoor].ToCloseDoor();
+        }
 
-            if (CountPlayers == 0)
+        public virtual void CloseAllDoor()
+        {
+            foreach (var wall in _walls)
             {
-                transform.parent.gameObject.SendMessage("DeactivateCube", (object)argument);
-                CloseAllDoor();
-                
-                TimeLost = 0;
-            }
-            else
-            {
-                transform.parent.gameObject.SendMessage("EventClosedDoor", (object)argument);
+                wall.ToCloseDoor();
             }
         }
 
-        IEnumerator Wait()
+        public void EventOpenedDoor(int indexwall)
         {
-            yield return new WaitForSecondsRealtime(4f);
-            gameObject.SetActive(false);
+            _megaCubeLogic.EventOpenedDoor(_cube.position, indexwall);
         }
 
-        public void Deactivate()
-		{
-
-		}            
+        public void EventClosedDoor(int indexwall)
+        {
+            
+        } 
 
         private void OnTriggerEnter(Collider other)
         {
-            if(other.gameObject.tag == "Player")
+            if( other.gameObject.GetComponent<Entity>() != null )
             {
                 ++CountPlayers;
             }
@@ -110,30 +86,16 @@ namespace Cubes
 
         private void OnTriggerExit(Collider other)
         {
-            if (other.gameObject.tag == "Player")
+            if ( other.gameObject.GetComponent<Entity>() != null )
             {
                 --CountPlayers;
             }
         }
-
-        public void Update()
+        
+        IEnumerator Wait()
         {
-            if (CountPlayers == 0)
-            {
-                TimeLost += Time.deltaTime;
-                if (TimeWait <= TimeLost)
-                {
-                    var argument = new Vector3Int();
-                    argument.x = cube.position.x;
-                    argument.y = cube.position.y;
-                    argument.z = cube.position.z;
-                    transform.parent.gameObject.SendMessage("DeactivateCube", (object)argument);
-                    CloseAllDoor();
-                    //gameObject.SetActive(false);
-                    StartCoroutine("Wait");
-                    TimeLost = 0;
-                }
-            }
+            yield return new WaitForSecondsRealtime(4f);
+            gameObject.SetActive(false);
         }
     }
 }

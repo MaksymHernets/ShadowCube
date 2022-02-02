@@ -1,30 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using ShadowCube.Cubes;
 
-namespace Cubes.CubeHyber
+namespace ShadowCubeCubes.CubeHyber
 {
-    public class WallLogic2 : MonoBehaviour
+	public class WallLogic2 : WallLogic
     {
-        private Wall wall;
 
-        public GameObject door;
-
-        public void IntWall(object cubee) // Wall
-        {
-            wall = (Wall)cubee;
-        }
-
-        public void ToOpenDoor()
-        {
-            door.SendMessage("MegaCubeToOpen");
-        }
-
-        public void OpenedDoor()
-        {
-            transform.parent.gameObject.SendMessage("EventOpenedDoor", (object)wall.id);
-        }
     }
 }

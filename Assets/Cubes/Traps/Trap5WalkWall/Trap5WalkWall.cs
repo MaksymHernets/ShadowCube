@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using ShadowCube.DTO;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -38,6 +39,14 @@ public class Trap5WalkWall : MonoBehaviour
             }
             audioSource.Play();
             StartCoroutine("Animation_Show");
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.GetComponent<Entity>() != null)
+        {
+            other.gameObject.GetComponent<Entity>().ToDamage(new Damage() { type = TypeDamage.venom, value = 1 });
         }
     }
 

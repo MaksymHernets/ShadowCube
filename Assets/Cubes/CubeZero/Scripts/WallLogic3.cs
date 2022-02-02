@@ -1,42 +1,26 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
+﻿using ShadowCube.Cubes;
+using ShadowCube.Helpers;
 using UnityEngine;
-using UnityEngine.UI;
-using Cubes;
 
-namespace Cubes.CubeZero
+namespace ShadowCubeCubes.CubeZero
 {
-    public class WallLogic3 : MonoBehaviour
+	public class WallLogic3 : WallLogic
     {
-        private Wall wall;
+        [SerializeField] private TextMesh number;
 
-        public GameObject door;
-        public TextMesh number1;
-
-        public void IntWall(object cubee) // Wall
+        public override void IntWall(CubeLogic cubeLogic, WallDTO wall)
         {
-            wall = (Wall)cubee;
-            number1.text = string.Join(".", 
-                GetSymbol(MathCube.SumNumber(wall.number.x)), 
-                GetSymbol(MathCube.SumNumber(wall.number.y)), 
-                GetSymbol(MathCube.SumNumber(wall.number.z)));
-            gameObject.GetComponent<MeshRenderer>().materials[1].SetColor("_EmissionColor", wall.color);
+            base.IntWall(cubeLogic, wall);
+
+            number.text = string.Join(".", 
+                GetSymbol(MathFunction.SumNumber(wall.number.x)), 
+                GetSymbol(MathFunction.SumNumber(wall.number.y)), 
+                GetSymbol(MathFunction.SumNumber(wall.number.z)));
         }
 
         private string GetSymbol(int index)
         {
             return char.ConvertFromUtf32(65 + index);
-        }
-
-        public void ToOpenDoor()
-        {
-            door.SendMessage("MegaCubeToOpen");
-        }
-
-        public void OpenedDoor()
-        {
-            transform.parent.gameObject.SendMessage("EventOpenedDoor", (object)wall.id);
         }
     }
 }

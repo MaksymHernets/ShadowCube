@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using ShadowCube.DTO;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -48,6 +49,14 @@ public class Trap3gas : MonoBehaviour
                 item.SetActive(true);
             }
             StartCoroutine("Waiting");
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.GetComponent<Entity>() != null)
+        {
+            other.gameObject.GetComponent<Entity>().ToDamage(new Damage() { type = TypeDamage.venom, value = 1 });
         }
     }
 

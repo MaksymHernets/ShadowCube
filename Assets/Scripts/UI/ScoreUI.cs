@@ -1,13 +1,10 @@
-﻿using DTO;
-using ShadowCube.DTO;
-using System.Collections;
-using System.Collections.Generic;
+﻿using ShadowCube.DTO;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace ShadowCube.UI
 {
-    public class ScoreUI : MonoBehaviour
+	public class ScoreUI : MonoBehaviour
     {
         public Text textRoom;
         public Text textTime;

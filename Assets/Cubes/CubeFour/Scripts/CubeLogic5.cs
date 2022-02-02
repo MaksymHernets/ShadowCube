@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using ShadowCube.Cubes;
 
-namespace Cubes.CubeFour
+namespace ShadowCubeCubes.CubeFour
 {
-    public class CubeLogic5 : CubeLogic
+	public class CubeLogic5 : CubeLogic
     {
         
     }

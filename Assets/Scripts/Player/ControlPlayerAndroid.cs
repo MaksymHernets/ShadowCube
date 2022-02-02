@@ -1,168 +1,49 @@
-﻿using DTO;
-using Invector.vCharacterController;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI;
 
-public class ControlPlayerAndroid : MonoBehaviour
+namespace ShadowCube.Player
 {
-    //[Header("Controller Input")]
-    //public string horizontalInput = "Horizontal";
-    //public string verticallInput = "Vertical";
-    //public KeyCode jumpInput = KeyCode.Space;
-    //public KeyCode strafeInput = KeyCode.Tab;
-    //public KeyCode sprintInput = KeyCode.LeftShift;
-
-    //[Header("Camera Input")]
-    //public string rotateCameraXInput = "Mouse X";
-    //public string rotateCameraYInput = "Mouse Y";
-
-    public PlayerLogic playerLogic;
-    public Control control;
-    public Menu menu;
-
-    public bl_Joystick stickleft; // walk
-    public bl_Joystick stickright; // view
-
-    public vThirdPersonController cc;
-    public vThirdPersonCamera tpCamera;
-    public Camera cameraMain;
-
-    private void Start()
+    public class ControlPlayerAndroid : MonoBehaviour
     {
-        if (Application.platform != RuntimePlatform.Android)
+        [SerializeField] private bl_Joystick stickleft;
+        [SerializeField] private bl_Joystick stickright;
+        [SerializeField] private Button buttonJump;
+        [SerializeField] private Button buttonUse;
+        [SerializeField] private Button buttonMenu;
+
+        private IPlayerLogic _playerLogic;
+
+        private void Start()
         {
-            this.gameObject.SetActive(false);
+            buttonJump.onClick.AddListener(ButtonJump_Click);
+            buttonJump.onClick.AddListener(ButtonJump_Click);
+            buttonJump.onClick.AddListener(ButtonJump_Click);
         }
 
-        InitilizeController();
-        InitializeTpCamera();
-    }
-
-    protected virtual void FixedUpdate()
-    {
-        cc.UpdateMotor();               // updates the ThirdPersonMotor methods
-        cc.ControlLocomotionType();     // handle the controller locomotion type and movespeed
-        cc.ControlRotationType();       // handle the controller rotation type
-    }
-
-    protected virtual void Update()
-    {
-        InputHandle();                  // update the input methods
-        cc.UpdateAnimator();            // updates the Animator Parameters
-    }
-
-    public virtual void OnAnimatorMove()
-    {
-        cc.ControlAnimatorRootMotion(); // handle root motion animations 
-    }
-
-    protected virtual void InitilizeController()
-    {
-        //cc = playerLogic.GetComponent<vThirdPersonController>();
-
-        if (cc != null)
-            cc.Init();
-    }
-
-    protected virtual void InitializeTpCamera()
-    {
-        if (tpCamera == null)
+        public void Init(IPlayerLogic playerLogic)
         {
-            tpCamera = FindObjectOfType<vThirdPersonCamera>();
-            if (tpCamera == null)
-                return;
-            if (tpCamera)
-            {
-                tpCamera.SetMainTarget(this.transform);
-                tpCamera.Init();
-            }
-        }
-    }
-
-    protected virtual void InputHandle()
-    {
-        MoveInput();
-        CameraInput();
-        //SprintInput();
-        //StrafeInput();
-        //JumpInput();
-    }
-
-    public virtual void MoveInput()
-    {
-        cc.input.x = stickleft.Horizontal;
-        cc.input.z = stickleft.Vertical;
-    }
-
-    protected virtual void CameraInput()
-    {
-        if (!cameraMain)
-        {
-            if (!Camera.main) Debug.Log("Missing a Camera with the tag MainCamera, please add one.");
-            else
-            {
-                cameraMain = Camera.main;
-                cc.rotateTarget = cameraMain.transform;
-            }
+            _playerLogic = playerLogic;
         }
 
-        if (cameraMain)
+        public void ButtonJump_Click()
         {
-            cc.UpdateMoveDirection(cameraMain.transform);
+            _playerLogic.Jump();
         }
 
-        if (tpCamera == null)
-            return;
+        public void ButtonUse_Click()
+        {
+            _playerLogic.ToUse();
+        }
 
-        var Y = stickright.Vertical * 0.17f;
-        var X = stickright.Horizontal * 0.17f;
+        public void ButtonMenu_Click()
+        {
+            //_playerLogic.OpenIte
+        }
 
-        tpCamera.RotateCamera(X, Y);
+        public void ButtonItem_Click()
+        {
+            _playerLogic.OpenInventory();
+        }
+
     }
-
-    //protected virtual void StrafeInput()
-    //{
-    //    if (Input.GetKeyDown(strafeInput))
-    //        cc.Strafe();
-    //}
-
-    //protected virtual void SprintInput()
-    //{
-    //    if (Input.GetKeyDown(sprintInput))
-    //        cc.Sprint(true);
-    //    else if (Input.GetKeyUp(sprintInput))
-    //        cc.Sprint(false);
-    //}
-
-    /// <summary>
-    /// Conditions to trigger the Jump animation & behavior
-    /// </summary>
-    /// <returns></returns>
-    protected virtual bool JumpConditions()
-    {
-        return cc.isGrounded && cc.GroundAngle() < cc.slopeLimit && !cc.isJumping && !cc.stopMove;
-    }
-
-    public void ButtonJump_Click()
-    {
-        if ( JumpConditions())
-            cc.Jump();
-    }
-
-    public void ButtonUse_Click()
-    {
-        playerLogic.ToUse();
-    }
-
-    public void ButtonMenu_Click()
-    {
-        menu.Active();
-    }
-
-    public void ButtonItem_Click()
-    {
-        playerLogic.OpenItem();
-    }
-
 }

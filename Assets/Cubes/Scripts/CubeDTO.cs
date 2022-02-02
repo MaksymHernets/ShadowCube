@@ -1,17 +1,18 @@
-﻿using Cubes;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class CubeDTO : MonoBehaviour
+namespace ShadowCube.Cubes
 {
-    public Vector3Int id;
+    public class CubeDTO
+    {
+        public Vector3Int id;
 
-    public Vector3Int position;
+        public Vector3Int position;
 
-    public Vector3Int shifr;
+        public Vector3Int shifr;
 
-    public Color Color;
+        public Color Color;
 
-    public Trap trap;
+        public Trap trap;
+    }
 }
+

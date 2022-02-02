@@ -1,57 +1,59 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using System.Linq;
+﻿using UnityEngine;
 
-namespace Cubes
+namespace ShadowCube.Cubes
 {
-    public class WallLogic : MonoBehaviour
+	[RequireComponent(typeof(MeshRenderer))]
+    public abstract class WallLogic : MonoBehaviour
     {
-        protected Wall wall;
-        //public MeshRenderer renderer;
+        [SerializeField] private DoorLogic door;
+        [SerializeField] private Light _light;
+        [SerializeField] private MeshRenderer meshRenderer;
 
-        public GameObject door;
+        protected CubeLogic _cubeLogic;
+        protected WallDTO _wall;
 
-        public void IntWall(object _object) // Wall
+        public virtual void IntWall(CubeLogic cubeLogic, WallDTO wall)
         {
-            wall = (Wall)_object;
-            gameObject.GetComponent<MeshRenderer>().materials[1].SetColor("_EmissionColor", wall.color);
-            gameObject.GetComponent<MeshRenderer>().materials[2].SetColor("_EmissionColor", wall.color);
+            _cubeLogic = cubeLogic;
+            _wall = wall;
+
+            SetColorPanel(_wall.color);
+        }
+
+        public void SetColorPanel(Color color)
+        {
+            meshRenderer.sharedMaterials[1].SetColor("_EmissionColor", _wall.color);
+            meshRenderer.sharedMaterials[2].SetColor("_EmissionColor", _wall.color);
         }
         
-        public void ToOpenDoor()
+        public virtual void ToOpenDoor()
         {
-            door.SendMessage("MegaCubeToOpen");
+            _light.gameObject.SetActive(true);
+            door.Open();
+
         }
 
-        public void ToCloseDoor()
+        public virtual void ToCloseDoor()
         {
-            door.SendMessage("MegaCubeToClose");
+            _light.gameObject.SetActive(false);
+            door.Close();
         }
 
         public void OpenedDoor()
         {
-            transform.parent.gameObject.SendMessage("EventOpenedDoor", (object)wall.id);
+            _cubeLogic.EventOpenedDoor(_wall.id);
         }
 
         public void ClosedDoor()
         {
-            transform.parent.gameObject.SendMessage("EventClosedDoor", (object)wall.id);
+            _cubeLogic.EventClosedDoor(_wall.id);
         }
     }
 
-    public class Wall
+    public class WallDTO
     {
         public int id { set; get; }
-
         public Vector3Int number { set; get; }
-
         public Color color { set; get; }
-
-    }
-
-    interface IWallLogic
-    {
-
     }
 }
