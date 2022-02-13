@@ -1,5 +1,14 @@
 {
   "dependencies": {
+    "com.goodtime.tools.autotranslate": {
+      "version": "https://github.com/MaksymHernets/AutoTranslateForLocalizationUnity.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.localization": "1.0.5"
+      },
+      "hash": "ba1d08ff4df7adeb2569320e7b807deda75a36e2"
+    },
     "com.unity.2d.animation": {
       "version": "7.0.2",
       "depth": 1,
@@ -86,11 +95,11 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.addressables": {
-      "version": "1.19.11",
+      "version": "1.19.18",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.unity.scriptablebuildpipeline": "1.19.3",
+        "com.unity.scriptablebuildpipeline": "1.19.6",
         "com.unity.modules.assetbundle": "1.0.0",
         "com.unity.modules.imageconversion": "1.0.0",
         "com.unity.modules.jsonserialize": "1.0.0",
@@ -198,7 +207,7 @@
       }
     },
     "com.unity.scriptablebuildpipeline": {
-      "version": "1.19.3",
+      "version": "1.19.6",
       "depth": 1,
       "source": "registry",
       "dependencies": {},
