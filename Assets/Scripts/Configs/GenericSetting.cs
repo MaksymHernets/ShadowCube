@@ -1,6 +1,9 @@
-﻿using UniRx;
+﻿using System.Collections.Generic;
+using System.Linq;
+using UniRx;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Localization.Settings;
 
 namespace ShadowCube.Setting
 {
@@ -45,6 +48,7 @@ namespace ShadowCube.Setting
 			set
 			{
 				PlayerPrefs.SetInt("Language", value);
+				LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[value];
 				Launcher.Value = value;
 			}
 		}
@@ -76,5 +80,11 @@ namespace ShadowCube.Setting
 		public ReactiveProperty<float> GlobalMusic;
 
 		public ReactiveProperty<int> Launcher;
+
+		public List<string> GetLanguages()
+        {
+			return LocalizationSettings.AvailableLocales.Locales.Select(w => w.LocaleName).ToList();
+
+		}
 	}
 }

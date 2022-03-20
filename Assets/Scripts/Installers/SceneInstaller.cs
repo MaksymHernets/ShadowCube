@@ -13,6 +13,8 @@ namespace ShadowCube.Installers
 
         public override void InstallBindings()
         {
+
+
             Container.Bind<GenericSetting>().FromInstance(_genericSetting).Lazy();
             Container.Bind<ControlSetting>().FromInstance(_controlSetting).Lazy();
             Container.Bind<GraphicSetting>().FromInstance(_graphicSetting).Lazy();

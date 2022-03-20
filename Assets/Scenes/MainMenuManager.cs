@@ -7,6 +7,7 @@ using Zenject;
 using ShadowCube.Cubes;
 using ShadowCube.Controller;
 using ShadowCube.Models;
+using UnityEngine.Localization.Settings;
 
 namespace ShadowCube.Scenes
 {

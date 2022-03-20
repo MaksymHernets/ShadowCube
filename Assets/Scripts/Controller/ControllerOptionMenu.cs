@@ -4,8 +4,10 @@ using ShadowCube.UI;
 using System.Linq;
 using UniRx;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 using UnityEngine.UI;
 using Zenject;
+using static UnityEngine.UI.Dropdown;
 
 namespace ShadowCube.Controller
 {
@@ -99,6 +101,8 @@ namespace ShadowCube.Controller
             buttonControl.onClick.AddListener(ButtonControl_Click);
             buttonGraphic.onClick.AddListener(ButtonGraphic_Click);
 
+            DropDownLanguage.options.AddRange(genericSetting.GetLanguages().Select(w => new OptionData(w)));
+            DropDownLanguage.onValueChanged.AddListener(DropDownLanguage_Changed);
             sliderTextSound.slider.onValueChanged.AddListener(SliderSound_Changed);
             sliderTextMusic.slider.onValueChanged.AddListener(SliderMusic_Changed);
             sliderTextMouse.slider.onValueChanged.AddListener(SliderMouse_Changed);
@@ -133,6 +137,11 @@ namespace ShadowCube.Controller
         #endregion
 
         #region Generic
+        public void DropDownLanguage_Changed(int index)
+        {
+            genericSetting.language = index;
+        }
+
         public void SliderSound_Changed(float value)
         {
             genericSetting.globalSound = value;
