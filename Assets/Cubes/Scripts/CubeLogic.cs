@@ -34,6 +34,14 @@ namespace ShadowCube.Cubes
             _light.color = _cube.Color;
         }
 
+        public virtual void SetColorRoom(Color color)
+        {
+            foreach (var wall in _walls)
+            {
+                wall.SetColorPanel(color);
+            }
+        }
+
         public void Update()
         {
             if ( CountPlayers == 0 )
