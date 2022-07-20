@@ -6,8 +6,6 @@ namespace ShadowCubeCubes.CubeOne
     public class DoorLogic1 : DoorLogic
     {
         [SerializeField] private Animator animator;
-        [SerializeField] private AudioSource audio_door;
-        [SerializeField] private AudioSource audio_doorhandle;
 
         public override void Open()
         {
