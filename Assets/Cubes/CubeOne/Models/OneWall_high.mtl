@@ -1,0 +1,57 @@
+# Blender MTL File: 'OneWall.blend'
+# Material Count: 5
+
+newmtl MiniLight
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.006783 0.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.523084 0.000000 0.000316
+Ni 1.450000
+d 1.000000
+illum 2
+
+newmtl PanelsLight
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd D:\\My_Projects\\ShadowCube\\Assets\\Cubes\\CubeOne\\Textures\\PanelLight_diffuse.png
+map_Ke D:\\My_Projects\\ShadowCube\\Assets\\Cubes\\CubeOne\\Textures\\PanelLight_emission.png
+
+newmtl TunnelLight
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd D:\\My_Projects\\ShadowCube\\Assets\\Cubes\\CubeOne\\Textures\\LightningParticle.jpg
+
+newmtl WallPipe
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd D:\\My_Projects\\ShadowCube\\Assets\\Cubes\\CubeOne\\Textures\\wallmetal1.jpg
+
+newmtl Wall_high
+Ns 250.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.184807 0.031902
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd .
