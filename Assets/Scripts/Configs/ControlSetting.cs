@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ShadowCube.Setting
 {
-	public class ControlSetting : MonoBehaviour
+	public class ControlSetting : MonoBehaviour, ISetting
 	{
 		public float speedMouse
 		{
@@ -33,6 +33,8 @@ namespace ShadowCube.Setting
 			}
 		}
 
+		public const float DefaultSpeedMouse = 50f;
+
 		private void Start()
 		{
 			if (!PlayerPrefs.HasKey("SpeedMouse"))
@@ -49,8 +51,14 @@ namespace ShadowCube.Setting
 			ReactControlPC = new ReactiveProperty<ControlPC>(controlPC);
 		}
 
-		private ReactiveProperty<float> SpeedMouse;
+		public void SetupDefaultSetting()
+		{
+			controlPC = new ControlPC();
+			speedMouse = DefaultSpeedMouse;
+		}
 
-		private ReactiveProperty<ControlPC> ReactControlPC;
+		public ReactiveProperty<float> SpeedMouse;
+
+		public ReactiveProperty<ControlPC> ReactControlPC;
 	}
 }

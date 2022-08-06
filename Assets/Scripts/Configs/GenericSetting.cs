@@ -7,7 +7,7 @@ using UnityEngine.Localization.Settings;
 
 namespace ShadowCube.Setting
 {
-	public class GenericSetting : MonoBehaviour
+	public class GenericSetting : MonoBehaviour, ISetting
 	{
 		[SerializeField] private AudioMixer audioMixer;
 
@@ -34,7 +34,7 @@ namespace ShadowCube.Setting
 			set
 			{
 				PlayerPrefs.SetFloat("GlobalMusic", value);
-				GlobalSound.Value = value;
+				GlobalMusic.Value = value;
 				audioMixer.SetFloat("Music", value-80f);
 			}
 		}
@@ -53,6 +53,22 @@ namespace ShadowCube.Setting
 			}
 		}
 
+		public int region
+		{
+			get
+			{
+				return PlayerPrefs.GetInt("Region");
+			}
+			set
+			{
+				PlayerPrefs.SetInt("Region", value);
+				Region.Value = value;
+			}
+		}
+
+		public const float DefaultGlobalSound = 50f;
+		public const float DefaultGlobalMusic = 50f;
+
 		private void Start()
 		{
 			if (!PlayerPrefs.HasKey("GlobalSound"))
@@ -67,12 +83,17 @@ namespace ShadowCube.Setting
 			{
 				PlayerPrefs.SetInt("Launcher", 0);
 			}
+			if (!PlayerPrefs.HasKey("Region"))
+			{
+				PlayerPrefs.SetInt("Region", 0);
+			}
 
 			AudioListener.volume = PlayerPrefs.GetFloat("GlobalSound") * 0.01f;
 
 			GlobalSound = new ReactiveProperty<float>(globalSound);
 			GlobalMusic = new ReactiveProperty<float>(globalMusic);
 			Launcher = new ReactiveProperty<int>(language);
+			Region = new ReactiveProperty<int>(region);
 		}
 
 		public ReactiveProperty<float> GlobalSound;
@@ -81,10 +102,27 @@ namespace ShadowCube.Setting
 
 		public ReactiveProperty<int> Launcher;
 
+		public ReactiveProperty<int> Region;
+
 		public List<string> GetLanguages()
         {
 			return LocalizationSettings.AvailableLocales.Locales.Select(w => w.LocaleName).ToList();
+		}
 
+		public void SetupDefaultSetting()
+		{
+			globalSound = DefaultGlobalSound;
+			globalMusic = DefaultGlobalMusic;
+		}
+
+		public List<string> GetRegions()
+		{
+			List<string> names = new List<string>();
+			names.Add("Europe");
+			names.Add("Asia");
+			names.Add("America");
+			names.Add("CIS");
+			return names;
 		}
 	}
 }

@@ -18,7 +18,9 @@ namespace ShadowCube.UI
 			set
 			{
 				slider.value = value;
-				text.text = value.ToString("G");
+				if ( slider.minValue > value ) text.text = slider.minValue.ToString("G");
+				else if ( slider.maxValue < value ) text.text = slider.maxValue.ToString("G");
+				else text.text = value.ToString("G");
 			}
 		}
 
