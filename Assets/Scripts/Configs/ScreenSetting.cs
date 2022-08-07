@@ -73,7 +73,11 @@ namespace ShadowCube.Setting
 		}
 
 		public readonly float DefaultScaleRender = 1f;
+#if UNITY_ANDROID || UNITY_IPHONE
+		public readonly float MinScaleRender = 0.4f;
+#else
 		public readonly float MinScaleRender = 0.5f;
+#endif
 		public readonly float MaxScaleRender = 1f;
 
 		private void Start()

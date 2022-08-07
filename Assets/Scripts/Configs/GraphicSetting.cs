@@ -90,7 +90,7 @@ namespace ShadowCube.Setting
 		}
 
 		public readonly int MinFPS = 30;
-#if PLATFORM_ANDROID
+#if UNITY_ANDROID || UNITY_IPHONE
 		public readonly int MaxMaxFPS = 144;
 #else
 		public readonly int MaxMaxFPS = 300;
