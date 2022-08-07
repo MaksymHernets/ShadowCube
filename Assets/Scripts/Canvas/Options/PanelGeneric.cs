@@ -1,6 +1,5 @@
 using ShadowCube.Setting;
 using ShadowCube.UI;
-using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -31,8 +30,9 @@ public class PanelGeneric : OptionPanel
         DropDownRegion.AddOptions( genericSetting.GetRegions() );
         DropDownRegion.onValueChanged.AddListener(DropDownRegion_Changed);
 
-        genericSetting.GlobalMusic.Subscribe( Observer.Create<float>( value => sliderTextMusic.Value = value ) );
-        genericSetting.GlobalSound.Subscribe( Observer.Create<float>( value => sliderTextSound.Value = value ) );
+        genericSetting.GlobalMusic += value => sliderTextMusic.Value = value;
+        genericSetting.GlobalSound += value => sliderTextSound.Value = value;
+        genericSetting.Launcher += value => DropDownLanguage.value = value;
     }
 
     public void DropDownLanguage_Changed(int index)

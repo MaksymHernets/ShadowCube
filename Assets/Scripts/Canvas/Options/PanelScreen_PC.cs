@@ -46,7 +46,8 @@ public class PanelScreen_PC : OptionPanel
 
     public void DropdownResolution_Changed(int index)
     {
-        Screen.SetResolution(Screen.resolutions[index].width, Screen.resolutions[index].height, Screen.fullScreenMode);
+        Resolution resolution = Screen.resolutions[index];
+        screenSetting.displayResolution = new Vector2Int(resolution.width, resolution.height);
     }
 
     public void DropdownMode_Changed(int index)

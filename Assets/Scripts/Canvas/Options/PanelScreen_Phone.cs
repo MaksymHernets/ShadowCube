@@ -1,6 +1,7 @@
 using ShadowCube.Setting;
 using ShadowCube.UI;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 namespace ShadowCube
@@ -8,23 +9,32 @@ namespace ShadowCube
 	public class PanelScreen_Phone : OptionPanel
     {
         [SerializeField] private SliderTextUI sliderTextScaleRender;
+        [SerializeField] private Toggle toggle_AutoRotate;
 
         [Inject] ScreenSetting screenSetting;
 
 		private void Start()
 		{
-            sliderTextScaleRender.Value = screenSetting.scaleRender;
             sliderTextScaleRender.slider.minValue = screenSetting.MinScaleRender;
             sliderTextScaleRender.slider.maxValue = screenSetting.MaxScaleRender;
-            sliderTextScaleRender.slider.onValueChanged.AddListener(SliderScaleRender_Changed);
+            sliderTextScaleRender.Value = screenSetting.scaleRender;
+            sliderTextScaleRender.slider.onValueChanged.AddListener(Slider_ScaleRender_Changed);
+
+            toggle_AutoRotate.isOn = screenSetting.autoRotate;
+            toggle_AutoRotate.onValueChanged.AddListener(Toggle_AutoRotate_Changed);
         }
 
-		public void SliderScaleRender_Changed(float index)
+		public void Slider_ScaleRender_Changed(float index)
         {
             screenSetting.scaleRender = index;
         }
 
-		public override void SetupDefaultOption()
+        public void Toggle_AutoRotate_Changed(bool value)
+        {
+            screenSetting.autoRotate = value;
+        }
+
+        public override void SetupDefaultOption()
 		{
 			screenSetting.SetupDefaultSetting();
 		}

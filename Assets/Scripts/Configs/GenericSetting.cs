@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using UniRx;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Events;
 using UnityEngine.Localization.Settings;
 
 namespace ShadowCube.Setting
@@ -21,7 +21,7 @@ namespace ShadowCube.Setting
 			{
 				PlayerPrefs.SetFloat("GlobalSound", value);
 				AudioListener.volume = value * 0.01f;
-				GlobalSound.Value = value;
+				GlobalSound.Invoke(value);
 			}
 		}
 
@@ -34,7 +34,7 @@ namespace ShadowCube.Setting
 			set
 			{
 				PlayerPrefs.SetFloat("GlobalMusic", value);
-				GlobalMusic.Value = value;
+				GlobalMusic.Invoke(value);
 				audioMixer.SetFloat("Music", value-80f);
 			}
 		}
@@ -49,7 +49,7 @@ namespace ShadowCube.Setting
 			{
 				PlayerPrefs.SetInt("Language", value);
 				LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[value];
-				Launcher.Value = value;
+				Launcher.Invoke(value);
 			}
 		}
 
@@ -62,7 +62,7 @@ namespace ShadowCube.Setting
 			set
 			{
 				PlayerPrefs.SetInt("Region", value);
-				Region.Value = value;
+				Region.Invoke(value);
 			}
 		}
 
@@ -89,20 +89,7 @@ namespace ShadowCube.Setting
 			}
 
 			AudioListener.volume = PlayerPrefs.GetFloat("GlobalSound") * 0.01f;
-
-			GlobalSound = new ReactiveProperty<float>(globalSound);
-			GlobalMusic = new ReactiveProperty<float>(globalMusic);
-			Launcher = new ReactiveProperty<int>(language);
-			Region = new ReactiveProperty<int>(region);
 		}
-
-		public ReactiveProperty<float> GlobalSound;
-
-		public ReactiveProperty<float> GlobalMusic;
-
-		public ReactiveProperty<int> Launcher;
-
-		public ReactiveProperty<int> Region;
 
 		public List<string> GetLanguages()
         {
@@ -124,5 +111,13 @@ namespace ShadowCube.Setting
 			names.Add("CIS");
 			return names;
 		}
+
+		public UnityAction<float> GlobalSound;
+
+		public UnityAction<float> GlobalMusic;
+
+		public UnityAction<int> Launcher;
+
+		public UnityAction<int> Region;
 	}
 }

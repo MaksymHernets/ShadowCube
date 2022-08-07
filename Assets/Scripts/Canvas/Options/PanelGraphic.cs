@@ -14,6 +14,7 @@ public class PanelGraphic : OptionPanel
     [SerializeField] private SliderTextUI SliderTextView;
     [SerializeField] private Dropdown DropDownQuality;
     [SerializeField] private Dropdown DropDownEffect;
+    [SerializeField] private Toggle ToggleShowFps;
 
     [Inject] GraphicSetting graphicSetting;
 
@@ -21,13 +22,15 @@ public class PanelGraphic : OptionPanel
 	{
         DropDownSync.ClearOptions();
         DropDownSync.AddOptions( graphicSetting.GetNamesSync() );
-        DropDownSync.value = QualitySettings.vSyncCount;
+        DropDownSync.value = graphicSetting.syncCount;
         
         SliderTextMaxFps.slider.onValueChanged.AddListener(SliderFPS_Changed);
+        SliderTextMaxFps.slider.minValue = graphicSetting.MinFPS;
+        SliderTextMaxFps.slider.maxValue = graphicSetting.MaxMaxFPS;
         SliderTextMaxFps.Value = graphicSetting.maxFPS;
 
         SliderTextView.slider.onValueChanged.AddListener(SliderView_Changed);
-        SliderTextView.Value = graphicSetting.viewCamera;
+        SliderTextView.Value = graphicSetting.fieldOfView;
 
         DropDownQuality.ClearOptions();
         DropDownQuality.AddOptions(graphicSetting.GetNamesQualityLevel().ToList());
@@ -38,8 +41,8 @@ public class PanelGraphic : OptionPanel
         DropDownEffect.onValueChanged.AddListener(DropdownEffect_Changed);
         DropDownEffect.value = graphicSetting.screenEffect;
 
-        graphicSetting.MaxFPS.Subscribe(Observer.Create<int>(value => SliderTextMaxFps.Value = value));
-        graphicSetting.Quality.Subscribe(Observer.Create<int>(value => DropDownQuality.value = value));
+        ToggleShowFps.isOn = graphicSetting.showFps;
+        ToggleShowFps.onValueChanged.AddListener(ToggleShowFps_Changed);
     }
 
     public void SliderFPS_Changed(float index)
@@ -49,7 +52,7 @@ public class PanelGraphic : OptionPanel
 
     public void SliderView_Changed(float index)
     {
-        graphicSetting.viewCamera = (int)index;
+        graphicSetting.fieldOfView = (int)index;
     }
 
     public void DropdownQuality_Changed(int index)
@@ -59,7 +62,7 @@ public class PanelGraphic : OptionPanel
 
     public void DropdownSync_Changed(int index)
     {
-        graphicSetting.viewCamera = index;
+        graphicSetting.syncCount = index;
     }
 
     public void DropdownEffect_Changed(int index)
@@ -67,7 +70,12 @@ public class PanelGraphic : OptionPanel
         graphicSetting.screenEffect = index;
     }
 
-	public override void SetupDefaultOption()
+    public void ToggleShowFps_Changed(bool value)
+    {
+        graphicSetting.showFps = value;
+    }
+
+    public override void SetupDefaultOption()
 	{
         graphicSetting.SetupDefaultSetting();
     }

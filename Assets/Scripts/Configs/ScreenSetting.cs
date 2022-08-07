@@ -7,6 +7,9 @@ namespace ShadowCube.Setting
 {
 	public class ScreenSetting : MonoBehaviour, ISetting
     {
+		public const string Name_AutoRotate = "AutoRotate";
+		public const string Name_ScaleRender = "ScaleRender";
+
 		public Vector2Int displayResolution
 		{
 			get
@@ -19,6 +22,7 @@ namespace ShadowCube.Setting
 			{
 				PlayerPrefs.SetInt("WidthScreen", value.x);
 				PlayerPrefs.SetInt("HeightScreen", value.y);
+				Screen.SetResolution(value.x, value.y, screenMode);
 				DisplayResolution.Value = value;
 			}
 		}
@@ -41,26 +45,41 @@ namespace ShadowCube.Setting
 		{
 			get
 			{
-				return PlayerPrefs.GetFloat("ScaleRender");
+				return PlayerPrefs.GetFloat(Name_ScaleRender);
 			}
 			set
 			{
-				PlayerPrefs.SetFloat("ScaleRender", value);
-				int x = (int)(displayResolution.x * value * 0.01f);
-				int y = (int)(displayResolution.y * value * 0.01f);
-				//Screen.SetResolution(x, y, Screen.mainWindowDisplayInfo)
-				//Screen.SetResolution(Screen.width, Screen.height, value);
+				if (MaxScaleRender < value) return;
+				if (MinScaleRender > value) return;
+				PlayerPrefs.SetFloat(Name_ScaleRender, value);
+				int x = (int)(displayResolution.x * value);
+				int y = (int)(displayResolution.y * value);
+				Display.main.SetRenderingResolution(x, y);
 			}
 		}
 
-		public readonly float MinScaleRender = 0.7f;
+		public bool autoRotate
+		{
+			get
+			{
+				return Convert.ToBoolean(PlayerPrefs.GetInt(Name_AutoRotate));
+			}
+			set
+			{
+				PlayerPrefs.SetInt(Name_AutoRotate, Convert.ToInt32(value));
+				Screen.autorotateToLandscapeLeft = value;
+				Screen.autorotateToLandscapeRight = value;
+			}
+		}
+
+		public readonly float MinScaleRender = 0.5f;
 		public readonly float MaxScaleRender = 1f;
 
 		private void Start()
 		{
-			if (!PlayerPrefs.HasKey("ScaleRender"))
+			if (!PlayerPrefs.HasKey(Name_ScaleRender))
 			{
-				PlayerPrefs.SetFloat("ScaleRender", 1f);
+				PlayerPrefs.SetFloat(Name_ScaleRender, 1f);
 			}
 			if (!PlayerPrefs.HasKey("ScreenMode"))
 			{
@@ -74,8 +93,14 @@ namespace ShadowCube.Setting
 			{
 				PlayerPrefs.SetInt("HeightScreen", Screen.height);
 			}
+			if (!PlayerPrefs.HasKey(Name_AutoRotate))
+			{
+				PlayerPrefs.SetInt(Name_AutoRotate, 0);
+			}
 
 			DisplayResolution = new ReactiveProperty<Vector2Int>(displayResolution);
+			scaleRender = PlayerPrefs.GetFloat(Name_ScaleRender);
+			autoRotate = Convert.ToBoolean(PlayerPrefs.GetInt(Name_AutoRotate));
 		}
 
 		public void SetupDefaultSetting()
