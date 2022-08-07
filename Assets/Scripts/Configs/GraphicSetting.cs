@@ -14,7 +14,7 @@ namespace ShadowCube.Setting
 		{
 			get
 			{
-				return PlayerPrefs.GetInt(NAME_QualityLevel);
+				return PlayerPrefs.GetInt(NAME_QualityLevel, QualitySettings.GetQualityLevel());
 			}
 			set
 			{
@@ -54,7 +54,7 @@ namespace ShadowCube.Setting
 		{
 			get
 			{
-				return PlayerPrefs.GetInt("ViewCamera");
+				return PlayerPrefs.GetInt("ViewCamera", DefaultViewCamera);
 			}
 			set
 			{
@@ -102,7 +102,7 @@ namespace ShadowCube.Setting
 		{
 			if (!PlayerPrefs.HasKey(NAME_QualityLevel))
 			{
-				PlayerPrefs.SetInt(NAME_QualityLevel, 0);
+				PlayerPrefs.SetInt(NAME_QualityLevel, QualitySettings.GetQualityLevel());
 			}
 			if (!PlayerPrefs.HasKey(NAME_ScreenEffect))
 			{

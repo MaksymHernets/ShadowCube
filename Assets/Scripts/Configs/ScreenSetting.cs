@@ -45,7 +45,7 @@ namespace ShadowCube.Setting
 		{
 			get
 			{
-				return PlayerPrefs.GetFloat(Name_ScaleRender);
+				return PlayerPrefs.GetFloat(Name_ScaleRender, DefaultScaleRender);
 			}
 			set
 			{
@@ -72,6 +72,7 @@ namespace ShadowCube.Setting
 			}
 		}
 
+		public readonly float DefaultScaleRender = 1f;
 		public readonly float MinScaleRender = 0.5f;
 		public readonly float MaxScaleRender = 1f;
 
@@ -79,7 +80,7 @@ namespace ShadowCube.Setting
 		{
 			if (!PlayerPrefs.HasKey(Name_ScaleRender))
 			{
-				PlayerPrefs.SetFloat(Name_ScaleRender, 1f);
+				PlayerPrefs.SetFloat(Name_ScaleRender, DefaultScaleRender);
 			}
 			if (!PlayerPrefs.HasKey("ScreenMode"))
 			{

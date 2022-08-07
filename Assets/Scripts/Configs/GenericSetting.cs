@@ -19,6 +19,8 @@ namespace ShadowCube.Setting
 			}
 			set
 			{
+				if (value > 100) return;
+				if (value < 0) return;
 				PlayerPrefs.SetFloat("GlobalSound", value);
 				AudioListener.volume = value * 0.01f;
 				GlobalSound.Invoke(value);
@@ -33,9 +35,11 @@ namespace ShadowCube.Setting
 			}
 			set
 			{
+				if (value > 100) return;
+				if (value < 0) return;
 				PlayerPrefs.SetFloat("GlobalMusic", value);
+				audioMixer.SetFloat("Music", value - 80f);
 				GlobalMusic.Invoke(value);
-				audioMixer.SetFloat("Music", value-80f);
 			}
 		}
 
@@ -73,11 +77,11 @@ namespace ShadowCube.Setting
 		{
 			if (!PlayerPrefs.HasKey("GlobalSound"))
 			{
-				PlayerPrefs.SetFloat("GlobalSound", 0f);
+				PlayerPrefs.SetFloat("GlobalSound", DefaultGlobalSound);
 			}
 			if (!PlayerPrefs.HasKey("GlobalMusic"))
 			{
-				PlayerPrefs.SetFloat("GlobalMusic", 0f);
+				PlayerPrefs.SetFloat("GlobalMusic", DefaultGlobalMusic);
 			}
 			if (!PlayerPrefs.HasKey("Launcher"))
 			{
