@@ -16,14 +16,14 @@ namespace GoodTime.Helpers.Telemetry
         public override string ToString()
         {
             var sb = new StringBuilder(500);
-            sb.AppendLine($"Avg FPS: {AvgFps}");
-            sb.AppendLine($"Number Frames: {NumberFrames}");
-            sb.AppendLine($"Avg Delta Time: {AvgDeltaTime} ms");
-            sb.AppendLine($"Minimum Delta Time: {MinimumDeltaTime} ms");
-            sb.AppendLine($"Maximum Delta Time: {MaximumDeltaTime} ms");
-            sb.AppendLine($"Total Reserved Memory: {TotalReservedMemory} MB");
-            sb.AppendLine($"Total Texture Memory Size: {TotalTextureMemorySize} MB");
             sb.AppendLine($"TotalSystemUsedMemoryRecorder: {TotalSystemUsedMemoryRecorder} MB");
+            sb.AppendLine($"Total Texture Memory Size: {TotalTextureMemorySize} MB");
+            sb.AppendLine($"Total Reserved Memory: {TotalReservedMemory} MB");
+            sb.AppendLine($"Maximum Delta Time: {MaximumDeltaTime} ms");
+            sb.AppendLine($"Minimum Delta Time: {MinimumDeltaTime} ms");
+            sb.AppendLine($"Avg Delta Time: {AvgDeltaTime} ms");
+            sb.AppendLine($"Number Frames: {NumberFrames}");
+            sb.AppendLine($"Avg FPS: {AvgFps}");
             return sb.ToString();
         }
     }

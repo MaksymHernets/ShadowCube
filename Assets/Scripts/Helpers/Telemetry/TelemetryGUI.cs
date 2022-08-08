@@ -49,7 +49,7 @@ namespace GoodTime.Helpers.Telemetry
 
         private void OnGUI()
         {
-            GUILayout.TextArea(_currentAnalyticsDTO.ToString());
+            GUILayout.Label(_currentAnalyticsDTO.ToString());
         }
 
         private void OnDestroy()
