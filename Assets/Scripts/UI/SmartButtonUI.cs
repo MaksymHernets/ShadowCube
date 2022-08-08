@@ -1,15 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
 namespace ShadowCube
 {
-    public class SmartButtonUI : Button
+	public class SmartButtonUI : Button
     {
         public UnityAction<Button> OnClick;
-        [SerializeField] public Text Name;
+
+		[SerializeField] public Text Name;
 
 		protected override void Start()
 		{
