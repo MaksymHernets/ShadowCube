@@ -7,19 +7,18 @@ namespace ShadowCube.Player
 {
     public class ControlPlayerPC : MonoBehaviour
     {
-        private ControlPC _control;
-        private IPlayerLogic _playerLogic;
+        [SerializeField] private PlayerLogic _playerLogic;
 
         [Inject] ControlSetting controlSetting;
 
-        public void Init(IPlayerLogic playerLogic)
-        {
-            _playerLogic = playerLogic;
+        private ControlPC _control;
 
-            _control = new ControlPC();
+        private void Start()
+		{
+            _control = controlSetting.controlPC;
         }
 
-        public void Update()
+		public void Update()
         {
             if (Input.GetKeyDown(_control.openitem))
             {
@@ -47,9 +46,6 @@ namespace ShadowCube.Player
             var position = new Vector3(a2, a1, 0);
 
             _playerLogic.RotateToPosition(position);
-
-
-            //Input.mousePosition
         }
 
 
