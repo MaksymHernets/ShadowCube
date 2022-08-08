@@ -84,7 +84,13 @@ namespace ShadowCube.Setting
 		{
 			if (!PlayerPrefs.HasKey(Name_ScaleRender))
 			{
-				PlayerPrefs.SetFloat(Name_ScaleRender, DefaultScaleRender);
+				float scaleRender = DefaultScaleRender;
+#if UNITY_ANDROID || UNITY_IPHONE
+				if ( Display.main.systemWidth > 3000 ) scaleRender = 0.4f;
+				else if ( Display.main.systemWidth > 2500 ) scaleRender = 0.6f;
+				else if ( Display.main.systemWidth > 1900 ) scaleRender = 0.8f;
+#endif
+				PlayerPrefs.SetFloat(Name_ScaleRender, scaleRender);
 			}
 			if (!PlayerPrefs.HasKey("ScreenMode"))
 			{
@@ -106,6 +112,8 @@ namespace ShadowCube.Setting
 			DisplayResolution = new ReactiveProperty<Vector2Int>(displayResolution);
 			scaleRender = PlayerPrefs.GetFloat(Name_ScaleRender);
 			autoRotate = Convert.ToBoolean(PlayerPrefs.GetInt(Name_AutoRotate));
+
+			 
 		}
 
 		public void SetupDefaultSetting()
