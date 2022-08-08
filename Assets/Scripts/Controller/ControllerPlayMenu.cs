@@ -66,7 +66,7 @@ namespace ShadowCube.Controller
 
         public void DropdownMap_Click(int newindex)
         {
-            _model.mainMenuManager.ShowCube(gameSetting.indexCube, newindex);
+            _model.mainMenuManager.ShowCubeSecond(gameSetting.indexCube, newindex);
             gameSetting.indexCube = newindex;
         }
 
@@ -124,7 +124,7 @@ namespace ShadowCube.Controller
                 gameSetting.indexCube = newindex;
                 maps[oldindex].image.color = new Color(0.3f, 0.3f, 0.3f, 0.8f);
                 maps[newindex].image.color = Color.black;
-                _model.mainMenuManager.ShowCube(oldindex, newindex);
+                _model.mainMenuManager.ShowCubeSecond(oldindex, newindex);
             }
         }
 
