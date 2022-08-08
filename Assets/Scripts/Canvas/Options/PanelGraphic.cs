@@ -30,6 +30,8 @@ public class PanelGraphic : OptionPanel
         SliderTextMaxFps.Value = graphicSetting.maxFPS;
 
         SliderTextView.slider.onValueChanged.AddListener(SliderView_Changed);
+        SliderTextView.slider.minValue = graphicSetting.MinViewCamera;
+        SliderTextView.slider.minValue = graphicSetting.MaxViewCamera;
         SliderTextView.Value = graphicSetting.fieldOfView;
 
         DropDownQuality.ClearOptions();

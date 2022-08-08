@@ -95,6 +95,9 @@ namespace ShadowCube.Setting
 #else
 		public readonly int MaxMaxFPS = 300;
 #endif
+		public readonly int MinViewCamera = 70;
+		public readonly int MaxViewCamera = 90;
+
 		public const int DefaultMaxFPS = 60;
 		public const int DefaultViewCamera = 75;
 
