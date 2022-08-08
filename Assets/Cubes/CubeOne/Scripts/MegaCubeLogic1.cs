@@ -84,11 +84,6 @@ namespace ShadowCubeCubes.CubeFour
         #endregion
 
         #region Methods
-        public override void PutObject(Vector3Int position, Transform transform)
-        {
-            var currentCube = ActivateCube(position);
-            transform.localPosition = currentCube.transform.localPosition + new Vector3(0, 0, 1);
-        }
         public void DeactivateCube(Vector3Int position)
         {
             Vector3Int newposition;
@@ -114,7 +109,7 @@ namespace ShadowCubeCubes.CubeFour
             }
             return true;
         }
-        public CubeLogic ActivateCube(Vector3Int position, int wallnumber = 6)
+        public override CubeLogic ActivateCube(Vector3Int position, int wallnumber = 6)
         {
             var cubeDTO = _massCubesDTO[position.x, position.y, position.z];
             var cube = poolObjects.Get();
