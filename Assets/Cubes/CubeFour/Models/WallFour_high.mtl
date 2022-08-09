@@ -1,39 +1,38 @@
 # Blender MTL File: 'Wall_Four.blend'
 # Material Count: 4
 
-newmtl Light
+newmtl MiniPanels_high
 Ns 359.999993
 Ka 1.000000 1.000000 1.000000
-Kd 0.800000 0.800000 0.800000
+Kd 0.800000 0.740531 0.461882
 Ks 0.500000 0.500000 0.500000
 Ke 0.000000 0.000000 0.000000
 Ni 1.000000
 d 1.000000
 illum 2
 
-newmtl PanelLight_Bottom
+newmtl Panels_high
 Ns 250.000000
 Ka 1.000000 1.000000 1.000000
 Kd 0.800000 0.800000 0.800000
 Ks 0.500000 0.500000 0.500000
-Ke 0.000000 0.000000 0.000000
+Ke 0.113380 1.000000 0.072570
 Ni 1.450000
 d 1.000000
 illum 2
 map_Kd D:\\My_Projects\\ShadowCube\\Assets\\Cubes\\CubeFour\\Textures\\panel1tex.png
 
-newmtl PanelLight_Corner
-Ns 250.000000
+newmtl TunnelLight_high
+Ns 249.532918
 Ka 1.000000 1.000000 1.000000
-Kd 0.800000 0.800000 0.800000
+Kd 0.750393 0.800000 0.562417
 Ks 0.500000 0.500000 0.500000
 Ke 0.000000 0.000000 0.000000
-Ni 1.450000
+Ni 1.000000
 d 1.000000
 illum 2
-map_Kd D:\\My_Projects\\ShadowCube\\Assets\\Cubes\\CubeFour\\Textures\\pane2text2.png
 
-newmtl wall_mid
+newmtl wall_high
 Ns 250.000000
 Ka 0.145455 0.145455 0.145455
 Kd 0.701131 0.758802 0.800000

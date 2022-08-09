@@ -7,6 +7,7 @@ namespace ShadowCube.UI
 	{
 		[SerializeField] public Slider slider;
 		[SerializeField] private Text text;
+		[SerializeField] private string formatString = "G";
 
 		[HideInInspector]
 		public float Value
@@ -18,7 +19,9 @@ namespace ShadowCube.UI
 			set
 			{
 				slider.value = value;
-				text.text = value.ToString("G");
+				if ( slider.minValue > value ) text.text = slider.minValue.ToString(formatString);
+				else if ( slider.maxValue < value ) text.text = slider.maxValue.ToString(formatString);
+				else text.text = value.ToString(formatString);
 			}
 		}
 
@@ -29,7 +32,7 @@ namespace ShadowCube.UI
 
 		private void OnValueChanged(float value)
 		{
-			text.text = value.ToString("G");
+			text.text = value.ToString(formatString);
 		}
 	}
 }

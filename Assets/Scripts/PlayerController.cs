@@ -12,6 +12,7 @@ namespace ShadowCube
     public class PlayerController : MonoBehaviour
     {
         [SerializeField] private PlayerLogic playerLogic;
+        [SerializeField] private MusicFonManager musicFonManager;
 
         [Header("Controllers")]
         [SerializeField] private ControllerEndGame controllerEndGame;
@@ -38,6 +39,8 @@ namespace ShadowCube
 
             SpawnItems();
             StartLevel();
+
+            musicFonManager.Play(gameSetting.indexCube);
         }
 
         private void SpawnItems()
@@ -61,7 +64,6 @@ namespace ShadowCube
 
             controllerEndGame.Init(new ModelEndGame() { playerController = this });
             controllerHUD.Init(new ModelHUD() { playerLogic = playerLogic });
-            controllerMenu.Init(new IModel());
             controllerDisplayDamage.Init(new ModelDisplayDamage() { EntityTarget = playerLogic });
         }
 
@@ -83,6 +85,11 @@ namespace ShadowCube
                 controllerInventary.Deactive();
             }
         }
+
+        public void OpenMenu()
+		{
+            controllerMenu.Init(new IModel());
+        }            
 
         private void EventClosedMenu_Handler()
         {

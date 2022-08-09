@@ -40,6 +40,9 @@ namespace ShadowCube.Setting
 			set;
 		}
 
+		public readonly int MinPlayers = 1;
+		public readonly int MaxPlayers = 10;
+
 		private void Start()
 		{
 			if (!PlayerPrefs.HasKey("IndexCube"))
@@ -59,6 +62,17 @@ namespace ShadowCube.Setting
 		public void UpdatePlayerDTO(PlayerDTO player)
 		{
 			playerDTO = player;
+		}
+
+		public List<string> GetCubes()
+		{
+			List<string> names = new List<string>();
+			names.Add("CubeOne");
+			names.Add("HyperOne");
+			names.Add("CubeZero");
+			names.Add("NewCube");
+			names.Add("CubeFour");
+			return names;
 		}
 
 		public ReactiveProperty<int> IndexCube;

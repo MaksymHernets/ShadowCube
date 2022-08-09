@@ -1,5 +1,4 @@
-﻿using DG.Tweening;
-using ShadowCube.Cubes;
+﻿using ShadowCube.Cubes;
 using UnityEngine;
 
 namespace ShadowCubeCubes.CubeHyber

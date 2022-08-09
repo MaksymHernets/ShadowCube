@@ -15,11 +15,6 @@ namespace ShadowCube.Cubes
 
 		protected float _WidhtCube = 2.6f;
 
-		//private void Start()
-		//{
-		//	Init();
-		//}
-
 		private void Update()
 		{
 			UpdateMegaCube();
@@ -33,7 +28,12 @@ namespace ShadowCube.Cubes
 		public abstract void EventOpenedDoor(Vector3Int position, int indexDoor);
 		protected abstract Vector3Int GetCube(Vector3Int position, int indexWall);
 		protected abstract int GetCubeDoor(Vector3Int position, int indexWall);
-		public abstract void PutObject(Vector3Int position, Transform transform);
+		public virtual void PutObject(Vector3Int position, Transform transform)
+		{
+			CubeLogic currentCube = ActivateCube(position);
+			transform.localPosition = currentCube.transform.localPosition;
+		}
+		public abstract CubeLogic ActivateCube(Vector3Int position, int wallnumber = 6);
 		protected abstract void UpdateMegaCube();
 	}
 }
