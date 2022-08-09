@@ -11,6 +11,9 @@ namespace ShadowCube
         [SerializeField] private SliderTextUI sliderTextScaleRender;
         [SerializeField] private Toggle toggle_AutoRotate;
 
+        [SerializeField] private Text text_SystemResolution;
+        [SerializeField] private Text text_RenderingResolution;
+
         [Inject] ScreenSetting screenSetting;
 
 		private void Start()
@@ -22,6 +25,11 @@ namespace ShadowCube
 
             toggle_AutoRotate.isOn = screenSetting.autoRotate;
             toggle_AutoRotate.onValueChanged.AddListener(Toggle_AutoRotate_Changed);
+
+            screenSetting.ScaleRender += Update_ScaleRender;
+
+            text_SystemResolution.text = screenSetting.GetSystemResolution();
+            text_RenderingResolution.text = screenSetting.GetRenderingResolution();
         }
 
 		public void Slider_ScaleRender_Changed(float index)
@@ -29,7 +37,13 @@ namespace ShadowCube
             screenSetting.scaleRender = index;
         }
 
-        public void Toggle_AutoRotate_Changed(bool value)
+        private void Update_ScaleRender(float scale)
+		{
+            text_SystemResolution.text = screenSetting.GetSystemResolution();
+            text_RenderingResolution.text = screenSetting.GetRenderingResolution();
+        }
+
+		public void Toggle_AutoRotate_Changed(bool value)
         {
             screenSetting.autoRotate = value;
         }

@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using UniRx;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace ShadowCube.Setting
 {
@@ -52,9 +53,10 @@ namespace ShadowCube.Setting
 				if (MaxScaleRender < value) return;
 				if (MinScaleRender > value) return;
 				PlayerPrefs.SetFloat(Name_ScaleRender, value);
-				int x = (int)(displayResolution.x * value);
-				int y = (int)(displayResolution.y * value);
+				int x = (int)(Display.main.systemWidth * value);
+				int y = (int)(Display.main.systemHeight * value);
 				Display.main.SetRenderingResolution(x, y);
+				ScaleRender.Invoke(value);
 			}
 		}
 
@@ -112,8 +114,6 @@ namespace ShadowCube.Setting
 			DisplayResolution = new ReactiveProperty<Vector2Int>(displayResolution);
 			scaleRender = PlayerPrefs.GetFloat(Name_ScaleRender);
 			autoRotate = Convert.ToBoolean(PlayerPrefs.GetInt(Name_AutoRotate));
-
-			 
 		}
 
 		public void SetupDefaultSetting()
@@ -137,8 +137,18 @@ namespace ShadowCube.Setting
 			return names;
 		}
 
+		public string GetSystemResolution()
+		{
+			return Display.main.systemWidth + " x " + Display.main.systemHeight;
+		}
+
+		public string GetRenderingResolution()
+		{
+			return Display.main.renderingWidth + " x " + Display.main.renderingHeight;
+		}
+
 		public ReactiveProperty<Vector2Int> DisplayResolution;
 
-		public ReactiveProperty<int> ScaleRender;
+		public UnityAction<float> ScaleRender;
 	}
 }

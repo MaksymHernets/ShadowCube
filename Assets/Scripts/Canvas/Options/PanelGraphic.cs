@@ -22,20 +22,24 @@ public class PanelGraphic : OptionPanel
 	{
         DropDownSync.ClearOptions();
         DropDownSync.AddOptions( graphicSetting.GetNamesSync() );
+        DropDownSync.onValueChanged.AddListener(DropdownSync_Changed);
         DropDownSync.value = graphicSetting.syncCount;
         
         SliderTextMaxFps.slider.onValueChanged.AddListener(SliderFPS_Changed);
         SliderTextMaxFps.slider.minValue = graphicSetting.MinFPS;
         SliderTextMaxFps.slider.maxValue = graphicSetting.MaxMaxFPS;
         SliderTextMaxFps.Value = graphicSetting.maxFPS;
+        graphicSetting.MaxFPS += Event_MaxFps_Change;
 
         SliderTextView.slider.onValueChanged.AddListener(SliderView_Changed);
         SliderTextView.slider.minValue = graphicSetting.MinViewCamera;
-        SliderTextView.slider.minValue = graphicSetting.MaxViewCamera;
+        SliderTextView.slider.maxValue = graphicSetting.MaxViewCamera;
         SliderTextView.Value = graphicSetting.fieldOfView;
+        graphicSetting.FieldOfView += Event_FieldOfViev_Change;
 
         DropDownQuality.ClearOptions();
         DropDownQuality.AddOptions(graphicSetting.GetNamesQualityLevel().ToList());
+        DropDownQuality.onValueChanged.AddListener(DropdownQuality_Changed);
         DropDownQuality.value = graphicSetting.qualityLevel;
 
         DropDownEffect.ClearOptions();
@@ -45,6 +49,16 @@ public class PanelGraphic : OptionPanel
 
         ToggleShowFps.isOn = graphicSetting.showFps;
         ToggleShowFps.onValueChanged.AddListener(ToggleShowFps_Changed);
+    }
+
+    private void Event_FieldOfViev_Change(int value)
+	{
+        SliderTextView.Value = value;
+    }
+
+    private void Event_MaxFps_Change(int value)
+    {
+        SliderTextMaxFps.Value = value;
     }
 
     public void SliderFPS_Changed(float index)

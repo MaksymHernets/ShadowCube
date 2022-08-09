@@ -128,6 +128,7 @@ namespace ShadowCube.Setting
 				PlayerPrefs.SetInt("ShowFps", 0);
 			}
 
+			maxFPS = PlayerPrefs.GetInt("MaxFPS");
 			qualityLevel = PlayerPrefs.GetInt(NAME_QualityLevel);
 		}
 
