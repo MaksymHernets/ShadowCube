@@ -19,7 +19,7 @@ namespace ShadowCube.Setting
 			set
 			{
 				PlayerPrefs.SetInt(NAME_QualityLevel, value);
-				QualitySettings.SetQualityLevel(value);
+				QualitySettings.SetQualityLevel(value, true);
 			}
 		}
 
