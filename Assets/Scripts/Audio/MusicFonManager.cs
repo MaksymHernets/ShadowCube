@@ -28,7 +28,10 @@ namespace ShadowCube
 			{
 				AudioSources[_oldIndex].Stop(TimeDecreaseVolume);
 			}
-			AudioSources[newIndex].audioSource.PlayDelayed(DelayPlay);
+			if ( !AudioSources[newIndex].audioSource.isPlaying )
+			{
+				AudioSources[newIndex].audioSource.PlayDelayed(DelayPlay);
+			}
 			_oldIndex = newIndex;
 		}
 	}
