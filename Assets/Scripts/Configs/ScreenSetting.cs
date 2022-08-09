@@ -56,7 +56,7 @@ namespace ShadowCube.Setting
 				int x = (int)(Display.main.systemWidth * value);
 				int y = (int)(Display.main.systemHeight * value);
 				Display.main.SetRenderingResolution(x, y);
-				ScaleRender.Invoke(value);
+				ScaleRender?.Invoke(value);
 			}
 		}
 
