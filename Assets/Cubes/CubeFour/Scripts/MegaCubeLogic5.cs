@@ -219,11 +219,10 @@ namespace ShadowCubeCubes.CubeFour
 			
 		}
 
-		public override void PutObject(Vector3Int position, Transform transform)
+		public override CubeLogic ActivateCube(Vector3Int position, int wallnumber = 6)
 		{
-			//throw new System.NotImplementedException();
+			throw new System.NotImplementedException();
 		}
-
 
 		#endregion
 	}

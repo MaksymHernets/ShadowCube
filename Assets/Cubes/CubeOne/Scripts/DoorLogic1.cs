@@ -14,7 +14,6 @@ namespace ShadowCubeCubes.CubeOne
             if (_doorStage == DoorStage.closed)
             {
                 _doorStage = DoorStage.opening;
-                audio_doorhandle.Play();
                 animator.SetBool("Close", false);
                 animator.SetBool("Open", true);
                 _doorStage = DoorStage.open;
@@ -27,7 +26,6 @@ namespace ShadowCubeCubes.CubeOne
             if (_doorStage == DoorStage.open)
             {
                 _doorStage = DoorStage.closing;
-                audio_door.Play();
                 animator.SetBool("Open", false);
                 animator.SetBool("Close", true);
                 _doorStage = DoorStage.closed;

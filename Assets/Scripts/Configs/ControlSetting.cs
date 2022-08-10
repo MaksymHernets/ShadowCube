@@ -1,10 +1,11 @@
 ﻿using ShadowCube.DTO;
+using System;
 using UniRx;
 using UnityEngine;
 
 namespace ShadowCube.Setting
 {
-	public class ControlSetting : MonoBehaviour
+	public class ControlSetting : MonoBehaviour, ISetting
 	{
 		public float speedMouse
 		{
@@ -25,13 +26,39 @@ namespace ShadowCube.Setting
 			{
 				return JsonUtility.FromJson<ControlPC>(PlayerPrefs.GetString("ControlPC"));
 			}
-			private set
+			set
 			{
 				var jsonplayer = JsonUtility.ToJson(value);
 				PlayerPrefs.SetString("ControlPC", jsonplayer);
 				ReactControlPC.Value = value;
 			}
 		}
+
+		public bool isShowControl
+		{
+			get
+			{
+				return Convert.ToBoolean(PlayerPrefs.GetInt("IsShowControl", 1));
+			}
+			set
+			{
+				PlayerPrefs.SetInt("IsShowControl", Convert.ToInt32(value));
+			}
+		}
+
+		public bool isInversionOfControl
+		{
+			get
+			{
+				return Convert.ToBoolean(PlayerPrefs.GetInt("IsInversionOfControl", 0));
+			}
+			set
+			{
+				PlayerPrefs.SetInt("IsInversionOfControl", Convert.ToInt32(value));
+			}
+		}
+
+		public const float DefaultSpeedMouse = 50f;
 
 		private void Start()
 		{
@@ -49,8 +76,14 @@ namespace ShadowCube.Setting
 			ReactControlPC = new ReactiveProperty<ControlPC>(controlPC);
 		}
 
-		private ReactiveProperty<float> SpeedMouse;
+		public void SetupDefaultSetting()
+		{
+			controlPC = new ControlPC();
+			speedMouse = DefaultSpeedMouse;
+		}
 
-		private ReactiveProperty<ControlPC> ReactControlPC;
+		public ReactiveProperty<float> SpeedMouse;
+
+		public ReactiveProperty<ControlPC> ReactControlPC;
 	}
 }

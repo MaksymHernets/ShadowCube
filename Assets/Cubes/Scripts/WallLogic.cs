@@ -4,12 +4,11 @@ using UnityEngine;
 
 namespace ShadowCube.Cubes
 {
-	[RequireComponent(typeof(MeshRenderer))]
     public abstract class WallLogic : MonoBehaviour
     {
         [SerializeField] private DoorLogic door;
         [SerializeField] private Light _light;
-        [SerializeField] private MeshRenderer meshRenderer;
+        [SerializeField] private LODGroup _LODGroup;
 
         protected CubeLogic _cubeLogic;
         protected WallDTO _wall;
@@ -22,17 +21,25 @@ namespace ShadowCube.Cubes
 
         public void SetColorPanel(Color color)
         {
-            //meshRenderer.sharedMaterials[1].SetColor("_EmissionColor", _wall.color);
-            //meshRenderer.sharedMaterials[2].SetColor("_EmissionColor", _wall.color);
+			foreach (LOD Lod in _LODGroup.GetLODs().ToList())
+			{
+                Lod.renderers[0].sharedMaterials[1].SetColor("_EmissionColor", _wall.color);
+                Lod.renderers[0].sharedMaterials[2].SetColor("_EmissionColor", _wall.color);
+            }
         }
 
         public void SetMaterialForWall(params Material[] materials)
         {
-            foreach (var material in materials)
+            foreach (LOD Lod in _LODGroup.GetLODs().ToList())
             {
-                int index = meshRenderer.sharedMaterials.ToList().IndexOf(material);
-                meshRenderer.sharedMaterials[index] = material;
+                Lod.renderers[0].sharedMaterials[1] = materials[0];
+                Lod.renderers[0].sharedMaterials[2] = materials[1];
             }
+            //foreach (var material in materials)
+            //{
+            //    int index = meshRenderer.sharedMaterials.ToList().IndexOf(material);
+            //    meshRenderer.sharedMaterials[index] = material;
+            //}
         }
 
         public virtual void ToOpenDoor()

@@ -2,7 +2,7 @@
 
 namespace ShadowCube.Models
 {
-	public class IModel : MonoBehaviour
+	public class IModel
 	{
 
 	}
