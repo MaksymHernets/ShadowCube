@@ -89,17 +89,25 @@ namespace ShadowCube.Setting
 			}
 		}
 
-		public readonly int MinFPS = 30;
-#if UNITY_ANDROID || UNITY_IPHONE
-		public readonly int MaxMaxFPS = 144;
-#else
-		public readonly int MaxMaxFPS = 300;
-#endif
-		public readonly int MinViewCamera = 70;
-		public readonly int MaxViewCamera = 90;
+		public readonly int MinFPS;
+		public readonly int MaxMaxFPS;
+		public readonly int MinViewCamera;
+		public readonly int MaxViewCamera;
 
 		public const int DefaultMaxFPS = 60;
 		public const int DefaultViewCamera = 75;
+
+		public GraphicSetting()
+		{
+			MinFPS = 30;
+#if UNITY_ANDROID || UNITY_IPHONE
+			MaxMaxFPS = 144;
+#else
+			MaxMaxFPS = 300;
+#endif
+			MinViewCamera = 70;
+			MaxViewCamera = 90;
+		}
 
 		private void Start()
 		{

@@ -6,7 +6,6 @@ using UnityEngine;
 public class Trap3gas : MonoBehaviour
 {
     public float SizeCube = 1f;
-    private float Speed = 1f;
     private bool key = true;
 
     public GameObject prewall;

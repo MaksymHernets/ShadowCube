@@ -54,27 +54,27 @@ namespace Generic
             Phone.Add(RuntimePlatform.Android);
             Phone.Add(RuntimePlatform.IPhonePlayer);
             Phone.Add(RuntimePlatform.Lumin);
-            Phone.Add(RuntimePlatform.BlackBerryPlayer);
+            //Phone.Add(RuntimePlatform.BlackBerryPlayer);
 
             List<RuntimePlatform> Web = new List<RuntimePlatform>();
             Web.Add(RuntimePlatform.WebGLPlayer);
 
             List<RuntimePlatform> Console = new List<RuntimePlatform>();
-            Console.Add(RuntimePlatform.PS3);
+            //Console.Add(RuntimePlatform.PS3);
             Console.Add(RuntimePlatform.PS4);
             Console.Add(RuntimePlatform.PS5);
-            Console.Add(RuntimePlatform.XBOX360);
+            //Console.Add(RuntimePlatform.XBOX360);
             Console.Add(RuntimePlatform.XboxOne);
 
             List<RuntimePlatform> PortConsole = new List<RuntimePlatform>();
             PortConsole.Add(RuntimePlatform.Switch);
             PortConsole.Add(RuntimePlatform.Stadia);
-            PortConsole.Add(RuntimePlatform.PSM);
-            PortConsole.Add(RuntimePlatform.PSP2);
+            //PortConsole.Add(RuntimePlatform.PSM);
+            //PortConsole.Add(RuntimePlatform.PSP2);
 
             List<RuntimePlatform> TV = new List<RuntimePlatform>();
             TV.Add(RuntimePlatform.tvOS);
-            TV.Add(RuntimePlatform.SamsungTVPlayer);
+            //TV.Add(RuntimePlatform.SamsungTVPlayer);
 
             List<RuntimePlatform> VR = new List<RuntimePlatform>();
             VR.Add(RuntimePlatform.Android);

@@ -8,17 +8,17 @@ namespace ShadowCube
 {
 	public class CameraManager : MonoBehaviour
     {
-        [SerializeField] private Camera camera;
+        [SerializeField] private Camera mainCamera;
 		[SerializeField] private PostProcessVolume postProcessVolume;
 
 		[Inject] GraphicSetting graphicSetting;
 
 		private void Start()
 		{
-			camera.fieldOfView = graphicSetting.fieldOfView;
+			mainCamera.fieldOfView = graphicSetting.fieldOfView;
 			postProcessVolume.enabled = Convert.ToBoolean(graphicSetting.screenEffect);
 
-			graphicSetting.FieldOfView += value => camera.fieldOfView = value;
+			graphicSetting.FieldOfView += value => mainCamera.fieldOfView = value;
 			graphicSetting.ScreenEffect += value => postProcessVolume.enabled = Convert.ToBoolean(value);
 		}
 	}
