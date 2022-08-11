@@ -45,7 +45,7 @@ namespace ShadowCube.Setting
 			set
 			{
 				PlayerPrefs.SetInt("MaxFPS", value);
-				QualitySettings.maxQueuedFrames = value;
+				Application.targetFrameRate = value;
 				MaxFPS?.Invoke(value);
 			}
 		}
