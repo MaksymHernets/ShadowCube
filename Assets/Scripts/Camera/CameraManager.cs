@@ -1,5 +1,4 @@
 using ShadowCube.Setting;
-using System;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using Zenject;
@@ -12,15 +11,15 @@ namespace ShadowCube
         [SerializeField] private Camera mainCamera;
 		[SerializeField] private UniversalAdditionalCameraData postProcessVolume;
 
-		[Inject] GraphicSetting graphicSetting;
+		[Inject] ScreenSetting screenSetting;
 
 		private void Start()
 		{
-			mainCamera.fieldOfView = graphicSetting.fieldOfView;
-			postProcessVolume.renderPostProcessing = Convert.ToBoolean(graphicSetting.screenEffect);
+			mainCamera.fieldOfView = screenSetting.fieldOfView;
+			postProcessVolume.renderPostProcessing = screenSetting.postEffect;
 
-			graphicSetting.FieldOfView += value => mainCamera.fieldOfView = value;
-			graphicSetting.ScreenEffect += value => postProcessVolume.renderPostProcessing = Convert.ToBoolean(value);
+			screenSetting.FieldOfView += value => mainCamera.fieldOfView = value;
+			screenSetting.PostEffect += value => postProcessVolume.renderPostProcessing = value;
 		}
 	}
 }
