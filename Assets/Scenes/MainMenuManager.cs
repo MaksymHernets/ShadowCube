@@ -141,7 +141,7 @@ namespace ShadowCube.Scenes
 
         private void LoadSceneGame()
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(2);
         }
     }
 }
