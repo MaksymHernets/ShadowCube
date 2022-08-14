@@ -1,5 +1,6 @@
 using ShadowCube.Setting;
 using ShadowCube.UI;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -53,10 +54,16 @@ namespace ShadowCube
         private void Update_ScaleRender(float scale)
 		{
             Text_SystemResolution.text = screenSetting.GetSystemResolution();
+            StartCoroutine(Update_RenderingResolution());
+        }
+
+		private IEnumerator Update_RenderingResolution()
+		{
+            yield return new WaitForSeconds(0.5f);
             Text_RenderingResolution.text = screenSetting.GetRenderingResolution();
         }
 
-        private void Event_FieldOfViev_Change(int value)
+		private void Event_FieldOfViev_Change(int value)
         {
             SliderTextView.Value = value;
         }
