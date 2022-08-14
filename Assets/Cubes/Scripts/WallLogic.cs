@@ -44,13 +44,13 @@ namespace ShadowCube.Cubes
 
         public virtual void ToOpenDoor()
         {
-            if ( _light != null)
-            _light.gameObject.SetActive(true);
+            _light?.gameObject.SetActive(true);
             door.Open();
         }
 
         public virtual void ToCloseDoor()
         {
+            _light?.gameObject.SetActive(false);
             door.Close();
         }
 
@@ -61,8 +61,7 @@ namespace ShadowCube.Cubes
 
         public void ClosedDoor()
         {
-            if (_light != null)
-                _light.gameObject.SetActive(false);
+            _light?.gameObject.SetActive(false);
             _cubeLogic.EventClosedDoor(_wall.id);
         }
     }
