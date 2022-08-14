@@ -1,25 +1,25 @@
 using ShadowCube.Setting;
-using System;
 using UnityEngine;
-using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.Rendering.Universal;
 using Zenject;
+
 
 namespace ShadowCube
 {
 	public class CameraManager : MonoBehaviour
     {
         [SerializeField] private Camera mainCamera;
-		[SerializeField] private PostProcessVolume postProcessVolume;
+		[SerializeField] private UniversalAdditionalCameraData postProcessVolume;
 
-		[Inject] GraphicSetting graphicSetting;
+		[Inject] ScreenSetting screenSetting;
 
 		private void Start()
 		{
-			mainCamera.fieldOfView = graphicSetting.fieldOfView;
-			postProcessVolume.enabled = Convert.ToBoolean(graphicSetting.screenEffect);
+			mainCamera.fieldOfView = screenSetting.fieldOfView;
+			postProcessVolume.renderPostProcessing = screenSetting.postEffect;
 
-			graphicSetting.FieldOfView += value => mainCamera.fieldOfView = value;
-			graphicSetting.ScreenEffect += value => postProcessVolume.enabled = Convert.ToBoolean(value);
+			screenSetting.FieldOfView += value => mainCamera.fieldOfView = value;
+			screenSetting.PostEffect += value => postProcessVolume.renderPostProcessing = value;
 		}
 	}
 }

@@ -11,6 +11,10 @@ namespace ShadowCube.Setting
 		public const string Name_AutoRotate = "AutoRotate";
 		public const string Name_ScaleRender = "ScaleRender";
 
+		public const string NAME_PostEffect = "PostEffect";
+		public const string NAME_PostEffectBloom = "PostEffectBloom";
+		public const string NAME_PostEffectFocus = "PostEffectFocus";
+
 		public Vector2Int displayResolution
 		{
 			get
@@ -74,6 +78,85 @@ namespace ShadowCube.Setting
 			}
 		}
 
+		public int maxFPS
+		{
+			get
+			{
+				return PlayerPrefs.GetInt("MaxFPS");
+			}
+			set
+			{
+				PlayerPrefs.SetInt("MaxFPS", value);
+				Application.targetFrameRate = value;
+				MaxFPS?.Invoke(value);
+			}
+		}
+
+		public int fieldOfView
+		{
+			get
+			{
+				return PlayerPrefs.GetInt("ViewCamera", DefaultViewCamera);
+			}
+			set
+			{
+				PlayerPrefs.SetInt("ViewCamera", value);
+				FieldOfView?.Invoke(value);
+			}
+		}
+
+		public bool postEffect
+		{
+			get
+			{
+				return Convert.ToBoolean( PlayerPrefs.GetInt(NAME_PostEffect));
+			}
+			set
+			{
+				PlayerPrefs.SetInt(NAME_PostEffect, Convert.ToInt32(value));
+				PostEffect?.Invoke(value);
+			}
+		}
+
+		public bool postEffect_Bloom
+		{
+			get
+			{
+				return Convert.ToBoolean(PlayerPrefs.GetInt(NAME_PostEffectFocus));
+			}
+			set
+			{
+				PlayerPrefs.SetInt(NAME_PostEffectFocus, Convert.ToInt32(value));
+				PostEffect_Bloom?.Invoke(value);
+			}
+		}
+
+		public bool postEffect_Focus
+		{
+			get
+			{
+				return Convert.ToBoolean(PlayerPrefs.GetInt(NAME_PostEffect));
+			}
+			set
+			{
+				PlayerPrefs.SetInt(NAME_PostEffect, Convert.ToInt32(value));
+				PostEffect_Focus?.Invoke(value);
+			}
+		}
+
+		public int syncCount
+		{
+			get
+			{
+				return PlayerPrefs.GetInt("SyncCount");
+			}
+			set
+			{
+				PlayerPrefs.SetInt("SyncCount", value);
+				QualitySettings.vSyncCount = value;
+			}
+		}
+
 		public readonly float DefaultScaleRender = 1f;
 #if UNITY_ANDROID || UNITY_IPHONE
 		public readonly float MinScaleRender = 0.4f;
@@ -81,6 +164,26 @@ namespace ShadowCube.Setting
 		public readonly float MinScaleRender = 0.5f;
 #endif
 		public readonly float MaxScaleRender = 1f;
+
+		public readonly int MinFPS;
+		public readonly int MaxMaxFPS;
+		public readonly int MinViewCamera;
+		public readonly int MaxViewCamera;
+
+		public const int DefaultMaxFPS = 60;
+		public const int DefaultViewCamera = 75;
+
+		public ScreenSetting()
+		{
+			MinFPS = 30;
+#if UNITY_ANDROID || UNITY_IPHONE
+			MaxMaxFPS = 144;
+#else
+			MaxMaxFPS = 300;
+#endif
+			MinViewCamera = 70;
+			MaxViewCamera = 90;
+		}
 
 		private void Start()
 		{
@@ -110,15 +213,33 @@ namespace ShadowCube.Setting
 			{
 				PlayerPrefs.SetInt(Name_AutoRotate, 0);
 			}
+			if (!PlayerPrefs.HasKey("MaxFPS"))
+			{
+				PlayerPrefs.SetInt("MaxFPS", DefaultMaxFPS);
+			}
+			if (!PlayerPrefs.HasKey("ViewCamera"))
+			{
+				PlayerPrefs.SetInt("ViewCamera", DefaultViewCamera);
+			}
+			if (!PlayerPrefs.HasKey("SyncCount"))
+			{
+				PlayerPrefs.SetInt("SyncCount", 0);
+			}
+			if (!PlayerPrefs.HasKey(NAME_PostEffect))
+			{
+				PlayerPrefs.SetInt(NAME_PostEffect, 0);
+			}
 
 			DisplayResolution = new ReactiveProperty<Vector2Int>(displayResolution);
 			scaleRender = PlayerPrefs.GetFloat(Name_ScaleRender);
 			autoRotate = Convert.ToBoolean(PlayerPrefs.GetInt(Name_AutoRotate));
+			maxFPS = PlayerPrefs.GetInt("MaxFPS");
 		}
 
 		public void SetupDefaultSetting()
 		{
-			
+			maxFPS = DefaultMaxFPS;
+			fieldOfView = DefaultViewCamera;
 		}
 
 		public string[] GetNameScreenMode()
@@ -147,8 +268,31 @@ namespace ShadowCube.Setting
 			return Display.main.renderingWidth + " x " + Display.main.renderingHeight;
 		}
 
+		public List<string> GetNamesSync()
+		{
+			List<string> names = new List<string>();
+			names.Add("Dont Sync");
+#if !PLATFORM_ANDROID
+			names.Add("Every V blank"); // ignored Android, IOS, Apple TV
+			names.Add("Every second V blank"); // ignored Android, IOS, Apple TV
+#endif
+			return names;
+		}
+
 		public ReactiveProperty<Vector2Int> DisplayResolution;
 
 		public UnityAction<float> ScaleRender;
+
+		public UnityAction<int> FieldOfView;
+
+		public UnityAction<int> MaxFPS;
+
+		public UnityAction<int> SyncCount;
+
+		public UnityAction<bool> PostEffect;
+
+		public UnityAction<bool> PostEffect_Bloom;
+
+		public UnityAction<bool> PostEffect_Focus;
 	}
 }
