@@ -4,14 +4,14 @@
 Game based on the movie "Cube". The protagonist wakes up inside a giant cubic room, entirely consisting of cubic modules that are constantly in motion. Overcoming obstacles and traps, apparently, he will not only have to get out to freedom, but also remember his life before being placed in the Cube.
 
 ## Where can you download the game? 
-Windows:
-<not published>
+Windows:\n
+not published
 Android:
 https://play.google.com/store/apps/details?id=com.GoodTime.ShadowCube
 IOS:
-<not published>
+not published
 Oculus:
-<not published>
+not published
 
 ## Developer diary
 You can follow the progress of the game development on my YouTube channel.
