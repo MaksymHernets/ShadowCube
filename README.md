@@ -14,7 +14,7 @@ Oculus:
 not published  
   
 ## Developer diary
-You can follow the progress of the game development on my YouTube channel.
+You can follow the progress of the game development on my YouTube channel.  
 https://www.youtube.com/watch?v=w0R7qCH8rcQ&list=PLuik0FLKlFuLZmaHdymtWV7jbLqMduf0Z&ab_channel=MaksymHernets
   
 ## You can take part in the development of the game
