@@ -1,8 +1,9 @@
-﻿using ShadowCube.DTO;
+﻿using ShadowCube.Game;
+using ShadowCube.Helpers;
 using ShadowCube.Models;
 using ShadowCube.Setting;
-using System.Collections.Generic;
-using System.Text;
+using ShadowCube.UI;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
@@ -10,19 +11,18 @@ using Zenject;
 
 namespace ShadowCube.Controller
 {
-    public class ControllerPlayMenu : IController
+	public class ControllerPlayMenu : IController
     {
         [HideInInspector] public UnityEvent EventButtonPlayClick;
 
-        [SerializeField] private Button buttonBack;
         [SerializeField] private Animator _animator;
-
+        [SerializeField] private Button buttonBack;
+        
         [Header("BarUP")]
         [SerializeField] private Dropdown dropdownMap;
-        [SerializeField] private Text buttonPrivatePublic;
-        [SerializeField] private Text textCountPlayers;
+        [SerializeField] private SliderTextUI sliderTextUI_CountPlayers;
         [SerializeField] private Toggle toggleAddBots;
-        [SerializeField] private Button[] maps;
+        [SerializeField] private SmartButtonUI buttonPrivatePublic;
 
         [Header("BarDOWN")]
         [SerializeField] private Text inputCode;
@@ -30,30 +30,29 @@ namespace ShadowCube.Controller
 
         [Inject] GameSetting gameSetting;
 
-        //private RoomLoby room = new RoomLoby();
-        private List<Entity> players = new List<Entity>();
-
+        private Lobby lobby;
         private ModelPlayMenu _model;
+        private float _timeDeactivate = 1.7f;
 
         public override void Init(IModel model)
         {
             _model = model as ModelPlayMenu;
 
+            lobby = new Lobby();
+
             gameObject.SetActive(true);
 
-            inputCode.text = "CODE: " + GetCode();
-            dropdownMap.value = gameSetting.indexCube;
-        }
+            sliderTextUI_CountPlayers.slider.minValue = gameSetting.MinPlayers;
+            sliderTextUI_CountPlayers.slider.maxValue = gameSetting.MaxPlayers;
+            sliderTextUI_CountPlayers.slider.value = gameSetting.MaxPlayers;
 
-        private string GetCode(int length = 6)
-        {
-            StringBuilder result = new StringBuilder(length);
-            result.Length = length;
-            for (int i = 0; i < length; ++i)
-            {
-                result[i] = (char)Random.Range(65, 90);
-            }
-            return result.ToString();
+            inputCode.text = "CODE: " + GenerateNumber.GetCode(6);
+
+            dropdownMap.ClearOptions();
+            dropdownMap.AddOptions( gameSetting.GetCubes() );
+            dropdownMap.value = gameSetting.indexCube;
+
+            SetPrivatPublic(lobby.IsPrivate);
         }
 
         private void Start()
@@ -61,98 +60,52 @@ namespace ShadowCube.Controller
             buttonBack.onClick.AddListener(ButtonBack_Click);
             buttonStart.onClick.AddListener(ButtonStart_Click);
 
+            sliderTextUI_CountPlayers.slider.onValueChanged.AddListener(SliderPlayerCount_Click);
+
             dropdownMap.onValueChanged.AddListener(DropdownMap_Click);
+
+            buttonPrivatePublic.OnClick += ButtonPrivatPublic_Click;
         }
 
         public void DropdownMap_Click(int newindex)
         {
-            _model.mainMenuManager.ShowCube(gameSetting.indexCube, newindex);
+            _model.mainMenuManager.ShowCubeSecond(gameSetting.indexCube, newindex);
             gameSetting.indexCube = newindex;
         }
 
         public void ButtonStart_Click()
         {
-            //if (toggleAddBots.isOn)
-            //{
-            //    for (int i = 0; i < room.Size - players.Count; i++)
-            //    {
-            //        players.Add(new Entity());
-            //    }
-            //}
-
             _animator.SetBool("Close", true);
-            Invoke("Call_EventButtonPlay", 3f);
-
+            StartCoroutine( Call_EventButtonPlay() );
         }
 
-        private void Call_EventButtonPlay()
+        private IEnumerator Call_EventButtonPlay()
         {
+            yield return new WaitForSeconds(3f);
             EventButtonPlayClick.Invoke();
         }
 
-        #region Maps
-        public void ButtonCubeOne_Click()
-        {
-            ChangedButton(gameSetting.indexCube, 0);
-        }
-
-        public void ButtonHyberCube_Click()
-        {
-            ChangedButton(gameSetting.indexCube, 1);
-        }
-
-        public void ButtonCubeZero_Click()
-        {
-            ChangedButton(gameSetting.indexCube, 2);
-        }
-
-        public void ButtonNewCube_Click()
-        {
-            ChangedButton(gameSetting.indexCube, 3);
-        }
-
-        public void ButtonCubeFour_Click()
-        {
-            ChangedButton(gameSetting.indexCube, 4);
-        }
-        #endregion
-
-        private void ChangedButton(int oldindex, int newindex)
-        {
-            if (oldindex != newindex)
-            {
-                gameSetting.indexCube = newindex;
-                maps[oldindex].image.color = new Color(0.3f, 0.3f, 0.3f, 0.8f);
-                maps[newindex].image.color = Color.black;
-                _model.mainMenuManager.ShowCube(oldindex, newindex);
-            }
-        }
-
-        #region Property
         public void SliderPlayerCount_Click(float value)
         {
-            //room.Size = (int)value;
-            textCountPlayers.text = value.ToString();
+            
         }
 
-        public void ButtonPrivatPublic_Click()
+        public void ButtonPrivatPublic_Click(Button button)
         {
-            //room.IsPrivate = !room.IsPrivate;
-            //if (room.IsPrivate)
-            //{
-            //    buttonPrivatePublic.text = "Private";
-            //}
-            //else
-            //{
-            //    buttonPrivatePublic.text = "Public";
-            //}
+            lobby.IsPrivate = !lobby.IsPrivate;
+            SetPrivatPublic(lobby.IsPrivate);
         }
-        #endregion
+
+        private void SetPrivatPublic(bool key)
+		{
+            if (key) buttonPrivatePublic.Name.text = "Private";
+            else buttonPrivatePublic.Name.text = "Public";
+        }
 
         public void ButtonBack_Click()
         {
             _animator.SetBool("Close", true);
-            Invoke("Deactive", 3f);
+            Invoke("Deactive", _timeDeactivate);
         }
     }
 }

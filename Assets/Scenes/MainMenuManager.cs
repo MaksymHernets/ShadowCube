@@ -16,6 +16,7 @@ namespace ShadowCube.Scenes
         [SerializeField] private Animator animator;
         [SerializeField] private List<CubeLogic> Cubes;
         [SerializeField] private List<CubeLogic> CubesFirst;
+        [SerializeField] private MusicFonManager MusicFonManager;
 
         [Header("Controllers")]
         [SerializeField] private ControllerMainMenu mainMenu;
@@ -44,10 +45,10 @@ namespace ShadowCube.Scenes
             menuOptions.EventClose.AddListener(Event_Menu_Close);
             menuAbout.EventClose.AddListener(Event_Menu_Close);
 
-            ShowCube(0, gameSetting.indexCube);
+            ShowCubeFirst(0, gameSetting.indexCube);
             CubesFirst[gameSetting.indexCube].OpenDoor(2);
             Cubes[gameSetting.indexCube].OpenDoor(4);
-            Invoke("Event_Menu_Close", 9f);
+            Invoke("Intro_End", 9f);
         }
 
         private void Event_ButtonPlayClick()
@@ -81,15 +82,18 @@ namespace ShadowCube.Scenes
             }
         }
 
-        private void Event_Menu_Close()
-        {
+        private void Intro_End()
+		{
             mainMenu.Init(new IModel());
             CubesFirst[gameSetting.indexCube].CloseDoor(2);
             Cubes[gameSetting.indexCube].CloseDoor(4);
-            //foreach (var cube in CubesFirst)
-            //{
-            //    GameObject.Destroy(cube.gameObject);
-            //}
+            Observable.Timer(System.TimeSpan.FromSeconds(7f))
+            .Subscribe(_ => { DeleteCubesFirst(); });
+        }
+
+        private void Event_Menu_Close()
+        {
+            mainMenu.Init(new IModel());
         }
 
         private void Event_MenuPerson_Close()
@@ -101,13 +105,27 @@ namespace ShadowCube.Scenes
             .Subscribe(_ => { mainMenu.Init(new IModel()); });
         }
 
-        public void ShowCube(int index, int index2)
+        public void ShowCubeSecond(int oldIndex, int newIndex)
         {
-            Cubes[index].gameObject.SetActive(false);
-            Cubes[index2].gameObject.SetActive(true);
-            CubesFirst[index].gameObject.SetActive(false);
-            CubesFirst[index2].gameObject.SetActive(true);
+            Cubes[oldIndex].gameObject.SetActive(false);
+            Cubes[newIndex].gameObject.SetActive(true);
+            MusicFonManager.Play(newIndex);
         }
+
+        public void ShowCubeFirst(int oldIndex, int newIndex)
+        {
+            ShowCubeSecond(oldIndex, newIndex);
+            CubesFirst[oldIndex].gameObject.SetActive(false);
+            CubesFirst[newIndex].gameObject.SetActive(true);
+        }
+
+        private void DeleteCubesFirst()
+		{
+			foreach (var cube in CubesFirst)
+			{
+				GameObject.Destroy(cube.gameObject);
+			}
+		}
 
         private void Dispose()
         {
@@ -123,7 +141,7 @@ namespace ShadowCube.Scenes
 
         private void LoadSceneGame()
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(2);
         }
     }
 }
