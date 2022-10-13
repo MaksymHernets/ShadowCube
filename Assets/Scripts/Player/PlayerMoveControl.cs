@@ -1,167 +1,84 @@
 ﻿using ShadowCube.DTO;
+using ShadowCube.Helpers;
 using UnityEngine;
 
 namespace ShadowCube.Player
 {
     [RequireComponent(typeof(Animator), typeof(Rigidbody), typeof(CapsuleCollider))]
-    public class PlayerMoveControl : Entity, IMoveControl
+    public class PlayerMoveControl : Entity
     {
-        #region Components
-        [SerializeField] private Animator _animator;
-        [SerializeField] private Rigidbody _rigidbody;
-        private CapsuleCollider _capsuleCollider;
-        #endregion
+        [SerializeField] public string NameStage;
 
-        private Camera _mainCamera;
+        [Header("Components")]
+        [SerializeField] public Animator animator;
+        [SerializeField] public Rigidbody Rigidbody;
+        [SerializeField] public CapsuleCollider capsuleCollider;
+        [SerializeField] public CameraTarget cameraTarget;
+        [SerializeField] public DetectObject detectObject;
 
-        private bool isJumping = false;
-        private bool isGrounded = false;
-        private bool isSitDown = false;
-        private float groundMinDistance = 0.25f;
-        private float groundMaxDistance = 0.5f;
-        private float groundDistance;
-        private float extraGravity = -10f;
-        private float verticalVelocity;
-        private float heightReached;
+        [Header("Stages")]
+        [SerializeField] public bool isJumping = false;
+        [SerializeField] public bool isGrounded = false;
+        [SerializeField] public bool isSitDown = false;
+        [SerializeField] public bool isFreeHang = false;
+        [SerializeField] public bool isClimb = false;
+        [SerializeField] public bool IsTop = false;
 
-        internal Vector3 inputSmooth;
-        internal Vector3 input;
+        public InputScheme InputScheme;
+        public StageMachine stageMachine;
 
-        private void Start()
+        private float groundMinDistance = 0.02f;
+        private float MaxDistance = 1f;
+
+        protected void Start()
         {
-            _mainCamera = Camera.main;
+            animator = gameObject.GetComponent<Animator>();
+            Rigidbody = gameObject.GetComponent<Rigidbody>();
+            capsuleCollider = gameObject.GetComponent<CapsuleCollider>();
 
-            _animator = gameObject.GetComponent<Animator>();
-            _rigidbody = gameObject.GetComponent<Rigidbody>();
-            _capsuleCollider = gameObject.GetComponent<CapsuleCollider>();
+            InputScheme = new InputScheme();
+            stageMachine = new StageMachine( new StageWalk(this) );
         }
 
-        public void Update()
+        public void MoveCharacter(Vector3 _direction)
         {
-            CheckGround();
-        }
-
-        public void SitDown()
-        {
-            isSitDown = !isSitDown;
-            _animator.SetBool("Crouch", true);
-        }
-
-        public void Jump()
-        {
-            if (isGrounded == true && isSitDown == false)
-            {
-                // _rigidbody.AddForce();
-                _animator.SetBool("Jump", true);
-            }
-        }
-
-        public void Forward()
-        {
-            MoveCharacter(this.transform.forward);
-        }
-
-        public virtual void MoveCharacter(Vector3 _direction)
-        {
-            _animator.SetBool("Walk", true);
-            // calculate input smooth
+            Vector3 inputSmooth = Vector3.zero;
+            Vector3 input = Vector3.zero;
             inputSmooth = Vector3.Lerp(inputSmooth, input, 6 * Time.deltaTime);
 
-            if (!isGrounded || isJumping) return;
-
-            _direction.y = 0;
+            _direction.y = Mathf.Clamp(_direction.y, -1f, 1f);
             _direction.x = Mathf.Clamp(_direction.x, -1f, 1f);
             _direction.z = Mathf.Clamp(_direction.z, -1f, 1f);
             // limit the input
             if (_direction.magnitude > 1f)
                 _direction.Normalize();
 
-            Vector3 targetPosition = _rigidbody.position + _direction * 1 * Time.deltaTime;
+            Vector3 targetPosition = Rigidbody.position + _direction * 1 * Time.deltaTime;
             Vector3 targetVelocity = (targetPosition - transform.position) / Time.deltaTime;
 
-            bool useVerticalVelocity = true;
-            if (useVerticalVelocity) targetVelocity.y = _rigidbody.velocity.y;
-            _rigidbody.velocity = targetVelocity;
+            Rigidbody.velocity = targetVelocity;
         }
 
-        public void HeadTurn(Vector3 direction)
+        public float CheckDistance(Vector3 direction, int layer = 1)
         {
-            _mainCamera.transform.localEulerAngles += direction;
-        }
-
-        protected void CheckGround()
-        {
-            CheckGroundDistance();
-
-            if (groundDistance <= groundMinDistance)
+            float MaxDistance = 10f;
+            float dist = MaxDistance;
+            Ray ray2 = new Ray(transform.position + new Vector3(0, capsuleCollider.height / 2, 0), direction);
+            RaycastHit groundHit;
+            if (Physics.Raycast(ray2, out groundHit, (capsuleCollider.height / 2) + MaxDistance, layer) && !groundHit.collider.isTrigger)
             {
-                isGrounded = true;
-                if (!isJumping && groundDistance > 0.05f)
-                    _rigidbody.AddForce(transform.up * (extraGravity * 2 * Time.deltaTime), ForceMode.VelocityChange);
-
-                heightReached = transform.position.y;
+                dist = groundHit.distance;
             }
-            else
-            {
-                if (groundDistance >= groundMaxDistance)
-                {
-                    // set IsGrounded to false 
-                    isGrounded = false;
-                    // check vertical velocity
-                    verticalVelocity = _rigidbody.velocity.y;
-                    // apply extra gravity when falling
-                    if (!isJumping)
-                    {
-                        _rigidbody.AddForce(transform.up * extraGravity * Time.deltaTime, ForceMode.VelocityChange);
-                    }
-                }
-                else if (!isJumping)
-                {
-                    _rigidbody.AddForce(transform.up * (extraGravity * 2 * Time.deltaTime), ForceMode.VelocityChange);
-                }
-            }
+            return (float)System.Math.Round(dist, 2);
         }
 
-        protected virtual void CheckGroundDistance()
+        public void Update()
         {
-            //if (_capsuleCollider != null)
-            //{
-            //    // radius of the SphereCast
-            //    float radius = _capsuleCollider.radius * 0.9f;
-            //    var dist = 10f;
-            //    // ray for RayCast
-            //    Ray ray2 = new Ray(transform.position + new Vector3(0, colliderHeight / 2, 0), Vector3.down);
-            //    // raycast for check the ground distance
-            //    if (Physics.Raycast(ray2, out groundHit, (colliderHeight / 2) + dist, groundLayer) && !groundHit.collider.isTrigger)
-            //        dist = transform.position.y - groundHit.point.y;
-            //    // sphere cast around the base of the capsule to check the ground distance
-            //    if (dist >= groundMinDistance)
-            //    {
-            //        Vector3 pos = transform.position + Vector3.up * (_capsuleCollider.radius);
-            //        Ray ray = new Ray(pos, -Vector3.up);
-            //        if (Physics.SphereCast(ray, radius, out groundHit, _capsuleCollider.radius + groundMaxDistance, groundLayer) && !groundHit.collider.isTrigger)
-            //        {
-            //            Physics.Linecast(groundHit.point + (Vector3.up * 0.1f), groundHit.point + Vector3.down * 0.15f, out groundHit, groundLayer);
-            //            float newDist = transform.position.y - groundHit.point.y;
-            //            if (dist > newDist) dist = newDist;
-            //        }
-            //    }
-            //    groundDistance = (float)System.Math.Round(dist, 2);
-            //}
+            NameStage = stageMachine.CurrentStage.GetType().Name;
+            stageMachine.CurrentStage.Update();
         }
 
-        public virtual void RotateToPosition(Vector3 position)
-        {
-            Vector3 desiredDirection = position - transform.position;
-            RotateToDirection(desiredDirection.normalized);
-        }
-
-        public virtual void RotateToDirection(Vector3 direction)
-        {
-            RotateToDirection(direction, 16f);
-        }
-
-        public virtual void RotateToDirection(Vector3 direction, float rotationSpeed)
+        public void RotateToDirection(Vector3 direction, float rotationSpeed)
         {
             //if (!jumpAndRotate && !isGrounded) return;
             direction.y = 0f;
@@ -169,15 +86,17 @@ namespace ShadowCube.Player
             Quaternion _newRotation = Quaternion.LookRotation(desiredForward);
             transform.rotation = _newRotation;
         }
-    }
 
-    public interface IMoveControl
-    {
-        void SitDown();
-        void Jump();
-        void HeadTurn(Vector3 direction);
-        void Forward();
-        void MoveCharacter(Vector3 _direction);
-        void RotateToPosition(Vector3 position);
+        public void CheckGround()
+        {
+            float dist = CheckDistance(-Vector3.up) - (capsuleCollider.height / 2);
+            isGrounded = dist < groundMinDistance;
+        }
+
+        public void CheckTop()
+		{
+            float dist = CheckDistance(Vector3.up);
+            IsTop = dist < MaxDistance;
+        }
     }
 }

@@ -7,11 +7,13 @@ namespace ShadowCube.Player
 {
 	public class PlayerLogic : PlayerMoveControl, IPlayerLogic
     {
+        [Header("Status")]
         [SerializeField] private float distanceUse = 1;
-        [SerializeField] private StatusPlayer statusPlayer = StatusPlayer.alive;
+        [SerializeField] public StatusPlayer statusPlayer;
+        [SerializeField] private AudioSource foolman;
+
         //[SerializeField] private vThirdPersonController vthirdPersonController;
         //[SerializeField] private vThirdPersonCamera vthirdPersonCamera;
-        [SerializeField] private AudioSource foolman;
 
         private PlayerDTO _player;
         private InteractiveObject TakeObject;
@@ -25,9 +27,12 @@ namespace ShadowCube.Player
         private float forcee = 4f;
         #endregion
 
-        void Start()
+        protected new void Start()
         {
             EventDie.AddListener(EventDie_Handler);
+            statusPlayer = StatusPlayer.alive;
+
+            base.Start();
         }
 
         public void Init(PlayerController playerController, PlayerDTO player)
@@ -78,10 +83,9 @@ namespace ShadowCube.Player
             gameObject.SetActive(false);
             statusPlayer = StatusPlayer.die;
         }
+	}
 
-    }
-
-    public interface IPlayerLogic : IMoveControl
+    public interface IPlayerLogic
     {
         void ToUse();
         void OpenInventory();

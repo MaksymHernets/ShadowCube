@@ -47,7 +47,7 @@ namespace ShadowCube.Player
 
         public void ButtonJump_Click()
         {
-            _playerLogic.Jump();
+            _playerLogic.InputScheme.Jump?.Invoke();
         }
 
         public void ButtonUse_Click()
