@@ -11,6 +11,8 @@ namespace ShadowCube.Controller
 		[SerializeField] private Button buttonLink;
 		[SerializeField] private Animator _animator;
 
+		private float _timeDeactivate = 1.7f;
+
 		public override void Init(IModel model)
 		{
 			gameObject.SetActive(true);
@@ -36,7 +38,7 @@ namespace ShadowCube.Controller
 		public void ButtonBack_Click()
 		{
 			_animator.SetBool("Close", true);
-			Invoke("Deactive", 3f);
+			Invoke("Deactive", _timeDeactivate);
 		}
 	}
 }

@@ -19,6 +19,8 @@ namespace ShadowCube.Controller
 
 		[Inject] GameSetting gameSetting;
 
+		private float _timeDeactivate = 2f;
+
 		public override void Init(IModel model)
 		{
 			_model = model as ModelPersonMenu;
@@ -51,7 +53,7 @@ namespace ShadowCube.Controller
 		{
 			gameSetting.UpdatePlayerDTO(_model.playerDTO);
 			_animator.SetBool("Close", true);
-			Invoke("Deactive", 3f);
+			Invoke("Deactive", _timeDeactivate);
 		}
 	}
 }

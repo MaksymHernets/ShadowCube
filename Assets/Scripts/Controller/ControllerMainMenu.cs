@@ -20,6 +20,7 @@ namespace ShadowCube.Controller
         [SerializeField] private Button buttonExit;
 
         protected ModelMainMenu _model;
+        private float _timeDeactivate = 1f;
 
         public override void Init(IModel model)
         {
@@ -73,7 +74,7 @@ namespace ShadowCube.Controller
         public override void Deactive()
         {
             _animator.SetBool("Close", true);
-            Observable.Timer(System.TimeSpan.FromSeconds(2.5f))
+            Observable.Timer(System.TimeSpan.FromSeconds(_timeDeactivate))
             .Subscribe(_ => { base.Deactive(); });
         }
     }

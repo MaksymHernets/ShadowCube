@@ -22,6 +22,8 @@ namespace ShadowCube.Controller
 
 		protected ModelOnlineMenu _model;
 
+		private float _timeDeactivate = 2f;
+
 		public override void Init(IModel model)
 		{
 			_model = model as ModelOnlineMenu;
@@ -52,7 +54,7 @@ namespace ShadowCube.Controller
 		public void ButtonBack_Click()
 		{
 			_animator.SetBool("Close", true);
-			Invoke("Deactive", 3f);
+			Invoke("Deactive", _timeDeactivate);
 		}
 	}
 }
