@@ -1,27 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-namespace ShadowCube
+namespace ShadowCube.Helpers
 {
     public class StageMachine
     {
-        public BaseStage CurrentStage;
+        public BaseStage CurrentStage { get; protected set; }
 
-        public StageMachine(BaseStage baseStage)
+        public StageMachine(BaseStage newStage)
         {
-            SetStage(baseStage);
+            CurrentStage = newStage;
+            CurrentStage.Start();
         }
 
-        public void SetStage(BaseStage baseStage)
+        public void SetStage(BaseStage newStage)
         {
-            //baseStage.EventFinished += Handler_EventFinished
-            CurrentStage = baseStage;
+            CurrentStage.Finished.AddListener(() => {
+                CurrentStage = newStage;
+                CurrentStage.Start();
+            });
+            CurrentStage?.Exit();
         }
 
-        public void Handler_EventFinished()
+        public void Update()
         {
-            //
+            CurrentStage.Update();
         }
     }
 }

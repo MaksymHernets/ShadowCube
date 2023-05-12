@@ -1,32 +1,10 @@
-using ShadowCube.Player;
-using UnityEngine;
 using UnityEngine.Events;
 
-namespace ShadowCube
+public abstract class BaseStage
 {
-    public class BaseStage : MonoBehaviour
-    {
-        public UnityAction EventFinished;
-
-        public virtual void Start()
-        {
-
-        }
-
-        public virtual void Update()
-        {
-
-        }
-
-        public virtual void Exit()
-        {
-
-        }
-
-        public void Finish()
-        {
-            EventFinished?.Invoke();
-        }
-            
-    }
+    public UnityEvent Finished = new UnityEvent();
+    public virtual void Start() { }
+    public virtual void Update() { }
+    public virtual void Exit() { Finish(); }
+    public void Finish() { Finished?.Invoke(); }
 }
