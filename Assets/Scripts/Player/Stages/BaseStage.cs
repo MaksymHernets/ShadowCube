@@ -1,10 +1,13 @@
 using ShadowCube.Player;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace ShadowCube
 {
     public class BaseStage : MonoBehaviour
     {
+        public UnityAction EventFinished;
+
         public virtual void Start()
         {
 
@@ -22,7 +25,7 @@ namespace ShadowCube
 
         public void Finish()
         {
-
+            EventFinished?.Invoke();
         }
             
     }

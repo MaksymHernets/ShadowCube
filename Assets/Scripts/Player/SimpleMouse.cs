@@ -10,9 +10,9 @@ namespace ShadowCube
 
         public static Vector2 GetPosition()
         {
-            float translationX = Input.GetAxis("Vertical") * scale;
-            float translationY = Input.GetAxis("Horizontal") * scale;
-            return new Vector2(translationX, translationY);
+            float translationX = Input.GetAxis("Mouse X") * scale;
+            float translationY = Input.GetAxis("Mouse Y") * scale;
+            return new Vector2(translationY, translationX);
         }
     }
 }
